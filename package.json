@@ -1,0 +1,27 @@
+{
+  "name": "game",
+  "version": "1.0.0",
+  "description": "## Zadanie rozwiązywane z wykładowcą",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ogar616",
+  "license": "UNLICENCED",
+  "dependencies": {
+    "react": "^15.4.0",
+    "react-dom": "^15.4.0",
+    "react-key-handler": "^1.0.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "webpack": "^3.12.0"
+  },
+  "keywords": [
+    "game"
+  ]
+}
