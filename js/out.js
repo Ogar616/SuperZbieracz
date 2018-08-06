@@ -9602,11 +9602,14 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //ułożenie komórek
+
 
 var App = function (_React$Component) {
     _inherits(App, _React$Component);
@@ -9639,10 +9642,7 @@ var Cell = function (_React$Component2) {
 
         var _this2 = _possibleConstructorReturn(this, (Cell.__proto__ || Object.getPrototypeOf(Cell)).call(this, props));
 
-        _this2.componentWillReceiveProps = function () {
-            console.log("Cell will receive props");
-            _this2.setState({ level: _this2.props.level });
-        };
+        _initialiseProps.call(_this2);
 
         _this2.state = { level: _this2.props.level };
         return _this2;
@@ -9655,7 +9655,7 @@ var Cell = function (_React$Component2) {
             var cellHeight = 100;
             if (this.state.level === 0) return _react2.default.createElement(
                 'div',
-                { className: 'cell', key: this.props.number, style: { backgroundColor: "green", float: "left", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box", border: "1px solid grey", textAlign: "center" } },
+                { className: 'cell', key: this.props.number, style: { backgroundColor: "green", float: "left", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box", border: "1px solid grey", textAlign: "center", position: "relative", top: "-20px", borderRadius: "20px" } },
                 ' ',
                 _react2.default.createElement(
                     'h1',
@@ -9665,7 +9665,7 @@ var Cell = function (_React$Component2) {
             );
             return _react2.default.createElement(
                 'div',
-                { className: 'cell', key: this.props.number, style: { float: "left", backgroundColor: "blue", width: cellWidth + "px", height: cellHeight + "px", textAlign: "center", boxSizing: "border-box", border: "1px solid gray" } },
+                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/Fiat126p.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", textAlign: "center", boxSizing: "border-box", border: "1px solid gray" } },
                 _react2.default.createElement(
                     'h1',
                     null,
@@ -9678,6 +9678,17 @@ var Cell = function (_React$Component2) {
     return Cell;
 }(_react2.default.Component);
 
+var _initialiseProps = function _initialiseProps() {
+    var _this5 = this;
+
+    this.componentWillReceiveProps = function (props) {
+        if (_this5.state.level !== props.level) {
+            console.log("Cell will update - cell");
+            _this5.setState({ level: props.level });
+        }
+    };
+};
+
 var Game = function (_React$Component3) {
     _inherits(Game, _React$Component3);
 
@@ -9687,14 +9698,9 @@ var Game = function (_React$Component3) {
         var _this3 = _possibleConstructorReturn(this, (Game.__proto__ || Object.getPrototypeOf(Game)).call(this, props));
 
         _this3.restartGame = function () {
-            var restartedCells = [];
-            _this3.state.cells.forEach(function (cell, index) {
-                restartedCells.push({ number: index, key: index, level: 0 });
+            _this3.setState({ cells: _this3.createBoard() }, function () {
+                return _this3.addNewCells();
             });
-            _this3.setState({ cells: restartedCells });
-            _this3.addNewCells();
-            //Przycisk po wystartowaniu gry dziala za drugim razem, a po pierwszym ruchu dodaje 4 komorki - nie 2
-            //bez this.addNewCells wszystko komórki są puste
         };
 
         _this3.magicWand = function () {
@@ -9706,14 +9712,24 @@ var Game = function (_React$Component3) {
                     return console.log("Callback in magicWand used");
                 });
             }
-            //trzeba klikać 2 razy, żeby przerenderowalo, stan sie zmienia za oboma kliknieciami - nawet razem z callback
+        };
 
+        _this3.createBoard = function () {
+            var start = [];
+            for (var i = 0; i < 25; i++) {
+                start[i] = { number: i, level: 0, key: i };
+            }
+            return start;
+        };
+
+        _this3.moveBack = function () {
+            if (_this3.state.movesBack > 0) _this3.setState({ cells: _this3.state.previousCells, movesBack: _this3.state.movesBack - 1 });
         };
 
         _this3.addNewCells = function () {
-            var numberOfCells = 25;
-            var newCell1 = 0;
-            var newCell2 = 0;
+            console.log("------ addNewCells");
+            var newCell1 = -1;
+            var newCell2 = -1;
 
             var arrayOfEmptyCells = [];
 
@@ -9721,17 +9737,20 @@ var Game = function (_React$Component3) {
                 if (cell.level === 0) arrayOfEmptyCells.push(index);
             });
 
-            while (newCell1 === newCell2) {
+            while (arrayOfEmptyCells.indexOf(newCell1) < 0) {
                 newCell1 = Math.round(Math.random() * 24);
+            }
+            while (newCell1 === newCell2 || arrayOfEmptyCells.indexOf(newCell2) < 0) {
                 newCell2 = Math.round(Math.random() * 24);
             }
 
-            var newCells = [];
+            var newCells = _this3.state.cells;
 
-            for (var i = 0; i < numberOfCells; i++) {
-                if (i === newCell1 || i === newCell2) newCells.push({ number: i, level: 1, key: i });else newCells.push({ number: i, level: 0, key: i });
-            }
+            newCells[newCell1] = { number: newCell1, level: 1, key: newCell1 };
+            newCells[newCell2] = { number: newCell2, level: 1, key: newCell2 };
 
+            console.log('newCell1', newCell1);
+            console.log('newCell2', newCell2);
             _this3.setState({ cells: newCells }, function () {
                 return console.log("Callback in addNewCells used");
             });
@@ -9739,18 +9758,19 @@ var Game = function (_React$Component3) {
 
         _this3.componentDidMount = function () {
             document.addEventListener("keyup", _this3.handleKeys);
-
-            console.log(" ");
+            _this3.addNewCells();
 
             console.log("Component Did Mount...");
-            _this3.addNewCells();
         };
 
         _this3.handleKeys = function (e) {
 
             // left arrow
-            if (e.which === 37) {
+            var leftArrow = 37;
+            if (e.which === leftArrow) {
                 console.log("left arrow key pressed");
+
+                _this3.setState({ previousCells: _this3.state.cells });
 
                 var allCells = _this3.state.cells;
 
@@ -9760,88 +9780,350 @@ var Game = function (_React$Component3) {
                 var row4 = allCells.slice(15, 20);
                 var row5 = allCells.slice(20, 25);
 
-                // defining rows
+                var moveLeft = function moveLeft(arr) {
+                    return arr.filter(function (e) {
+                        return e > 0;
+                    }).concat([0, 0, 0, 0, 0]).slice(0, 5);
+                };
 
+                var moveLeftAndIncrementLevels = function moveLeftAndIncrementLevels(arr) {
 
-                var row1FullCells = [];
-                var row2FullCells = [];
-                var row3FullCells = [];
-                var row4FullCells = [];
-                var row5FullCells = [];
+                    var levels = arr.map(function (e) {
+                        return e.level;
+                    });
 
-                var row1CountKey = 0;
-                row1.forEach(function (e) {
-                    if (e.level > 0) {
-                        row1FullCells.push({ level: e.level, number: row1CountKey, key: row1CountKey });
-                        row1CountKey++;
+                    levels = moveLeft(levels);
+
+                    for (var i = 0; i < 4; i++) {
+                        if (levels[i] < 1) continue;
+
+                        if (levels[i] === levels[i + 1]) {
+                            levels[i]++;
+                            levels[i + 1] = 0;
+                        }
                     }
-                });
 
-                var row2CountKey = 5;
-                row2.forEach(function (e) {
-                    if (e.level > 0) {
-                        row2FullCells.push({ level: e.level, number: row2CountKey, key: row2CountKey });
-                        row2CountKey++;
-                    }
-                });
+                    levels = moveLeft(levels);
 
-                var row3CountKey = 10;
-                row3.forEach(function (e) {
-                    if (e.level > 0) {
-                        row3FullCells.push({ level: e.level, number: row3CountKey, key: row3CountKey });
-                        row3CountKey++;
-                    }
-                });
+                    return levels.map(function (e) {
+                        return { level: e };
+                    });
+                };
 
-                var row4CountKey = 15;
-                row4.forEach(function (e) {
-                    if (e.level > 0) {
-                        row4FullCells.push({ level: e.level, number: row4CountKey, key: row4CountKey });
-                        row4CountKey++;
-                    }
-                });
+                row1 = moveLeftAndIncrementLevels(row1);
+                row2 = moveLeftAndIncrementLevels(row2);
+                row3 = moveLeftAndIncrementLevels(row3);
+                row4 = moveLeftAndIncrementLevels(row4);
+                row5 = moveLeftAndIncrementLevels(row5);
 
-                var row5CountKey = 20;
-                row5.forEach(function (e) {
-                    if (e.level > 0) {
-                        row5FullCells.push({ level: e.level, number: row5CountKey, key: row5CountKey });
-                        row5CountKey++;
-                    }
-                });
+                allCells = [].concat(_toConsumableArray(row1), _toConsumableArray(row2), _toConsumableArray(row3), _toConsumableArray(row4), _toConsumableArray(row5));
 
-                var newRow1 = row1FullCells;
-                for (var i = row1FullCells.length; i <= 5; i++) {
-                    if (newRow1.length < 5) newRow1.push({ level: 0, number: i, key: i });
-                }var newRow2 = row2FullCells;
-                for (var _i = row2FullCells.length; _i <= 5; _i++) {
-                    if (newRow2.length < 5) newRow2.push({ level: 0, number: _i + 5, key: _i + 5 });
-                }var newRow3 = row3FullCells;
-                for (var _i2 = row3FullCells.length; _i2 <= 5; _i2++) {
-                    if (newRow3.length < 5) newRow3.push({ level: 0, number: _i2 + 10, key: _i2 + 10 });
-                }var newRow4 = row4FullCells;
-                for (var _i3 = row4FullCells.length; _i3 <= 5; _i3++) {
-                    if (newRow4.length < 5) newRow4.push({ level: 0, number: _i3 + 15, key: _i3 + 15 });
-                }var newRow5 = row5FullCells;
-                for (var _i4 = row5FullCells.length; _i4 <= 5; _i4++) {
-                    if (newRow5.length < 5) newRow5.push({ level: 0, number: _i4 + 20, key: _i4 + 20 });
-                }allCells = newRow1.concat(newRow2, newRow3, newRow4, newRow5);
-
-                console.log(allCells);
+                for (var i = 0; i < allCells.length; i++) {
+                    allCells[i].key = i;
+                    allCells[i].number = i;
+                }
 
                 _this3.setState({ cells: allCells }, function () {
                     return console.log("Callback in handleKeys used");
                 });
-                // this.addNewCells();                                                      // nie działa tutaj dobrze
+
+                _this3.addNewCells();
             }
 
             //right arrow
-            if (e.which === 39) console.log("right arrow key pressed");
+            if (e.which === 39) {
+                console.log("right arrow key pressed");
+
+                _this3.setState({ previousCells: _this3.state.cells });
+
+                var _allCells = _this3.state.cells;
+
+                var _row = _allCells.slice(0, 5);
+                var _row2 = _allCells.slice(5, 10);
+                var _row3 = _allCells.slice(10, 15);
+                var _row4 = _allCells.slice(15, 20);
+                var _row5 = _allCells.slice(20, 25);
+
+                var moveRight = function moveRight(arr) {
+
+                    var filtered = arr.filter(function (e) {
+                        return e > 0;
+                    });
+
+                    if (filtered.length < 5) {
+                        for (var _i = filtered.length; _i < 5; _i++) {
+                            filtered.unshift(0);
+                        }
+                    }
+                    return filtered;
+                };
+
+                var moveRightAndIncrementLevels = function moveRightAndIncrementLevels(arr) {
+
+                    var levels = arr.map(function (e) {
+                        return e.level;
+                    });
+
+                    levels = moveRight(levels);
+
+                    for (var _i2 = levels.length - 1; _i2 > 0; _i2--) {
+                        if (levels[_i2] < 1) continue;
+
+                        if (levels[_i2] === levels[_i2 - 1]) {
+                            levels[_i2]++;
+                            levels[_i2 - 1] = 0;
+                        }
+                    }
+
+                    levels = moveRight(levels);
+
+                    return levels.map(function (e) {
+                        return { level: e };
+                    });
+                };
+
+                _row = moveRightAndIncrementLevels(_row);
+                _row2 = moveRightAndIncrementLevels(_row2);
+                _row3 = moveRightAndIncrementLevels(_row3);
+                _row4 = moveRightAndIncrementLevels(_row4);
+                _row5 = moveRightAndIncrementLevels(_row5);
+
+                _allCells = [].concat(_toConsumableArray(_row), _toConsumableArray(_row2), _toConsumableArray(_row3), _toConsumableArray(_row4), _toConsumableArray(_row5));
+
+                for (var _i3 = 0; _i3 < _allCells.length; _i3++) {
+                    _allCells[_i3].key = _i3;
+                    _allCells[_i3].number = _i3;
+                }
+
+                _this3.setState({ cells: _allCells }, function () {
+                    return console.log("Callback in handleKeys used");
+                });
+
+                _this3.addNewCells();
+            }
 
             //up arrow
-            if (e.which === 38) console.log("up arrow key pressed");
+            if (e.which === 38) {
+                console.log("up arrow key pressed");
+
+                _this3.setState({ previousCells: _this3.state.cells });
+
+                var col1 = [];
+                var col2 = [];
+                var col3 = [];
+                var col4 = [];
+                var col5 = [];
+
+                _this3.state.cells.forEach(function (e) {
+                    if (e.key % 5 === 0) col1.push(e);
+                    if (e.key % 5 === 1) col2.push(e);
+                    if (e.key % 5 === 2) col3.push(e);
+                    if (e.key % 5 === 3) col4.push(e);
+                    if (e.key % 5 === 4) col5.push(e);
+                });
+
+                var moveDown = function moveDown(arr) {
+
+                    var filtered = arr.filter(function (e) {
+                        return e > 0;
+                    });
+
+                    if (filtered.length < 5) {
+                        for (var _i4 = filtered.length; _i4 < 5; _i4++) {
+                            filtered.unshift(0);
+                        }
+                    }
+                    return filtered;
+                };
+
+                var moveDownAndIncrementLevels = function moveDownAndIncrementLevels(arr) {
+
+                    var levels = arr.map(function (e) {
+                        return e.level;
+                    });
+
+                    levels = moveDown(levels);
+
+                    for (var _i5 = levels.length - 1; _i5 > 0; _i5--) {
+                        if (levels[_i5] < 1) continue;
+
+                        if (levels[_i5] === levels[_i5 - 1]) {
+                            levels[_i5]++;
+                            levels[_i5 - 1] = 0;
+                        }
+                    }
+
+                    levels = moveDown(levels);
+
+                    return levels.map(function (e) {
+                        return { level: e };
+                    });
+                };
+
+                col1 = moveDownAndIncrementLevels(col1);
+                col2 = moveDownAndIncrementLevels(col2);
+                col3 = moveDownAndIncrementLevels(col3);
+                col4 = moveDownAndIncrementLevels(col4);
+                col5 = moveDownAndIncrementLevels(col5);
+
+                var _row6 = [];
+                var _row7 = [];
+                var _row8 = [];
+                var _row9 = [];
+                var _row10 = [];
+
+                _row6.push(col1[0]);
+                _row6.push(col2[0]);
+                _row6.push(col3[0]);
+                _row6.push(col4[0]);
+                _row6.push(col5[0]);
+
+                _row7.push(col1[1]);
+                _row7.push(col2[1]);
+                _row7.push(col3[1]);
+                _row7.push(col4[1]);
+                _row7.push(col5[1]);
+
+                _row8.push(col1[2]);
+                _row8.push(col2[2]);
+                _row8.push(col3[2]);
+                _row8.push(col4[2]);
+                _row8.push(col5[2]);
+
+                _row9.push(col1[3]);
+                _row9.push(col2[3]);
+                _row9.push(col3[3]);
+                _row9.push(col4[3]);
+                _row9.push(col5[3]);
+
+                _row10.push(col1[4]);
+                _row10.push(col2[4]);
+                _row10.push(col3[4]);
+                _row10.push(col4[4]);
+                _row10.push(col5[4]);
+
+                var _allCells2 = [].concat(_row6, _row7, _row8, _row9, _row10);
+
+                for (var _i6 = 0; _i6 < _allCells2.length; _i6++) {
+                    _allCells2[_i6].number = _i6;
+                    _allCells2[_i6].key = _i6;
+                }
+
+                _this3.setState({ cells: _allCells2 }, console.log("Callback in down arrow used"));
+                _this3.addNewCells();
+            }
 
             //down arrow
-            if (e.which === 40) console.log("down arrow key pressed");
+            if (e.which === 40) {
+                console.log("down arrow key pressed");
+
+                _this3.setState({ previousCells: _this3.state.cells });
+
+                var _col = [];
+                var _col2 = [];
+                var _col3 = [];
+                var _col4 = [];
+                var _col5 = [];
+
+                _this3.state.cells.forEach(function (e) {
+                    if (e.key % 5 === 0) _col.push(e);
+                    if (e.key % 5 === 1) _col2.push(e);
+                    if (e.key % 5 === 2) _col3.push(e);
+                    if (e.key % 5 === 3) _col4.push(e);
+                    if (e.key % 5 === 4) _col5.push(e);
+                });
+
+                var _moveDown = function _moveDown(arr) {
+
+                    var filtered = arr.filter(function (e) {
+                        return e > 0;
+                    });
+
+                    if (filtered.length < 5) {
+                        for (var _i7 = filtered.length; _i7 < 5; _i7++) {
+                            filtered.unshift(0);
+                        }
+                    }
+                    return filtered;
+                };
+
+                var _moveDownAndIncrementLevels = function _moveDownAndIncrementLevels(arr) {
+
+                    var levels = arr.map(function (e) {
+                        return e.level;
+                    });
+
+                    levels = _moveDown(levels);
+
+                    for (var _i8 = levels.length - 1; _i8 > 0; _i8--) {
+                        if (levels[_i8] < 1) continue;
+
+                        if (levels[_i8] === levels[_i8 - 1]) {
+                            levels[_i8]++;
+                            levels[_i8 - 1] = 0;
+                        }
+                    }
+
+                    levels = _moveDown(levels);
+
+                    return levels.map(function (e) {
+                        return { level: e };
+                    });
+                };
+
+                _col = _moveDownAndIncrementLevels(_col);
+                _col2 = _moveDownAndIncrementLevels(_col2);
+                _col3 = _moveDownAndIncrementLevels(_col3);
+                _col4 = _moveDownAndIncrementLevels(_col4);
+                _col5 = _moveDownAndIncrementLevels(_col5);
+
+                var _row11 = [];
+                var _row12 = [];
+                var _row13 = [];
+                var _row14 = [];
+                var _row15 = [];
+
+                _row11.push(_col[0]);
+                _row11.push(_col2[0]);
+                _row11.push(_col3[0]);
+                _row11.push(_col4[0]);
+                _row11.push(_col5[0]);
+
+                _row12.push(_col[1]);
+                _row12.push(_col2[1]);
+                _row12.push(_col3[1]);
+                _row12.push(_col4[1]);
+                _row12.push(_col5[1]);
+
+                _row13.push(_col[2]);
+                _row13.push(_col2[2]);
+                _row13.push(_col3[2]);
+                _row13.push(_col4[2]);
+                _row13.push(_col5[2]);
+
+                _row14.push(_col[3]);
+                _row14.push(_col2[3]);
+                _row14.push(_col3[3]);
+                _row14.push(_col4[3]);
+                _row14.push(_col5[3]);
+
+                _row15.push(_col[4]);
+                _row15.push(_col2[4]);
+                _row15.push(_col3[4]);
+                _row15.push(_col4[4]);
+                _row15.push(_col5[4]);
+
+                var _allCells3 = [].concat(_row11, _row12, _row13, _row14, _row15);
+
+                for (var _i9 = 0; _i9 < _allCells3.length; _i9++) {
+                    _allCells3[_i9].number = _i9;
+                    _allCells3[_i9].key = _i9;
+                }
+
+                _this3.setState({ cells: _allCells3 }, console.log("Callback in down arrow used"));
+
+                _this3.addNewCells();
+            }
         };
 
         _this3.countCoordinates = function (x, y) {
@@ -9850,11 +10132,10 @@ var Game = function (_React$Component3) {
 
         _this3.countCoordinatesReverse = function (i) {
             var x = void 0;
-            if (i % 5 === 0) x = 1;
-            if (i % 5 === 1) x = 2;
-            if (i % 5 === 2) x = 3;
-            if (i % 5 === 3) x = 4;
-            if (i % 5 === 4) x = 5;
+
+            for (var _i10 = 0; _i10 <= 5; _i10++) {
+                if (_i10 % 5 === _i10) x = _i10 + 1;
+            }
 
             var y = void 0;
             if (i < 5) y = 1;
@@ -9866,12 +10147,12 @@ var Game = function (_React$Component3) {
             return [x, y];
         };
 
-        _this3.child = _react2.default.references;
         _this3.state = {
-            cells: [],
+            cells: _this3.createBoard(),
             wands: 3,
             movesBack: 3,
-            points: 0
+            points: 0,
+            previousCells: []
 
         };
         return _this3;
@@ -9883,10 +10164,11 @@ var Game = function (_React$Component3) {
             var _this4 = this;
 
             console.log("Render Method...");
-
+            if (this.state.cells.length === 0) return null;
             var cells = this.state.cells.map(function (element, index) {
                 return _react2.default.createElement(Cell, { number: _this4.state.cells[index].number, key: _this4.state.cells[index].key, level: _this4.state.cells[index].level });
             });
+
             return _react2.default.createElement(
                 'div',
                 { style: { backgroundColor: "grey", width: "100%", height: "800px" } },
@@ -9900,29 +10182,30 @@ var Game = function (_React$Component3) {
                     { style: { height: "500px", width: "500px", display: "inlineBlock", margin: "0 auto" } },
                     _react2.default.createElement(
                         'div',
-                        { style: { margin: "0 auto", backgroundColor: "lightgrey", width: "150px", height: "50px", boxSizing: "borderBox" } },
+                        { style: { margin: "5px auto", backgroundColor: "lightgrey", width: "150px", height: "50px", boxSizing: "borderBox", padding: "10px" } },
                         _react2.default.createElement(
                             'div',
                             { style: { width: "50px", height: "50px", float: "left", border: "1px solid blue", boxSizing: "border-box" }, onClick: this.restartGame },
-                            'Restart'
+                            'Restart game'
                         ),
                         _react2.default.createElement(
                             'div',
-                            { style: { width: "50px", height: "50px", float: "left", border: "1px solid blue", boxSizing: "border-box" } },
-                            'Move back'
+                            { style: { width: "50px", height: "50px", float: "left", border: "1px solid blue", boxSizing: "border-box" }, onClick: this.moveBack },
+                            'Move back: ',
+                            this.state.movesBack
                         ),
                         _react2.default.createElement(
                             'div',
                             { style: { width: "50px", height: "50px", float: "left", border: "1px solid blue", boxSizing: "border-box" }, onClick: this.magicWand },
-                            'Magic wand'
+                            'Magic wands: ',
+                            this.state.wands
                         )
                     ),
                     _react2.default.createElement(
                         'div',
-                        { style: { margin: "0 auto" } },
+                        { style: { marginTop: "25px", marginBottom: "45px" } },
                         cells
                     ),
-                    _react2.default.createElement('div', { style: { margin: "0 auto", backgroundColor: "lightgrey", width: "150px", height: "50px" } }),
                     _react2.default.createElement(
                         'h2',
                         { style: { textAlign: "center" } },
