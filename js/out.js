@@ -9608,8 +9608,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } //ułożenie komórek
-
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var App = function (_React$Component) {
     _inherits(App, _React$Component);
@@ -9655,22 +9654,58 @@ var Cell = function (_React$Component2) {
             var cellHeight = 100;
             if (this.state.level === 0) return _react2.default.createElement(
                 'div',
-                { className: 'cell', key: this.props.number, style: { backgroundColor: "green", float: "left", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box", border: "1px solid grey", textAlign: "center", position: "relative", top: "-20px", borderRadius: "20px" } },
-                ' ',
-                _react2.default.createElement(
-                    'h1',
-                    null,
-                    this.props.number
-                )
+                { className: 'cell', key: this.props.number, style: { backgroundColor: "green", float: "left", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box", border: "1px solid grey", textAlign: "center", position: "relative", top: "-20px", borderRadius: "25px" } },
+                ' '
             );
-            return _react2.default.createElement(
+            if (this.state.level === 1) return _react2.default.createElement(
                 'div',
                 { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/Fiat126p.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", textAlign: "center", boxSizing: "border-box", border: "1px solid gray" } },
-                _react2.default.createElement(
-                    'h1',
-                    null,
-                    this.state.level
-                )
+                ' '
+            );
+            if (this.state.level === 2) return _react2.default.createElement(
+                'div',
+                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/polonez.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", textAlign: "center", boxSizing: "border-box", border: "1px solid gray" } },
+                ' '
+            );
+            if (this.state.level === 3) return _react2.default.createElement(
+                'div',
+                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/Fiat125p.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", textAlign: "center", boxSizing: "border-box", border: "1px solid gray" } },
+                ' '
+            );
+            if (this.state.level === 4) return _react2.default.createElement(
+                'div',
+                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/ford1.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", textAlign: "center", boxSizing: "border-box", border: "1px solid gray" } },
+                ' '
+            );
+            if (this.state.level === 5) return _react2.default.createElement(
+                'div',
+                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/hyundai1.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", textAlign: "center", boxSizing: "border-box", border: "1px solid gray" } },
+                ' '
+            );
+            if (this.state.level === 6) return _react2.default.createElement(
+                'div',
+                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/mercedes1.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", textAlign: "center", boxSizing: "border-box", border: "1px solid gray" } },
+                ' '
+            );
+            if (this.state.level === 7) return _react2.default.createElement(
+                'div',
+                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/vw1.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", textAlign: "center", boxSizing: "border-box", border: "1px solid gray" } },
+                ' '
+            );
+            if (this.state.level === 8) return _react2.default.createElement(
+                'div',
+                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/v1.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", textAlign: "center", boxSizing: "border-box", border: "1px solid gray" } },
+                ' '
+            );
+            if (this.state.level === 9) return _react2.default.createElement(
+                'div',
+                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/p1.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", textAlign: "center", boxSizing: "border-box", border: "1px solid gray" } },
+                ' '
+            );
+            if (this.state.level === 10) return _react2.default.createElement(
+                'div',
+                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/lambo.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", textAlign: "center", boxSizing: "border-box", border: "1px solid gray" } },
+                ' '
             );
         }
     }]);
@@ -9704,10 +9739,15 @@ var Game = function (_React$Component3) {
         };
 
         _this3.magicWand = function () {
-            if (_this3.state.wands > 0) {
+            var emptyCells = [];
+            _this3.state.cells.forEach(function (e) {
+                if (e.level === 1) emptyCells.push(e);
+            });
+            if (_this3.state.wands > 0 && emptyCells.length > 0) {
                 var wandedCells = _this3.state.cells.map(function (cell, index) {
                     if (cell.level === 1) return { level: 0, number: cell.number, key: cell.key };else return cell;
                 });
+
                 _this3.setState({ cells: wandedCells, wands: _this3.state.wands - 1 }, function () {
                     return console.log("Callback in magicWand used");
                 });
@@ -9722,12 +9762,28 @@ var Game = function (_React$Component3) {
             return start;
         };
 
+        _this3.gameOverCheck = function () {
+            var emptyCells = [];
+            _this3.state.cells.forEach(function (e) {
+                if (e.level < 1) emptyCells.push(e);
+            });
+            if (emptyCells.length < 2) {
+                if (_this3.handleKeys) {
+                    prompt("GAME OVER  !!! ");
+                    delete _this3.handleKeys();
+                    delete _this3.addNewCells();
+                    delete _this3.magicWand();
+                    delete _this3.moveBack();
+                }
+            }
+        };
+
         _this3.moveBack = function () {
-            if (_this3.state.movesBack > 0) _this3.setState({ cells: _this3.state.previousCells, movesBack: _this3.state.movesBack - 1 });
+            if (_this3.state.movesBack > 0 && _this3.state.previousCells !== _this3.state.cells) _this3.setState({ cells: _this3.state.previousCells, movesBack: _this3.state.movesBack - 1 });
         };
 
         _this3.addNewCells = function () {
-            console.log("------ addNewCells");
+
             var newCell1 = -1;
             var newCell2 = -1;
 
@@ -9749,8 +9805,6 @@ var Game = function (_React$Component3) {
             newCells[newCell1] = { number: newCell1, level: 1, key: newCell1 };
             newCells[newCell2] = { number: newCell2, level: 1, key: newCell2 };
 
-            console.log('newCell1', newCell1);
-            console.log('newCell2', newCell2);
             _this3.setState({ cells: newCells }, function () {
                 return console.log("Callback in addNewCells used");
             });
@@ -9770,6 +9824,9 @@ var Game = function (_React$Component3) {
             if (e.which === leftArrow) {
                 console.log("left arrow key pressed");
 
+                _this3.gameOverCheck();
+
+                var pointsToAdd = 0;
                 _this3.setState({ previousCells: _this3.state.cells });
 
                 var allCells = _this3.state.cells;
@@ -9799,6 +9856,7 @@ var Game = function (_React$Component3) {
 
                         if (levels[i] === levels[i + 1]) {
                             levels[i]++;
+                            pointsToAdd += 11;
                             levels[i + 1] = 0;
                         }
                     }
@@ -9823,7 +9881,7 @@ var Game = function (_React$Component3) {
                     allCells[i].number = i;
                 }
 
-                _this3.setState({ cells: allCells }, function () {
+                _this3.setState({ cells: allCells, points: _this3.state.points + pointsToAdd }, function () {
                     return console.log("Callback in handleKeys used");
                 });
 
@@ -9831,8 +9889,13 @@ var Game = function (_React$Component3) {
             }
 
             //right arrow
-            if (e.which === 39) {
+            var rightArrow = 39;
+            if (e.which === rightArrow) {
                 console.log("right arrow key pressed");
+
+                _this3.gameOverCheck();
+
+                var _pointsToAdd = 0;
 
                 _this3.setState({ previousCells: _this3.state.cells });
 
@@ -9871,6 +9934,7 @@ var Game = function (_React$Component3) {
 
                         if (levels[_i2] === levels[_i2 - 1]) {
                             levels[_i2]++;
+                            _pointsToAdd += 11;
                             levels[_i2 - 1] = 0;
                         }
                     }
@@ -9895,7 +9959,7 @@ var Game = function (_React$Component3) {
                     _allCells[_i3].number = _i3;
                 }
 
-                _this3.setState({ cells: _allCells }, function () {
+                _this3.setState({ cells: _allCells, points: _this3.state.points + _pointsToAdd }, function () {
                     return console.log("Callback in handleKeys used");
                 });
 
@@ -9903,8 +9967,13 @@ var Game = function (_React$Component3) {
             }
 
             //up arrow
-            if (e.which === 38) {
+            var upArrow = 38;
+            if (e.which === upArrow) {
                 console.log("up arrow key pressed");
+
+                _this3.gameOverCheck();
+
+                var _pointsToAdd2 = 0;
 
                 _this3.setState({ previousCells: _this3.state.cells });
 
@@ -9922,7 +9991,7 @@ var Game = function (_React$Component3) {
                     if (e.key % 5 === 4) col5.push(e);
                 });
 
-                var moveDown = function moveDown(arr) {
+                var moveUp = function moveUp(arr) {
 
                     var filtered = arr.filter(function (e) {
                         return e > 0;
@@ -9930,92 +9999,65 @@ var Game = function (_React$Component3) {
 
                     if (filtered.length < 5) {
                         for (var _i4 = filtered.length; _i4 < 5; _i4++) {
-                            filtered.unshift(0);
+                            filtered.push(0);
                         }
                     }
                     return filtered;
                 };
 
-                var moveDownAndIncrementLevels = function moveDownAndIncrementLevels(arr) {
+                var moveUpAndIncrementLevels = function moveUpAndIncrementLevels(arr) {
 
                     var levels = arr.map(function (e) {
                         return e.level;
                     });
 
-                    levels = moveDown(levels);
+                    levels = moveUp(levels);
 
-                    for (var _i5 = levels.length - 1; _i5 > 0; _i5--) {
+                    for (var _i5 = 0; _i5 < levels.length - 1; _i5++) {
                         if (levels[_i5] < 1) continue;
 
-                        if (levels[_i5] === levels[_i5 - 1]) {
+                        if (levels[_i5] === levels[_i5 + 1]) {
                             levels[_i5]++;
-                            levels[_i5 - 1] = 0;
+                            _pointsToAdd2 += 11;
+                            levels[_i5 + 1] = 0;
                         }
                     }
 
-                    levels = moveDown(levels);
+                    levels = moveUp(levels);
 
                     return levels.map(function (e) {
                         return { level: e };
                     });
                 };
 
-                col1 = moveDownAndIncrementLevels(col1);
-                col2 = moveDownAndIncrementLevels(col2);
-                col3 = moveDownAndIncrementLevels(col3);
-                col4 = moveDownAndIncrementLevels(col4);
-                col5 = moveDownAndIncrementLevels(col5);
+                col1 = moveUpAndIncrementLevels(col1);
+                col2 = moveUpAndIncrementLevels(col2);
+                col3 = moveUpAndIncrementLevels(col3);
+                col4 = moveUpAndIncrementLevels(col4);
+                col5 = moveUpAndIncrementLevels(col5);
 
-                var _row6 = [];
-                var _row7 = [];
-                var _row8 = [];
-                var _row9 = [];
-                var _row10 = [];
+                var _allCells2 = [];
 
-                _row6.push(col1[0]);
-                _row6.push(col2[0]);
-                _row6.push(col3[0]);
-                _row6.push(col4[0]);
-                _row6.push(col5[0]);
-
-                _row7.push(col1[1]);
-                _row7.push(col2[1]);
-                _row7.push(col3[1]);
-                _row7.push(col4[1]);
-                _row7.push(col5[1]);
-
-                _row8.push(col1[2]);
-                _row8.push(col2[2]);
-                _row8.push(col3[2]);
-                _row8.push(col4[2]);
-                _row8.push(col5[2]);
-
-                _row9.push(col1[3]);
-                _row9.push(col2[3]);
-                _row9.push(col3[3]);
-                _row9.push(col4[3]);
-                _row9.push(col5[3]);
-
-                _row10.push(col1[4]);
-                _row10.push(col2[4]);
-                _row10.push(col3[4]);
-                _row10.push(col4[4]);
-                _row10.push(col5[4]);
-
-                var _allCells2 = [].concat(_row6, _row7, _row8, _row9, _row10);
-
-                for (var _i6 = 0; _i6 < _allCells2.length; _i6++) {
-                    _allCells2[_i6].number = _i6;
-                    _allCells2[_i6].key = _i6;
+                for (var _i6 = 0; _i6 < 5; _i6++) {
+                    _allCells2.push(col1[_i6], col2[_i6], col3[_i6], col4[_i6], col5[_i6]);
+                }for (var _i7 = 0; _i7 < _allCells2.length; _i7++) {
+                    _allCells2[_i7].number = _i7;
+                    _allCells2[_i7].key = _i7;
                 }
 
-                _this3.setState({ cells: _allCells2 }, console.log("Callback in down arrow used"));
+                _this3.setState({ cells: _allCells2, points: _this3.state.points + _pointsToAdd2 }, console.log("Callback in down arrow used"));
+
                 _this3.addNewCells();
             }
 
             //down arrow
-            if (e.which === 40) {
+            var downArrow = 40;
+            if (e.which === downArrow) {
                 console.log("down arrow key pressed");
+
+                _this3.gameOverCheck();
+
+                var _pointsToAdd3 = 0;
 
                 _this3.setState({ previousCells: _this3.state.cells });
 
@@ -10033,118 +10075,64 @@ var Game = function (_React$Component3) {
                     if (e.key % 5 === 4) _col5.push(e);
                 });
 
-                var _moveDown = function _moveDown(arr) {
+                var moveDown = function moveDown(arr) {
 
                     var filtered = arr.filter(function (e) {
                         return e > 0;
                     });
 
                     if (filtered.length < 5) {
-                        for (var _i7 = filtered.length; _i7 < 5; _i7++) {
+                        for (var _i8 = filtered.length; _i8 < 5; _i8++) {
                             filtered.unshift(0);
                         }
                     }
                     return filtered;
                 };
 
-                var _moveDownAndIncrementLevels = function _moveDownAndIncrementLevels(arr) {
+                var moveDownAndIncrementLevels = function moveDownAndIncrementLevels(arr) {
 
                     var levels = arr.map(function (e) {
                         return e.level;
                     });
 
-                    levels = _moveDown(levels);
+                    levels = moveDown(levels);
 
-                    for (var _i8 = levels.length - 1; _i8 > 0; _i8--) {
-                        if (levels[_i8] < 1) continue;
+                    for (var _i9 = levels.length - 1; _i9 > 0; _i9--) {
+                        if (levels[_i9] < 1) continue;
 
-                        if (levels[_i8] === levels[_i8 - 1]) {
-                            levels[_i8]++;
-                            levels[_i8 - 1] = 0;
+                        if (levels[_i9] === levels[_i9 - 1]) {
+                            levels[_i9]++;
+                            _pointsToAdd3 += 11;
+                            levels[_i9 - 1] = 0;
                         }
                     }
 
-                    levels = _moveDown(levels);
+                    levels = moveDown(levels);
 
                     return levels.map(function (e) {
                         return { level: e };
                     });
                 };
 
-                _col = _moveDownAndIncrementLevels(_col);
-                _col2 = _moveDownAndIncrementLevels(_col2);
-                _col3 = _moveDownAndIncrementLevels(_col3);
-                _col4 = _moveDownAndIncrementLevels(_col4);
-                _col5 = _moveDownAndIncrementLevels(_col5);
+                _col = moveDownAndIncrementLevels(_col);
+                _col2 = moveDownAndIncrementLevels(_col2);
+                _col3 = moveDownAndIncrementLevels(_col3);
+                _col4 = moveDownAndIncrementLevels(_col4);
+                _col5 = moveDownAndIncrementLevels(_col5);
 
-                var _row11 = [];
-                var _row12 = [];
-                var _row13 = [];
-                var _row14 = [];
-                var _row15 = [];
+                var _allCells3 = [];
 
-                _row11.push(_col[0]);
-                _row11.push(_col2[0]);
-                _row11.push(_col3[0]);
-                _row11.push(_col4[0]);
-                _row11.push(_col5[0]);
-
-                _row12.push(_col[1]);
-                _row12.push(_col2[1]);
-                _row12.push(_col3[1]);
-                _row12.push(_col4[1]);
-                _row12.push(_col5[1]);
-
-                _row13.push(_col[2]);
-                _row13.push(_col2[2]);
-                _row13.push(_col3[2]);
-                _row13.push(_col4[2]);
-                _row13.push(_col5[2]);
-
-                _row14.push(_col[3]);
-                _row14.push(_col2[3]);
-                _row14.push(_col3[3]);
-                _row14.push(_col4[3]);
-                _row14.push(_col5[3]);
-
-                _row15.push(_col[4]);
-                _row15.push(_col2[4]);
-                _row15.push(_col3[4]);
-                _row15.push(_col4[4]);
-                _row15.push(_col5[4]);
-
-                var _allCells3 = [].concat(_row11, _row12, _row13, _row14, _row15);
-
-                for (var _i9 = 0; _i9 < _allCells3.length; _i9++) {
-                    _allCells3[_i9].number = _i9;
-                    _allCells3[_i9].key = _i9;
+                for (var _i10 = 0; _i10 < 5; _i10++) {
+                    _allCells3.push(_col[_i10], _col2[_i10], _col3[_i10], _col4[_i10], _col5[_i10]);
+                }for (var _i11 = 0; _i11 < _allCells3.length; _i11++) {
+                    _allCells3[_i11].number = _i11;
+                    _allCells3[_i11].key = _i11;
                 }
 
-                _this3.setState({ cells: _allCells3 }, console.log("Callback in down arrow used"));
+                _this3.setState({ cells: _allCells3, points: _this3.state.points + _pointsToAdd3 }, console.log("Callback in down arrow used"));
 
                 _this3.addNewCells();
             }
-        };
-
-        _this3.countCoordinates = function (x, y) {
-            return x + y * 5 - 6;
-        };
-
-        _this3.countCoordinatesReverse = function (i) {
-            var x = void 0;
-
-            for (var _i10 = 0; _i10 <= 5; _i10++) {
-                if (_i10 % 5 === _i10) x = _i10 + 1;
-            }
-
-            var y = void 0;
-            if (i < 5) y = 1;
-            if (i >= 5 && i < 10) y = 2;
-            if (i >= 10 && i < 15) y = 3;
-            if (i >= 15 && i < 20) y = 4;
-            if (i >= 20) y = 5;
-
-            return [x, y];
         };
 
         _this3.state = {
@@ -10160,6 +10148,27 @@ var Game = function (_React$Component3) {
 
     _createClass(Game, [{
         key: 'render',
+
+
+        // countCoordinates = (x, y) => (x + y * 5) -6;
+        //
+        // countCoordinatesReverse = (i) => {
+        //     let x;
+        //
+        //     for (let i = 0; i <= 5; i++){
+        //         if (i % 5 === i) x = i + 1;
+        //     }
+        //
+        //     let y;
+        //     if (i < 5) y = 1;
+        //     if ((i >= 5) && (i < 10)) y = 2;
+        //     if ((i >= 10) && (i < 15)) y = 3;
+        //     if ((i >= 15) && (i < 20)) y = 4;
+        //     if (i >= 20) y = 5;
+        //
+        //     return [x, y];
+        // };
+
         value: function render() {
             var _this4 = this;
 
@@ -10171,7 +10180,7 @@ var Game = function (_React$Component3) {
 
             return _react2.default.createElement(
                 'div',
-                { style: { backgroundColor: "grey", width: "100%", height: "800px" } },
+                { style: { backgroundColor: "grey", width: "100%", height: "100%" } },
                 _react2.default.createElement(
                     'h1',
                     { style: { textAlign: "center" } },
