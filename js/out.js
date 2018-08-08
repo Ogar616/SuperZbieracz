@@ -9654,57 +9654,82 @@ var Cell = function (_React$Component2) {
             var cellHeight = 100;
             if (this.state.level === 0) return _react2.default.createElement(
                 'div',
-                { className: 'cell', key: this.props.number, style: { backgroundColor: "green", float: "left", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box", border: "1px solid grey", textAlign: "center", position: "relative", top: "-20px", borderRadius: "25px" } },
+                { className: 'cell', key: this.props.number, style: { backgroundColor: "lightgrey", float: "left", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box", border: "5px solid black", borderRadius: "50px" } },
                 ' '
             );
             if (this.state.level === 1) return _react2.default.createElement(
                 'div',
-                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/Fiat126p.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", textAlign: "center", boxSizing: "border-box", border: "1px solid gray" } },
+                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/1gr3.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" } },
                 ' '
             );
             if (this.state.level === 2) return _react2.default.createElement(
                 'div',
-                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/polonez.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", textAlign: "center", boxSizing: "border-box", border: "1px solid gray" } },
+                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/2gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" } },
                 ' '
             );
             if (this.state.level === 3) return _react2.default.createElement(
                 'div',
-                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/Fiat125p.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", textAlign: "center", boxSizing: "border-box", border: "1px solid gray" } },
+                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/5gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", textAlign: "center", boxSizing: "border-box" } },
                 ' '
             );
             if (this.state.level === 4) return _react2.default.createElement(
                 'div',
-                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/ford1.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", textAlign: "center", boxSizing: "border-box", border: "1px solid gray" } },
+                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/10gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" } },
                 ' '
             );
             if (this.state.level === 5) return _react2.default.createElement(
                 'div',
-                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/hyundai1.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", textAlign: "center", boxSizing: "border-box", border: "1px solid gray" } },
+                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/20gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" } },
                 ' '
             );
             if (this.state.level === 6) return _react2.default.createElement(
                 'div',
-                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/mercedes1.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", textAlign: "center", boxSizing: "border-box", border: "1px solid gray" } },
+                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/50gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" } },
                 ' '
             );
             if (this.state.level === 7) return _react2.default.createElement(
                 'div',
-                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/vw1.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", textAlign: "center", boxSizing: "border-box", border: "1px solid gray" } },
+                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/1zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" } },
                 ' '
             );
             if (this.state.level === 8) return _react2.default.createElement(
                 'div',
-                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/v1.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", textAlign: "center", boxSizing: "border-box", border: "1px solid gray" } },
+                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/2zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" } },
                 ' '
             );
             if (this.state.level === 9) return _react2.default.createElement(
                 'div',
-                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/p1.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", textAlign: "center", boxSizing: "border-box", border: "1px solid gray" } },
+                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/5zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" } },
                 ' '
             );
             if (this.state.level === 10) return _react2.default.createElement(
                 'div',
-                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/lambo.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", textAlign: "center", boxSizing: "border-box", border: "1px solid gray" } },
+                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/10zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" } },
+                ' '
+            );
+            if (this.state.level === 11) return _react2.default.createElement(
+                'div',
+                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/20zl.jpeg")', backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" } },
+                ' '
+            );
+            if (this.state.level === 12) return _react2.default.createElement(
+                'div',
+                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/50zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" } },
+                ' '
+            );
+            if (this.state.level === 13) return _react2.default.createElement(
+                'div',
+                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/100zl.jpeg")', backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" } },
+                ' '
+            );
+            if (this.state.level === 14) return _react2.default.createElement(
+                'div',
+                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/200zl.jpeg")', backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" } },
+                ' '
+            );
+            if (this.state.level === 15) return _react2.default.createElement(
+                'div',
+                { className: 'cell', key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/500zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" } },
                 ' '
             );
         }
@@ -9717,10 +9742,7 @@ var _initialiseProps = function _initialiseProps() {
     var _this5 = this;
 
     this.componentWillReceiveProps = function (props) {
-        if (_this5.state.level !== props.level) {
-            console.log("Cell will update - cell");
-            _this5.setState({ level: props.level });
-        }
+        if (_this5.state.level !== props.level) _this5.setState({ level: props.level });
     };
 };
 
@@ -9741,16 +9763,22 @@ var Game = function (_React$Component3) {
         _this3.magicWand = function () {
             var emptyCells = [];
             _this3.state.cells.forEach(function (e) {
-                if (e.level === 1) emptyCells.push(e);
+                if (e.level === 0) emptyCells.push(e);
             });
             if (_this3.state.wands > 0 && emptyCells.length > 0) {
-                var wandedCells = _this3.state.cells.map(function (cell, index) {
+                var wandedCells = _this3.state.cells.map(function (cell) {
                     if (cell.level === 1) return { level: 0, number: cell.number, key: cell.key };else return cell;
                 });
 
-                _this3.setState({ cells: wandedCells, wands: _this3.state.wands - 1 }, function () {
-                    return console.log("Callback in magicWand used");
+                _this3.setState({
+                    cells: wandedCells,
+                    wands: _this3.state.wands - 1
+                }, function () {
+                    return console.log("callback in wand");
                 });
+                _this3.setState({ points: _this3.countMoney() }, function () {
+                    return console.log("ddd");
+                }); /// nie zmienia punktow
             }
         };
 
@@ -9759,6 +9787,7 @@ var Game = function (_React$Component3) {
             for (var i = 0; i < 25; i++) {
                 start[i] = { number: i, level: 0, key: i };
             }
+
             return start;
         };
 
@@ -9771,18 +9800,18 @@ var Game = function (_React$Component3) {
                 if (_this3.handleKeys) {
                     prompt("GAME OVER  !!! ");
                     delete _this3.handleKeys();
-                    delete _this3.addNewCells();
-                    delete _this3.magicWand();
-                    delete _this3.moveBack();
                 }
             }
         };
 
         _this3.moveBack = function () {
-            if (_this3.state.movesBack > 0 && _this3.state.previousCells !== _this3.state.cells) _this3.setState({ cells: _this3.state.previousCells, movesBack: _this3.state.movesBack - 1 });
+            if (_this3.state.points > 2) {
+                if (_this3.state.movesBack > 0 && _this3.state.previousCells !== _this3.state.cells) _this3.setState({ cells: _this3.state.previousCells, movesBack: _this3.state.movesBack - 1, points: _this3.countMoney() }); //liczenie kasy nie działa
+            }
         };
 
         _this3.addNewCells = function () {
+            _this3.gameOverCheck();
 
             var newCell1 = -1;
             var newCell2 = -1;
@@ -9805,28 +9834,40 @@ var Game = function (_React$Component3) {
             newCells[newCell1] = { number: newCell1, level: 1, key: newCell1 };
             newCells[newCell2] = { number: newCell2, level: 1, key: newCell2 };
 
-            _this3.setState({ cells: newCells }, function () {
-                return console.log("Callback in addNewCells used");
-            });
+            _this3.setState({ cells: newCells, points: _this3.countMoney() });
         };
 
         _this3.componentDidMount = function () {
             document.addEventListener("keyup", _this3.handleKeys);
             _this3.addNewCells();
+        };
 
-            console.log("Component Did Mount...");
+        _this3.countMoney = function () {
+            var moneyCounter = 0;
+            for (var i = 0; i < _this3.state.cells.length; i++) {
+                if (_this3.state.cells[i].level === 1) moneyCounter++;
+                if (_this3.state.cells[i].level === 2) moneyCounter += 2;
+                if (_this3.state.cells[i].level === 3) moneyCounter += 5;
+                if (_this3.state.cells[i].level === 4) moneyCounter += 10;
+                if (_this3.state.cells[i].level === 5) moneyCounter += 20;
+                if (_this3.state.cells[i].level === 6) moneyCounter += 50;
+                if (_this3.state.cells[i].level === 7) moneyCounter += 100;
+                if (_this3.state.cells[i].level === 8) moneyCounter += 200;
+                if (_this3.state.cells[i].level === 9) moneyCounter += 500;
+                if (_this3.state.cells[i].level === 10) moneyCounter += 1000;
+                if (_this3.state.cells[i].level === 11) moneyCounter += 2000;
+                if (_this3.state.cells[i].level === 12) moneyCounter += 5000;
+                if (_this3.state.cells[i].level === 13) moneyCounter += 10000;
+                if (_this3.state.cells[i].level === 14) moneyCounter += 20000;
+            }
+            return moneyCounter;
         };
 
         _this3.handleKeys = function (e) {
 
-            // left arrow
             var leftArrow = 37;
             if (e.which === leftArrow) {
-                console.log("left arrow key pressed");
 
-                _this3.gameOverCheck();
-
-                var pointsToAdd = 0;
                 _this3.setState({ previousCells: _this3.state.cells });
 
                 var allCells = _this3.state.cells;
@@ -9856,7 +9897,6 @@ var Game = function (_React$Component3) {
 
                         if (levels[i] === levels[i + 1]) {
                             levels[i]++;
-                            pointsToAdd += 11;
                             levels[i + 1] = 0;
                         }
                     }
@@ -9881,21 +9921,13 @@ var Game = function (_React$Component3) {
                     allCells[i].number = i;
                 }
 
-                _this3.setState({ cells: allCells, points: _this3.state.points + pointsToAdd }, function () {
-                    return console.log("Callback in handleKeys used");
-                });
+                _this3.setState({ cells: allCells, points: _this3.countMoney() });
 
                 _this3.addNewCells();
             }
 
-            //right arrow
             var rightArrow = 39;
             if (e.which === rightArrow) {
-                console.log("right arrow key pressed");
-
-                _this3.gameOverCheck();
-
-                var _pointsToAdd = 0;
 
                 _this3.setState({ previousCells: _this3.state.cells });
 
@@ -9934,7 +9966,6 @@ var Game = function (_React$Component3) {
 
                         if (levels[_i2] === levels[_i2 - 1]) {
                             levels[_i2]++;
-                            _pointsToAdd += 11;
                             levels[_i2 - 1] = 0;
                         }
                     }
@@ -9959,21 +9990,13 @@ var Game = function (_React$Component3) {
                     _allCells[_i3].number = _i3;
                 }
 
-                _this3.setState({ cells: _allCells, points: _this3.state.points + _pointsToAdd }, function () {
-                    return console.log("Callback in handleKeys used");
-                });
+                _this3.setState({ cells: _allCells, points: _this3.countMoney() });
 
                 _this3.addNewCells();
             }
 
-            //up arrow
             var upArrow = 38;
             if (e.which === upArrow) {
-                console.log("up arrow key pressed");
-
-                _this3.gameOverCheck();
-
-                var _pointsToAdd2 = 0;
 
                 _this3.setState({ previousCells: _this3.state.cells });
 
@@ -10018,7 +10041,6 @@ var Game = function (_React$Component3) {
 
                         if (levels[_i5] === levels[_i5 + 1]) {
                             levels[_i5]++;
-                            _pointsToAdd2 += 11;
                             levels[_i5 + 1] = 0;
                         }
                     }
@@ -10045,19 +10067,13 @@ var Game = function (_React$Component3) {
                     _allCells2[_i7].key = _i7;
                 }
 
-                _this3.setState({ cells: _allCells2, points: _this3.state.points + _pointsToAdd2 }, console.log("Callback in down arrow used"));
+                _this3.setState({ cells: _allCells2, points: _this3.countMoney() });
 
                 _this3.addNewCells();
             }
 
-            //down arrow
             var downArrow = 40;
             if (e.which === downArrow) {
-                console.log("down arrow key pressed");
-
-                _this3.gameOverCheck();
-
-                var _pointsToAdd3 = 0;
 
                 _this3.setState({ previousCells: _this3.state.cells });
 
@@ -10102,7 +10118,6 @@ var Game = function (_React$Component3) {
 
                         if (levels[_i9] === levels[_i9 - 1]) {
                             levels[_i9]++;
-                            _pointsToAdd3 += 11;
                             levels[_i9 - 1] = 0;
                         }
                     }
@@ -10129,7 +10144,7 @@ var Game = function (_React$Component3) {
                     _allCells3[_i11].key = _i11;
                 }
 
-                _this3.setState({ cells: _allCells3, points: _this3.state.points + _pointsToAdd3 }, console.log("Callback in down arrow used"));
+                _this3.setState({ cells: _allCells3, points: _this3.countMoney() });
 
                 _this3.addNewCells();
             }
@@ -10148,31 +10163,13 @@ var Game = function (_React$Component3) {
 
     _createClass(Game, [{
         key: 'render',
-
-
-        // countCoordinates = (x, y) => (x + y * 5) -6;
-        //
-        // countCoordinatesReverse = (i) => {
-        //     let x;
-        //
-        //     for (let i = 0; i <= 5; i++){
-        //         if (i % 5 === i) x = i + 1;
-        //     }
-        //
-        //     let y;
-        //     if (i < 5) y = 1;
-        //     if ((i >= 5) && (i < 10)) y = 2;
-        //     if ((i >= 10) && (i < 15)) y = 3;
-        //     if ((i >= 15) && (i < 20)) y = 4;
-        //     if (i >= 20) y = 5;
-        //
-        //     return [x, y];
-        // };
-
         value: function render() {
             var _this4 = this;
 
-            console.log("Render Method...");
+            var countZl = 0;
+            if (this.state.points / 100 > 1) countZl = Math.floor(this.state.points / 100);
+            var countGr = this.state.points % 100;
+
             if (this.state.cells.length === 0) return null;
             var cells = this.state.cells.map(function (element, index) {
                 return _react2.default.createElement(Cell, { number: _this4.state.cells[index].number, key: _this4.state.cells[index].key, level: _this4.state.cells[index].level });
@@ -10180,46 +10177,55 @@ var Game = function (_React$Component3) {
 
             return _react2.default.createElement(
                 'div',
-                { style: { backgroundColor: "grey", width: "100%", height: "100%" } },
+                { style: { backgroundImage: 'url("./img/money.png")', backgroundSize: "cover", width: "100%", height: "900px" } },
                 _react2.default.createElement(
                     'h1',
-                    { style: { textAlign: "center" } },
-                    'MY GAME !!'
+                    { style: { textAlign: "center", fontSize: "70px", background: "lightgrey", opacity: "0.8" } },
+                    'Super Zbieracz - THE GAME !!!'
                 ),
                 _react2.default.createElement(
                     'div',
-                    { style: { height: "500px", width: "500px", display: "inlineBlock", margin: "0 auto" } },
+                    { style: { height: "100%", width: "100%", margin: "0 auto", backgroundColor: "transparent" } },
                     _react2.default.createElement(
                         'div',
-                        { style: { margin: "5px auto", backgroundColor: "lightgrey", width: "150px", height: "50px", boxSizing: "borderBox", padding: "10px" } },
+                        { style: { margin: "5px auto", width: "300px", height: "100px", boxSizing: "borderBox", padding: "10px" } },
                         _react2.default.createElement(
                             'div',
-                            { style: { width: "50px", height: "50px", float: "left", border: "1px solid blue", boxSizing: "border-box" }, onClick: this.restartGame },
-                            'Restart game'
+                            { style: { width: "100px", height: "100px", float: "left", borderRadius: "50px", border: "10px solid black", boxSizing: "border-box", background: "lightgrey", backgroundImage: 'url("./img/restart.png")', backgroundSize: "contain" }, onClick: this.restartGame },
+                            ' '
                         ),
                         _react2.default.createElement(
                             'div',
-                            { style: { width: "50px", height: "50px", float: "left", border: "1px solid blue", boxSizing: "border-box" }, onClick: this.moveBack },
-                            'Move back: ',
-                            this.state.movesBack
+                            { style: { width: "100px", height: "100px", float: "left", border: "1px solid black", borderRadius: "50px", boxSizing: "border-box", background: "lightgrey", backgroundImage: 'url("./img/back.svg")', backgroundSize: "contain" }, onClick: this.moveBack },
+                            _react2.default.createElement(
+                                'span',
+                                { style: { fontSize: "20px", fontWeight: "bold", position: "relative", top: "25px", left: "20px" } },
+                                this.state.movesBack
+                            )
                         ),
                         _react2.default.createElement(
                             'div',
-                            { style: { width: "50px", height: "50px", float: "left", border: "1px solid blue", boxSizing: "border-box" }, onClick: this.magicWand },
-                            'Magic wands: ',
-                            this.state.wands
+                            { style: { width: "100px", height: "100px", float: "left", border: "1px solid black", borderRadius: "50px", boxSizing: "border-box", background: "lightgrey", backgroundImage: 'url("./img/wand.svg")', backgroundSize: "contain" }, onClick: this.magicWand },
+                            _react2.default.createElement(
+                                'span',
+                                { style: { fontSize: "20px", fontWeight: "bold", position: "relative", top: "25px", left: "20px" } },
+                                this.state.wands
+                            )
                         )
                     ),
                     _react2.default.createElement(
                         'div',
-                        { style: { marginTop: "25px", marginBottom: "45px" } },
+                        { style: { width: "500px", height: "500px", margin: "0 auto" } },
                         cells
                     ),
                     _react2.default.createElement(
                         'h2',
-                        { style: { textAlign: "center" } },
-                        'Points: ',
-                        this.state.points
+                        { style: { textAlign: "center", fontSize: "70px", background: "lightgrey", opacity: "0.8" } },
+                        'Uzbiera\u0142e\u015B: ',
+                        countZl,
+                        ' z\u0142 i ',
+                        countGr,
+                        ' gr. '
                     )
                 )
             );

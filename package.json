@@ -25,5 +25,13 @@
   },
   "keywords": [
     "game"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ogar616/myGame.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ogar616/myGame/issues"
+  },
+  "homepage": "https://github.com/Ogar616/myGame#readme"
 }
