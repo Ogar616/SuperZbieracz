@@ -9842,7 +9842,34 @@ var Game = function (_React$Component3) {
         _this3.componentDidMount = function () {
             document.addEventListener("keyup", _this3.handleKeys);
             _this3.addNewCells();
-            console.log("did mount");
+            //
+            //     let coordinatesArray = [];
+            //     let full = [false, false, false, false, false];
+            //
+            //     let arr1 = [1, 1, 0, 1, 0];
+            //     let arr2 = [2, 1, 0, 0, 0];
+            //
+            //     console.log(arr1);
+            //     console.log(arr2);
+            //
+            //     for (let i = 0; i < 5; i++){
+            //         if (arr1[i] === arr2[i]) continue;
+            //         if (arr2[i] > arr1[i]){
+            //             for (let j = 1; j < 5; j++){
+            //                 if (arr1[j] === arr1[i]){
+            //                     coordinatesArray.push([i, j]);
+            //                     full[i] = true;
+            //                     break;
+            //                 }
+            //             }
+            //         }
+            //         for (let j = i + 1; i < 5; j++){
+            //
+            //         }
+            //     }
+            //
+            // };
+            //
         };
 
         _this3.countMoney = function () {
@@ -9874,31 +9901,73 @@ var Game = function (_React$Component3) {
                 return e.level;
             });
 
-            console.log(arr1Levels);
-            console.log(arr2Levels);
+            // console.log(arr1Levels);
+            // console.log(arr2Levels);
 
-            var coordinatesArray = [];
-            var usedIndexes = [];
+            //
+            // let usedIndexes = [];
+            //
+            //     // if (arr[0] === 0){
+            //     //     if (arr[1] > 0) {
+            //     //         coordinatesArray.push([0, 1]);
+            //     //     }
+            //     //     if ((arr[2] > 0) && (arr[1] === arr[2])) {
+            //     //         coordinatesArray.push([0, 2]);
+            //     //     }
+            //     //     if ((arr[2] > 0) && (arr[1] !== arr[2])) {
+            //     //         coordinatesArray.push([1, 2]);
+            //     //     }
+            //     //     if (arr[3] > 0) {
+            //     //         coordinatesArray.push([0, 3]);
+            //     //     }
+            //     //     if (arr[4] > 0){
+            //     //         coordinatesArray.push([0, 4]);
+            //     //     }
+            //     //
+            //
+            // let arr = [1, 1, 0, 1, 0];
+            // console.log(arr1Levels);
 
-            for (var i = 0; i < arr1Levels.length - 1; i++) {
-                var coinsCounter = 0;
-                for (var j = i + 1; j < arr1Levels.length; j++) {
-                    if ((arr1Levels[i] === 0 || arr1Levels[i] === arr1Levels[j]) && arr1Levels[j] > 0 || arr1Levels[i] === arr1Levels[j] && arr1Levels[i] !== 0) {
-                        if (usedIndexes.indexOf(j) < 0) {
-                            if (coinsCounter < 2) {
-                                coordinatesArray.push([i, j]);
-                                usedIndexes.push(j);
-                                coinsCounter++;
-                            } else {
-                                coordinatesArray.push([i + 1, j]);
-                                usedIndexes.push(j);
-                            }
-                        }
-                    }
-                }
-            }
+            // let full = [false, false, false, false, false];
+            //
+            // for (let i = 0; i < 5; i++){
+            //
+            //     for (let j = 1; j < 5; j++){
+            //         if (arr[i] > 0)
+            //             if ((arr[i] === arr[j]) && full[i] === false){
+            //                 coordinatesArray.push([i, j]);
+            //                 full[i] = true;
+            //             }
+            //
+            //
+            //
+            //     }
+            // }
 
-            console.log(coordinatesArray);
+
+            //
+            // for (let i = 0; i < arr1Levels.length -1; i++){
+            //     let coinsCounter = 0;
+            //     for (let j = i + 1; j < arr1Levels.length; j++){
+            //         if ((((arr1Levels[i] === 0) || (arr1Levels[i] === arr1Levels[j])) && (arr1Levels[j] > 0)) || ((arr1Levels[i] === arr1Levels[j]) && arr1Levels[i] !== 0)){
+            //             if ((usedIndexes.indexOf(j) < 0)){
+            //                 if (coinsCounter < 2){
+            //                     coordinatesArray.push([i, j]);
+            //                     usedIndexes.push(j);
+            //                     coinsCounter++;
+            //
+            //                 }
+            //                 else {
+            //                     coordinatesArray.push([i + 1, j]);
+            //                     usedIndexes.push(j);
+            //
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
+            //
+            // console.log(coordinatesArray);
         };
 
         _this3.handleKeys = function (key) {
@@ -9952,18 +10021,21 @@ var Game = function (_React$Component3) {
                 var nextRow4 = moveLeftAndIncrementLevels(row4);
                 var nextRow5 = moveLeftAndIncrementLevels(row5);
 
-                _this3.checkMovement(row1, nextRow1);
+                // this.checkMovement(row1, nextRow1);
 
                 var nextAllCells = [].concat(_toConsumableArray(nextRow1), _toConsumableArray(nextRow2), _toConsumableArray(nextRow3), _toConsumableArray(nextRow4), _toConsumableArray(nextRow5));
 
-                for (var i = 0; i < nextAllCells.length; i++) {
-                    allCells[i].key = i;
-                    allCells[i].number = i;
+                for (var i = 0; i < allCells.length; i++) {
+                    nextAllCells[i].key = i;
+                    nextAllCells[i].number = i;
                 }
 
-                _this3.setState({ cells: nextAllCells, points: _this3.countMoney() });
-
+                _this3.setState({
+                    cells: nextAllCells, points: _this3.countMoney()
+                });
                 _this3.addNewCells();
+                // let timer = setTimeout(() => {
+                //     }, 500);
             }
 
             var rightArrow = 39;
@@ -10029,10 +10101,12 @@ var Game = function (_React$Component3) {
                     _allCells[_i3].key = _i3;
                     _allCells[_i3].number = _i3;
                 }
-
-                _this3.setState({ cells: _allCells, points: _this3.countMoney() });
-
+                _this3.setState({
+                    cells: _allCells, points: _this3.countMoney()
+                });
                 _this3.addNewCells();
+                // let timer = setTimeout(() => {
+                //     }, 500);
             }
 
             var upArrow = 38;
@@ -10107,9 +10181,12 @@ var Game = function (_React$Component3) {
                     _allCells2[_i7].key = _i7;
                 }
 
-                _this3.setState({ cells: _allCells2, points: _this3.countMoney() });
-
+                _this3.setState({
+                    cells: _allCells2, points: _this3.countMoney()
+                });
                 _this3.addNewCells();
+                // let timer = setTimeout(() => {
+                //    }, 500);
             }
 
             var downArrow = 40;
@@ -10184,9 +10261,12 @@ var Game = function (_React$Component3) {
                     _allCells3[_i11].key = _i11;
                 }
 
-                _this3.setState({ cells: _allCells3, points: _this3.countMoney() });
-
+                _this3.setState({
+                    cells: _allCells3, points: _this3.countMoney()
+                });
                 _this3.addNewCells();
+                // let timer = setTimeout(() => {
+                //     }, 500);
             }
         };
 
@@ -10206,7 +10286,6 @@ var Game = function (_React$Component3) {
         value: function render() {
             var _this4 = this;
 
-            console.log("render");
             var countZl = 0;
             if (this.state.points / 100 > 1) countZl = Math.floor(this.state.points / 100);
             var countGr = this.state.points % 100;

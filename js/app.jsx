@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+
 class App extends React.Component{
     render(){
         return <div>
@@ -14,7 +15,7 @@ class Cell extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            level: this.props.level,
+            level: this.props.level
         }
     }
 
@@ -24,42 +25,41 @@ class Cell extends React.Component{
     };
 
     render(){
-        const cellWidth = 100;
-        const cellHeight = 100;
-        if (this.state.level === 0)
-            return <div className="cell0" key={this.props.number} style={{backgroundColor: "lightgrey", float: "left", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box", border: "5px solid black", borderRadius: "50px"}}> </div>;
-        if (this.state.level === 1)
-            return <div className="cell1" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/1gr3.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
-        if (this.state.level === 2)
-            return <div className="cell2" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/2gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
-        if (this.state.level === 3)
-            return <div className="cell3" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/5gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", textAlign: "center", boxSizing: "border-box"}}> </div>;
-        if (this.state.level === 4)
-            return <div className="cell4" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/10gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
-        if (this.state.level === 5)
-            return <div className="cell5" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/20gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
-        if (this.state.level === 6)
-            return <div className="cell6" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/50gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
-        if (this.state.level === 7)
-            return <div className="cell7" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/1zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
-        if (this.state.level === 8)
-            return <div className="cell8" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/2zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
-        if (this.state.level === 9)
-            return <div className="cell9" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/5zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
-        if (this.state.level === 10)
-            return <div className="cell10" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/10zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
-        if (this.state.level === 11)
-            return <div className="cell11" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/20zl.jpeg")', backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
-        if (this.state.level === 12)
-            return <div className="cell12" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/50zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
-        if (this.state.level === 13)
-            return <div className="cell13" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/100zl.jpeg")', backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
-        if (this.state.level === 14)
-            return <div className="cell14" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/200zl.jpeg")', backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
-        if (this.state.level === 15)
-            return <div className="cell15" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/500zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
-
-    }
+            const cellWidth = 100;
+            const cellHeight = 100;
+            if (this.state.level === 0)
+                return <div className="cell0" key={this.props.number} style={{backgroundColor: "lightgrey", float: "left", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box", border: "5px solid black", borderRadius: "50px"}}> </div>;
+            if (this.state.level === 1)
+                return <div className="cell1" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/1gr3.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
+            if (this.state.level === 2)
+                return <div className="cell2" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/2gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
+            if (this.state.level === 3)
+                return <div className="cell3" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/5gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", textAlign: "center", boxSizing: "border-box"}}> </div>;
+            if (this.state.level === 4)
+                return <div className="cell4" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/10gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
+            if (this.state.level === 5)
+                return <div className="cell5" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/20gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
+            if (this.state.level === 6)
+                return <div className="cell6" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/50gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
+            if (this.state.level === 7)
+                return <div className="cell7" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/1zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
+            if (this.state.level === 8)
+                return <div className="cell8" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/2zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
+            if (this.state.level === 9)
+                return <div className="cell9" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/5zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
+            if (this.state.level === 10)
+                return <div className="cell10" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/10zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
+            if (this.state.level === 11)
+                return <div className="cell11" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/20zl.jpeg")', backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
+            if (this.state.level === 12)
+                return <div className="cell12" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/50zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
+            if (this.state.level === 13)
+                return <div className="cell13" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/100zl.jpeg")', backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
+            if (this.state.level === 14)
+                return <div className="cell14" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/200zl.jpeg")', backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
+            if (this.state.level === 15)
+                return <div className="cell15" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/500zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
+        }
 }
 
 class Game extends React.Component {
@@ -166,7 +166,35 @@ class Game extends React.Component {
     componentDidMount = () => {
         document.addEventListener("keyup", this.handleKeys);
         this.addNewCells();
-        console.log("did mount")
+        //
+        //     let coordinatesArray = [];
+        //     let full = [false, false, false, false, false];
+        //
+        //     let arr1 = [1, 1, 0, 1, 0];
+        //     let arr2 = [2, 1, 0, 0, 0];
+        //
+        //     console.log(arr1);
+        //     console.log(arr2);
+        //
+        //     for (let i = 0; i < 5; i++){
+        //         if (arr1[i] === arr2[i]) continue;
+        //         if (arr2[i] > arr1[i]){
+        //             for (let j = 1; j < 5; j++){
+        //                 if (arr1[j] === arr1[i]){
+        //                     coordinatesArray.push([i, j]);
+        //                     full[i] = true;
+        //                     break;
+        //                 }
+        //             }
+        //         }
+        //         for (let j = i + 1; i < 5; j++){
+        //
+        //         }
+        //     }
+        //
+        // };
+        //
+
     };
 
     countMoney = () => {
@@ -208,35 +236,73 @@ class Game extends React.Component {
         let arr1Levels = arr1.map(e => e.level);
         let arr2Levels = arr2.map(e => e.level);
 
-        console.log(arr1Levels);
-        console.log(arr2Levels);
+        // console.log(arr1Levels);
+        // console.log(arr2Levels);
 
-        let coordinatesArray = [];
-        let usedIndexes = [];
+        //
+        // let usedIndexes = [];
+        //
+        //     // if (arr[0] === 0){
+        //     //     if (arr[1] > 0) {
+        //     //         coordinatesArray.push([0, 1]);
+        //     //     }
+        //     //     if ((arr[2] > 0) && (arr[1] === arr[2])) {
+        //     //         coordinatesArray.push([0, 2]);
+        //     //     }
+        //     //     if ((arr[2] > 0) && (arr[1] !== arr[2])) {
+        //     //         coordinatesArray.push([1, 2]);
+        //     //     }
+        //     //     if (arr[3] > 0) {
+        //     //         coordinatesArray.push([0, 3]);
+        //     //     }
+        //     //     if (arr[4] > 0){
+        //     //         coordinatesArray.push([0, 4]);
+        //     //     }
+        //     //
+        //
+        // let arr = [1, 1, 0, 1, 0];
+        // console.log(arr1Levels);
+
+        // let full = [false, false, false, false, false];
+        //
+        // for (let i = 0; i < 5; i++){
+        //
+        //     for (let j = 1; j < 5; j++){
+        //         if (arr[i] > 0)
+        //             if ((arr[i] === arr[j]) && full[i] === false){
+        //                 coordinatesArray.push([i, j]);
+        //                 full[i] = true;
+        //             }
+        //
+        //
+        //
+        //     }
+        // }
 
 
-        for (let i = 0; i < arr1Levels.length -1; i++){
-            let coinsCounter = 0;
-                for (let j = i + 1; j < arr1Levels.length; j++){
-                    if ((((arr1Levels[i] === 0) || (arr1Levels[i] === arr1Levels[j])) && (arr1Levels[j] > 0)) || ((arr1Levels[i] === arr1Levels[j]) && arr1Levels[i] !== 0)){
-                        if ((usedIndexes.indexOf(j) < 0)){
-                            if (coinsCounter < 2){
-                                coordinatesArray.push([i, j]);
-                                usedIndexes.push(j);
-                                coinsCounter++;
-
-                            }
-                            else {
-                                coordinatesArray.push([i + 1, j]);
-                                usedIndexes.push(j);
-
-                            }
-                        }
-                    }
-                }
-        }
-
-        console.log(coordinatesArray);
+        //
+        // for (let i = 0; i < arr1Levels.length -1; i++){
+        //     let coinsCounter = 0;
+        //     for (let j = i + 1; j < arr1Levels.length; j++){
+        //         if ((((arr1Levels[i] === 0) || (arr1Levels[i] === arr1Levels[j])) && (arr1Levels[j] > 0)) || ((arr1Levels[i] === arr1Levels[j]) && arr1Levels[i] !== 0)){
+        //             if ((usedIndexes.indexOf(j) < 0)){
+        //                 if (coinsCounter < 2){
+        //                     coordinatesArray.push([i, j]);
+        //                     usedIndexes.push(j);
+        //                     coinsCounter++;
+        //
+        //                 }
+        //                 else {
+        //                     coordinatesArray.push([i + 1, j]);
+        //                     usedIndexes.push(j);
+        //
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+        //
+        // console.log(coordinatesArray);
     };
 
     handleKeys = (key) => {
@@ -285,19 +351,22 @@ class Game extends React.Component {
             let nextRow4 = moveLeftAndIncrementLevels(row4);
             let nextRow5 = moveLeftAndIncrementLevels(row5);
 
-            this.checkMovement(row1, nextRow1);
+            // this.checkMovement(row1, nextRow1);
 
             let nextAllCells = [...nextRow1, ...nextRow2, ...nextRow3, ...nextRow4, ...nextRow5];
 
-            for (let i = 0; i < nextAllCells.length; i++){
-                allCells[i].key = i;
-                allCells[i].number = i;
+            for (let i = 0; i < allCells.length; i++){
+                nextAllCells[i].key = i;
+                nextAllCells[i].number = i;
             }
 
-            this.setState({cells: nextAllCells, points: this.countMoney()});
 
+            this.setState({
+                cells: nextAllCells, points: this.countMoney()
+            });
             this.addNewCells();
-
+            // let timer = setTimeout(() => {
+            //     }, 500);
         }
 
         let rightArrow = 39;
@@ -360,10 +429,12 @@ class Game extends React.Component {
                 allCells[i].key = i;
                 allCells[i].number = i;
             }
-
-            this.setState({cells: allCells, points: this.countMoney()});
-
-            this.addNewCells();
+            this.setState({
+                cells: allCells, points: this.countMoney()
+            });
+            this.addNewCells()
+            // let timer = setTimeout(() => {
+            //     }, 500);
         }
 
         let upArrow = 38;
@@ -441,9 +512,13 @@ class Game extends React.Component {
                 allCells[i].key = i;
             }
 
-            this.setState({cells: allCells, points: this.countMoney()});
 
+            this.setState({
+                cells: allCells, points: this.countMoney()
+            });
             this.addNewCells();
+            // let timer = setTimeout(() => {
+            //    }, 500);
         }
 
         let downArrow = 40;
@@ -521,15 +596,18 @@ class Game extends React.Component {
                 allCells[i].key = i;
             }
 
-            this.setState({cells: allCells, points: this.countMoney()});
 
+            this.setState({
+                cells: allCells, points: this.countMoney()
+            });
             this.addNewCells();
+            // let timer = setTimeout(() => {
+            //     }, 500);
             }
 
         };
 
     render(){
-        console.log("render")
         let countZl = 0;
         if ((this.state.points / 100) > 1)
             countZl = Math.floor(this.state.points / 100);
@@ -561,3 +639,4 @@ document.addEventListener('DOMContentLoaded', function(){
         document.getElementById('app')
     );
 });
+
