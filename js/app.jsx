@@ -89,7 +89,7 @@ class Game extends React.Component {
             if ((this.state.wands > 0) && (emptyCells.length > 0)){
                 let wandedCells = this.state.cells.map(cell => {
                     if (cell.level === 1)
-                        return {level: 0, number: cell.number, key: cell.key};
+                        return {level: 0, key: cell.key};
                     else return cell;
 
                 });
@@ -105,7 +105,7 @@ class Game extends React.Component {
     createBoard = () => {
         let start =[];
         for (let i = 0; i < 25; i++){
-            start[i] = {number: i, level: 0, key: i}
+            start[i] = {level: 0, key: i}
         }
 
         return start;
@@ -119,14 +119,14 @@ class Game extends React.Component {
         });
         if (emptyCells.length < 2) {
             if (this.handleKeys){
-                prompt("GAME OVER  !!! ");
-                delete this.handleKeys();
+                console.log("GAME OVER  !!! ");
+
             }
 
 
 
         }
-    };   //co wstawić zamiast prompt
+    };
 
     moveBack = () => {
         if (this.state.points > 2) {
@@ -155,9 +155,12 @@ class Game extends React.Component {
         }
 
         let newCells = this.state.cells;
+        //
+        // newCell1 = 20;
+        // newCell2 = 24;
 
-        newCells[newCell1] = {number: newCell1, level: 1, key: newCell1};
-        newCells[newCell2] = {number: newCell2, level: 1, key: newCell2};
+        newCells[newCell1] = {level: 1, key: newCell1};
+        newCells[newCell2] = {level: 1, key: newCell2};
 
         this.setState({cells: newCells, points: this.countMoney()});
 
@@ -166,35 +169,6 @@ class Game extends React.Component {
     componentDidMount = () => {
         document.addEventListener("keyup", this.handleKeys);
         this.addNewCells();
-        //
-        //     let coordinatesArray = [];
-        //     let full = [false, false, false, false, false];
-        //
-        //     let arr1 = [1, 1, 0, 1, 0];
-        //     let arr2 = [2, 1, 0, 0, 0];
-        //
-        //     console.log(arr1);
-        //     console.log(arr2);
-        //
-        //     for (let i = 0; i < 5; i++){
-        //         if (arr1[i] === arr2[i]) continue;
-        //         if (arr2[i] > arr1[i]){
-        //             for (let j = 1; j < 5; j++){
-        //                 if (arr1[j] === arr1[i]){
-        //                     coordinatesArray.push([i, j]);
-        //                     full[i] = true;
-        //                     break;
-        //                 }
-        //             }
-        //         }
-        //         for (let j = i + 1; i < 5; j++){
-        //
-        //         }
-        //     }
-        //
-        // };
-        //
-
     };
 
     countMoney = () => {
@@ -232,377 +206,363 @@ class Game extends React.Component {
             return moneyCounter;
     };
 
-    checkMovement = (arr1,arr2, direction) => {
-        let arr1Levels = arr1.map(e => e.level);
-        let arr2Levels = arr2.map(e => e.level);
+    changePlane = (cells) => {
 
-        // console.log(arr1Levels);
-        // console.log(arr2Levels);
+        let col1 = [];
+        let col2 = [];
+        let col3 = [];
+        let col4 = [];
+        let col5 = [];
 
-        //
-        // let usedIndexes = [];
-        //
-        //     // if (arr[0] === 0){
-        //     //     if (arr[1] > 0) {
-        //     //         coordinatesArray.push([0, 1]);
-        //     //     }
-        //     //     if ((arr[2] > 0) && (arr[1] === arr[2])) {
-        //     //         coordinatesArray.push([0, 2]);
-        //     //     }
-        //     //     if ((arr[2] > 0) && (arr[1] !== arr[2])) {
-        //     //         coordinatesArray.push([1, 2]);
-        //     //     }
-        //     //     if (arr[3] > 0) {
-        //     //         coordinatesArray.push([0, 3]);
-        //     //     }
-        //     //     if (arr[4] > 0){
-        //     //         coordinatesArray.push([0, 4]);
-        //     //     }
-        //     //
-        //
-        // let arr = [1, 1, 0, 1, 0];
-        // console.log(arr1Levels);
-
-        // let full = [false, false, false, false, false];
-        //
-        // for (let i = 0; i < 5; i++){
-        //
-        //     for (let j = 1; j < 5; j++){
-        //         if (arr[i] > 0)
-        //             if ((arr[i] === arr[j]) && full[i] === false){
-        //                 coordinatesArray.push([i, j]);
-        //                 full[i] = true;
-        //             }
-        //
-        //
-        //
-        //     }
-        // }
-
-
-        //
-        // for (let i = 0; i < arr1Levels.length -1; i++){
-        //     let coinsCounter = 0;
-        //     for (let j = i + 1; j < arr1Levels.length; j++){
-        //         if ((((arr1Levels[i] === 0) || (arr1Levels[i] === arr1Levels[j])) && (arr1Levels[j] > 0)) || ((arr1Levels[i] === arr1Levels[j]) && arr1Levels[i] !== 0)){
-        //             if ((usedIndexes.indexOf(j) < 0)){
-        //                 if (coinsCounter < 2){
-        //                     coordinatesArray.push([i, j]);
-        //                     usedIndexes.push(j);
-        //                     coinsCounter++;
-        //
-        //                 }
-        //                 else {
-        //                     coordinatesArray.push([i + 1, j]);
-        //                     usedIndexes.push(j);
-        //
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
-        //
-        // console.log(coordinatesArray);
+       cells.forEach((cell, index) => {
+            if (index % 5 === 0)
+                col1.push(cell);
+            if (index % 5 === 1)
+                col2.push(cell);
+            if (index % 5 === 2)
+                col3.push(cell);
+            if (index % 5 === 3)
+                col4.push(cell);
+            if (index % 5 === 4)
+                col5.push(cell);
+        });
+       return [col1, col2, col3, col4, col5];
     };
 
+
+
+    moveCells = (direction, cells) => {
+
+        let row1 = cells.slice(0, 5);
+        let row2 = cells.slice(5, 10);
+        let row3 = cells.slice(10, 15);
+        let row4 = cells.slice(15, 20);
+        let row5 = cells.slice(20, 25);
+
+        let removeEmptyAndFixKeysLeft = (cells) => {
+
+            let fullCellsOnly = [];
+
+            for (let i = 0; i < 5; i++)
+                cells[i].key1 = i;
+
+            cells.forEach((cell) => {
+                if (cell.level > 0)
+                    fullCellsOnly.push(cell);
+            });
+
+            for (let i = 0; i < 5; i++)
+                if (fullCellsOnly.length < 5)
+                    fullCellsOnly.push({level: 0});
+
+            return fullCellsOnly;
+        };
+
+        let removeEmptyAndFixKeysRight = (cells) => {
+
+            let fullCellsOnly = [];
+
+            for (let i = 0; i < 5; i++)
+                cells[i].key1 = i;
+
+            cells.forEach((cell) => {
+                if (cell.level > 0)
+                    fullCellsOnly.push(cell);
+            });
+
+            for (let i = 0; i < 5; i++)
+                if (fullCellsOnly.length < 5)
+                    fullCellsOnly.unshift({level: 0});
+
+            return fullCellsOnly;
+        };
+
+        let removeEmptyLeft = (cells) => {
+
+            let fullCellsOnly = [];
+
+            cells.forEach((cell) => {
+                if (cell)
+                    if (cell.level > 0)
+                        fullCellsOnly.push(cell);
+            });
+
+            for (let i = 0; i < 5; i++)
+                if (!fullCellsOnly[i])
+                    fullCellsOnly.push({level: 0});
+
+            return fullCellsOnly;
+        };
+
+        let removeEmptyRight = (cells) => {
+
+            let fullCellsOnly = [];
+
+            cells.forEach((cell) => {
+                if (cell)
+                    if (cell.level > 0)
+                        fullCellsOnly.push(cell);
+            });
+
+            for (let i = 0; i < 5; i++)
+                if (!fullCellsOnly[i])
+                    fullCellsOnly.unshift({level: 0});
+
+            return fullCellsOnly;
+        };
+
+        let mergeLeft = (cells) => {
+
+            for (let i = 0; i < 5; i++){
+                if ((cells[i].level > 0) && (cells[i + 1]))
+                    if (cells[i].level === cells[i + 1].level){
+                        cells[i].level++;
+                        cells[i].key2 = cells[i + 1].key1;
+                        cells[i + 1].level = 0;
+                    }
+            }
+
+            cells = removeEmptyLeft(cells);
+
+            for (let i = 0; i < 5; i++){
+                if (!cells[i])
+                    cells.push({level: 0});
+            }
+
+            return cells;
+
+        };
+
+        let mergeRight = (cells) => {
+
+            for (let i = 4; i > -1; i--){
+                if ((cells[i].level > 0) && (cells[i - 1])){
+                    if (cells[i].level === cells[i - 1].level){
+                        cells[i].level++;
+                        cells[i].key2 = cells[i - 1].key1;
+                        cells[i - 1].level = 0;
+                    }
+                }
+            }
+
+            cells = removeEmptyRight(cells);
+
+            for (let i = 5; i = 0; i--){
+                if (!cells[i])
+                    cells.unshift({level: 0});
+            }
+
+            return cells;
+
+        };
+
+
+        if (direction === "left"){
+
+            row1 = removeEmptyAndFixKeysLeft(row1);
+            row2 = removeEmptyAndFixKeysLeft(row2);
+            row3 = removeEmptyAndFixKeysLeft(row3);
+            row4 = removeEmptyAndFixKeysLeft(row4);
+            row5 = removeEmptyAndFixKeysLeft(row5);
+
+            row1 = mergeLeft(row1);
+            row2 = mergeLeft(row2);
+            row3 = mergeLeft(row3);
+            row4 = mergeLeft(row4);
+            row5 = mergeLeft(row5);
+
+            return [row1, row2, row3, row4, row5];
+        }
+
+        if (direction === "right"){
+
+            row1 = removeEmptyAndFixKeysRight(row1);
+            row2 = removeEmptyAndFixKeysRight(row2);
+            row3 = removeEmptyAndFixKeysRight(row3);
+            row4 = removeEmptyAndFixKeysRight(row4);
+            row5 = removeEmptyAndFixKeysRight(row5);
+
+            row1 = mergeRight(row1);
+            row2 = mergeRight(row2);
+            row3 = mergeRight(row3);
+            row4 = mergeRight(row4);
+            row5 = mergeRight(row5);
+
+            return [row1, row2, row3, row4, row5];
+        }
+
+        if (direction === "up"){
+
+            cells = this.changePlane(cells);
+
+            let col1 = cells[0];
+            let col2 = cells[1];
+            let col3 = cells[2];
+            let col4 = cells[3];
+            let col5 = cells[4];
+
+            col1 = removeEmptyAndFixKeysLeft(col1);
+            col2 = removeEmptyAndFixKeysLeft(col2);
+            col3 = removeEmptyAndFixKeysLeft(col3);
+            col4 = removeEmptyAndFixKeysLeft(col4);
+            col5 = removeEmptyAndFixKeysLeft(col5);
+
+            col1 = mergeLeft(col1);
+            col2 = mergeLeft(col2);
+            col3 = mergeLeft(col3);
+            col4 = mergeLeft(col4);
+            col5 = mergeLeft(col5);
+
+            cells = [...col1, ...col2, ...col3, ...col4, ...col5];
+
+            return this.changePlane(cells);
+        }
+
+        if (direction === "down"){
+
+            cells = this.changePlane(cells);
+
+            let col1 = cells[0];
+            let col2 = cells[1];
+            let col3 = cells[2];
+            let col4 = cells[3];
+            let col5 = cells[4];
+
+            col1 = removeEmptyAndFixKeysRight(col1);
+            col2 = removeEmptyAndFixKeysRight(col2);
+            col3 = removeEmptyAndFixKeysRight(col3);
+            col4 = removeEmptyAndFixKeysRight(col4);
+            col5 = removeEmptyAndFixKeysRight(col5);
+
+            col1 = mergeRight(col1);
+            col2 = mergeRight(col2);
+            col3 = mergeRight(col3);
+            col4 = mergeRight(col4);
+            col5 = mergeRight(col5);
+
+            cells = [...col1, ...col2, ...col3, ...col4, ...col5];
+
+            return this.changePlane(cells);
+        }
+    };
+
+    calculateAnimations = (cells) => {
+
+        let coordinates = [];
+
+        cells.forEach((element, index) => {
+            if (element.key2)
+                coordinates.push([index, element.key1, element.key2]);
+            if (element.key1 && !element.key2)
+                coordinates.push([index, element.key1]);
+        });
+        return coordinates;
+    };
+
+
     handleKeys = (key) => {
+
+        this.setState({previousCells: this.state.cells});
 
         let leftArrow = 37;
         if (key.which === leftArrow) {
 
-            this.setState({previousCells: this.state.cells});
+            let allCells = this.moveCells("left", this.state.cells);
 
-            let allCells = this.state.cells;
+            let row1Animations = this.calculateAnimations(allCells[0]);
+            let row2Animations = this.calculateAnimations(allCells[1]);
+            let row3Animations = this.calculateAnimations(allCells[2]);
+            let row4Animations = this.calculateAnimations(allCells[3]);
+            let row5Animations = this.calculateAnimations(allCells[4]);
 
-            let row1 = allCells.slice(0, 5);
-            let row2 = allCells.slice(5, 10);
-            let row3 = allCells.slice(10, 15);
-            let row4 = allCells.slice(15, 20);
-            let row5 = allCells.slice(20, 25);
+            allCells = allCells[0].concat(allCells[1], allCells[2], allCells[3], allCells[4]);
 
-            let moveLeft = arr => arr.filter(e => e > 0).concat([0, 0, 0, 0, 0]).slice(0, 5);
+            let newCells = [];
 
-            let moveLeftAndIncrementLevels = arr => {
+            for (let i = 0; i < allCells.length; i++)
+                newCells.push({level: allCells[i].level, key: i});
 
-                let levels = arr.map(e => e.level);
+            this.setState({cells: newCells});
 
-                levels = moveLeft(levels);
-
-                for (let i = 0; i < 4; i++){
-                    if(levels[i] < 1)
-                        continue;
-
-                    if (levels[i] === levels[i + 1]) {
-                        levels[i]++;
-                        levels[i + 1] = 0;
-                    }
-                }
-
-                levels = moveLeft(levels);
-
-                return levels.map(e => {
-                    return {level: e}
-                });
-            };
-
-            let nextRow1 = moveLeftAndIncrementLevels(row1);
-            let nextRow2 = moveLeftAndIncrementLevels(row2);
-            let nextRow3 = moveLeftAndIncrementLevels(row3);
-            let nextRow4 = moveLeftAndIncrementLevels(row4);
-            let nextRow5 = moveLeftAndIncrementLevels(row5);
-
-            // this.checkMovement(row1, nextRow1);
-
-            let nextAllCells = [...nextRow1, ...nextRow2, ...nextRow3, ...nextRow4, ...nextRow5];
-
-            for (let i = 0; i < allCells.length; i++){
-                nextAllCells[i].key = i;
-                nextAllCells[i].number = i;
-            }
-
-
-            this.setState({
-                cells: nextAllCells, points: this.countMoney()
-            });
             this.addNewCells();
-            // let timer = setTimeout(() => {
-            //     }, 500);
         }
 
         let rightArrow = 39;
         if (key.which === rightArrow){
 
-            this.setState({previousCells: this.state.cells});
+            let allCells = this.moveCells("right", this.state.cells);
 
-            let allCells = this.state.cells;
+            let row1Animations = this.calculateAnimations(allCells[0]);
+            let row2Animations = this.calculateAnimations(allCells[1]);
+            let row3Animations = this.calculateAnimations(allCells[2]);
+            let row4Animations = this.calculateAnimations(allCells[3]);
+            let row5Animations = this.calculateAnimations(allCells[4]);
 
-            let row1 = allCells.slice(0, 5);
-            let row2 = allCells.slice(5, 10);
-            let row3 = allCells.slice(10, 15);
-            let row4 = allCells.slice(15, 20);
-            let row5 = allCells.slice(20, 25);
+            allCells = allCells[0].concat(allCells[1], allCells[2], allCells[3], allCells[4]);
 
-            let moveRight = arr => {
+            let newCells = [];
 
-                let filtered = arr.filter(e => e > 0);
+            for (let i = 0; i < allCells.length; i++)
+                newCells.push({level: allCells[i].level, key: i});
 
-                if (filtered.length < 5) {
-                    for (let i = filtered.length; i < 5; i++) {
-                        filtered.unshift(0);
-                    }
-                }
-                return filtered;
-            };
+            this.setState({cells: newCells});
 
-            let moveRightAndIncrementLevels = arr => {
-
-                let levels = arr.map(e => e.level);
-
-                levels = moveRight(levels);
-
-                for (let i = levels.length - 1; i > 0; i--){
-                    if(levels[i] < 1)
-                        continue;
-
-                    if (levels[i] === levels[i - 1]) {
-                        levels[i]++;
-                        levels[i - 1] = 0;
-                    }
-                }
-
-                levels = moveRight(levels);
-
-                return levels.map(e => {
-                    return {level: e}
-                });
-            };
-
-            row1 = moveRightAndIncrementLevels(row1);
-            row2 = moveRightAndIncrementLevels(row2);
-            row3 = moveRightAndIncrementLevels(row3);
-            row4 = moveRightAndIncrementLevels(row4);
-            row5 = moveRightAndIncrementLevels(row5);
-
-            allCells = [...row1, ...row2, ...row3, ...row4, ...row5];
-
-            for (let i = 0; i < allCells.length; i++){
-                allCells[i].key = i;
-                allCells[i].number = i;
-            }
-            this.setState({
-                cells: allCells, points: this.countMoney()
-            });
-            this.addNewCells()
-            // let timer = setTimeout(() => {
-            //     }, 500);
+            this.addNewCells();
         }
 
         let upArrow = 38;
         if (key.which === upArrow){
 
-            this.setState({previousCells: this.state.cells});
+            let allCells = this.moveCells("up", this.state.cells);
 
-            let col1 = [];
-            let col2 = [];
-            let col3 = [];
-            let col4 = [];
-            let col5 = [];
+            let col1Animations = this.calculateAnimations(allCells[0]);
+            let col2Animations = this.calculateAnimations(allCells[1]);
+            let col3Animations = this.calculateAnimations(allCells[2]);
+            let col4Animations = this.calculateAnimations(allCells[3]);
+            let col5Animations = this.calculateAnimations(allCells[4]);
 
-            this.state.cells.forEach(e => {
-                if (e.key % 5 === 0)
-                    col1.push(e);
-                if (e.key % 5 === 1)
-                    col2.push(e);
-                if (e.key % 5 === 2)
-                    col3.push(e);
-                if (e.key % 5 === 3)
-                    col4.push(e);
-                if (e.key % 5 === 4)
-                    col5.push(e);
-            });
+            console.log(col1Animations);
+            console.log(col2Animations);
+            console.log(col3Animations);
+            console.log(col4Animations);
+            console.log(col5Animations);
 
-            let moveUp = arr => {
+            allCells = allCells[0].concat(allCells[1], allCells[2], allCells[3], allCells[4]);
 
-                let filtered = arr.filter(e => e > 0);
-
-                if (filtered.length < 5) {
-                    for (let i = filtered.length; i < 5; i++) {
-                        filtered.push(0);
-                    }
-                }
-                return filtered;
-            };
-
-            let moveUpAndIncrementLevels = arr => {
-
-                let levels = arr.map(e => e.level);
-
-                levels = moveUp(levels);
-
-                for (let i = 0; i < levels.length -1; i++){
-                    if(levels[i] < 1)
-                        continue;
-
-                    if (levels[i] === levels[i + 1]) {
-                        levels[i]++;
-                        levels[i + 1] = 0;
-                    }
-                }
-
-                levels = moveUp(levels);
-
-                return levels.map(e => {
-                    return {level: e}
-                });
-            };
-
-            col1 = moveUpAndIncrementLevels(col1);
-            col2 = moveUpAndIncrementLevels(col2);
-            col3 = moveUpAndIncrementLevels(col3);
-            col4 = moveUpAndIncrementLevels(col4);
-            col5 = moveUpAndIncrementLevels(col5);
-
-            let allCells =[];
-
-            for (let i = 0; i < 5; i++)
-                allCells.push(col1[i], col2[i], col3[i], col4[i], col5[i])
-
-            for (let i = 0; i < allCells.length; i++){
-                allCells[i].number = i;
+            for (let i = 0; i < allCells.length; i++)
                 allCells[i].key = i;
-            }
 
+            this.setState({cells: allCells});
 
-            this.setState({
-                cells: allCells, points: this.countMoney()
-            });
             this.addNewCells();
-            // let timer = setTimeout(() => {
-            //    }, 500);
+
         }
 
         let downArrow = 40;
         if (key.which === downArrow){
 
-            this.setState({previousCells: this.state.cells});
+            let allCells = this.moveCells("down", this.state.cells);
 
-            let col1 = [];
-            let col2 = [];
-            let col3 = [];
-            let col4 = [];
-            let col5 = [];
+            let col1Animations = this.calculateAnimations(allCells[0]);
+            let col2Animations = this.calculateAnimations(allCells[1]);
+            let col3Animations = this.calculateAnimations(allCells[2]);
+            let col4Animations = this.calculateAnimations(allCells[3]);
+            let col5Animations = this.calculateAnimations(allCells[4]);
 
-            this.state.cells.forEach(e => {
-                if (e.key % 5 === 0)
-                    col1.push(e);
-                if (e.key % 5 === 1)
-                    col2.push(e);
-                if (e.key % 5 === 2)
-                    col3.push(e);
-                if (e.key % 5 === 3)
-                    col4.push(e);
-                if (e.key % 5 === 4)
-                    col5.push(e);
-                });
+            console.log(col1Animations);
+            console.log(col2Animations);
+            console.log(col3Animations);
+            console.log(col4Animations);
+            console.log(col5Animations);
 
-            let moveDown = arr => {
+            allCells = allCells[0].concat(allCells[1], allCells[2], allCells[3], allCells[4]);
 
-                let filtered = arr.filter(e => e > 0);
-
-                if (filtered.length < 5) {
-                    for (let i = filtered.length; i < 5; i++) {
-                        filtered.unshift(0);
-                    }
-                }
-                return filtered;
-            };
-
-            let moveDownAndIncrementLevels = arr => {
-
-                let levels = arr.map(e => e.level);
-
-                levels = moveDown(levels);
-
-                for (let i = levels.length - 1; i > 0; i--){
-                    if(levels[i] < 1)
-                        continue;
-
-                    if (levels[i] === levels[i - 1]) {
-                        levels[i]++;
-                        levels[i - 1] = 0;
-                    }
-                }
-
-                levels = moveDown(levels);
-
-                return levels.map(e => {
-                    return {level: e}
-                });
-            };
-
-            col1 = moveDownAndIncrementLevels(col1);
-            col2 = moveDownAndIncrementLevels(col2);
-            col3 = moveDownAndIncrementLevels(col3);
-            col4 = moveDownAndIncrementLevels(col4);
-            col5 = moveDownAndIncrementLevels(col5);
-
-            let allCells = [];
-
-            for (let i = 0; i < 5; i++)
-                allCells.push(col1[i], col2[i], col3[i], col4[i], col5[i])
-
-            for (let i = 0; i < allCells.length; i++){
-                allCells[i].number = i;
+            for (let i = 0; i < allCells.length; i++)
                 allCells[i].key = i;
-            }
 
+            this.setState({cells: allCells});
 
-            this.setState({
-                cells: allCells, points: this.countMoney()
-            });
             this.addNewCells();
-            // let timer = setTimeout(() => {
-            //     }, 500);
             }
 
         };
@@ -614,7 +574,7 @@ class Game extends React.Component {
         let countGr = this.state.points % 100;
 
         if (this.state.cells.length === 0) return null;
-        let cells = this.state.cells.map((element, index) => <Cell number={this.state.cells[index].number} key={this.state.cells[index].key} level={this.state.cells[index].level}/>);
+        let cells = this.state.cells.map((element, index) => <Cell key={this.state.cells[index].key} level={this.state.cells[index].level}/>);
 
         return <div style={{backgroundImage: 'url("./img/money.png")', backgroundSize: "cover", width: "100%", height: "900px"}}>
                     <h1 style={{textAlign: "center", fontSize: "70px", background: "lightgrey", opacity: "0.8"}}>Super Zbieracz - THE GAME !!!</h1>

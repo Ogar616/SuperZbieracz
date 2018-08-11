@@ -9769,7 +9769,7 @@ var Game = function (_React$Component3) {
             });
             if (_this3.state.wands > 0 && emptyCells.length > 0) {
                 var wandedCells = _this3.state.cells.map(function (cell) {
-                    if (cell.level === 1) return { level: 0, number: cell.number, key: cell.key };else return cell;
+                    if (cell.level === 1) return { level: 0, key: cell.key };else return cell;
                 });
 
                 _this3.setState({
@@ -9787,7 +9787,7 @@ var Game = function (_React$Component3) {
         _this3.createBoard = function () {
             var start = [];
             for (var i = 0; i < 25; i++) {
-                start[i] = { number: i, level: 0, key: i };
+                start[i] = { level: 0, key: i };
             }
 
             return start;
@@ -9800,8 +9800,7 @@ var Game = function (_React$Component3) {
             });
             if (emptyCells.length < 2) {
                 if (_this3.handleKeys) {
-                    prompt("GAME OVER  !!! ");
-                    delete _this3.handleKeys();
+                    console.log("GAME OVER  !!! ");
                 }
             }
         };
@@ -9832,9 +9831,12 @@ var Game = function (_React$Component3) {
             }
 
             var newCells = _this3.state.cells;
+            //
+            // newCell1 = 20;
+            // newCell2 = 24;
 
-            newCells[newCell1] = { number: newCell1, level: 1, key: newCell1 };
-            newCells[newCell2] = { number: newCell2, level: 1, key: newCell2 };
+            newCells[newCell1] = { level: 1, key: newCell1 };
+            newCells[newCell2] = { level: 1, key: newCell2 };
 
             _this3.setState({ cells: newCells, points: _this3.countMoney() });
         };
@@ -9842,34 +9844,6 @@ var Game = function (_React$Component3) {
         _this3.componentDidMount = function () {
             document.addEventListener("keyup", _this3.handleKeys);
             _this3.addNewCells();
-            //
-            //     let coordinatesArray = [];
-            //     let full = [false, false, false, false, false];
-            //
-            //     let arr1 = [1, 1, 0, 1, 0];
-            //     let arr2 = [2, 1, 0, 0, 0];
-            //
-            //     console.log(arr1);
-            //     console.log(arr2);
-            //
-            //     for (let i = 0; i < 5; i++){
-            //         if (arr1[i] === arr2[i]) continue;
-            //         if (arr2[i] > arr1[i]){
-            //             for (let j = 1; j < 5; j++){
-            //                 if (arr1[j] === arr1[i]){
-            //                     coordinatesArray.push([i, j]);
-            //                     full[i] = true;
-            //                     break;
-            //                 }
-            //             }
-            //         }
-            //         for (let j = i + 1; i < 5; j++){
-            //
-            //         }
-            //     }
-            //
-            // };
-            //
         };
 
         _this3.countMoney = function () {
@@ -9893,380 +9867,326 @@ var Game = function (_React$Component3) {
             return moneyCounter;
         };
 
-        _this3.checkMovement = function (arr1, arr2, direction) {
-            var arr1Levels = arr1.map(function (e) {
-                return e.level;
+        _this3.changePlane = function (cells) {
+
+            var col1 = [];
+            var col2 = [];
+            var col3 = [];
+            var col4 = [];
+            var col5 = [];
+
+            cells.forEach(function (cell, index) {
+                if (index % 5 === 0) col1.push(cell);
+                if (index % 5 === 1) col2.push(cell);
+                if (index % 5 === 2) col3.push(cell);
+                if (index % 5 === 3) col4.push(cell);
+                if (index % 5 === 4) col5.push(cell);
             });
-            var arr2Levels = arr2.map(function (e) {
-                return e.level;
+            return [col1, col2, col3, col4, col5];
+        };
+
+        _this3.moveCells = function (direction, cells) {
+
+            var row1 = cells.slice(0, 5);
+            var row2 = cells.slice(5, 10);
+            var row3 = cells.slice(10, 15);
+            var row4 = cells.slice(15, 20);
+            var row5 = cells.slice(20, 25);
+
+            var removeEmptyAndFixKeysLeft = function removeEmptyAndFixKeysLeft(cells) {
+
+                var fullCellsOnly = [];
+
+                for (var i = 0; i < 5; i++) {
+                    cells[i].key1 = i;
+                }cells.forEach(function (cell) {
+                    if (cell.level > 0) fullCellsOnly.push(cell);
+                });
+
+                for (var _i = 0; _i < 5; _i++) {
+                    if (fullCellsOnly.length < 5) fullCellsOnly.push({ level: 0 });
+                }return fullCellsOnly;
+            };
+
+            var removeEmptyAndFixKeysRight = function removeEmptyAndFixKeysRight(cells) {
+
+                var fullCellsOnly = [];
+
+                for (var i = 0; i < 5; i++) {
+                    cells[i].key1 = i;
+                }cells.forEach(function (cell) {
+                    if (cell.level > 0) fullCellsOnly.push(cell);
+                });
+
+                for (var _i2 = 0; _i2 < 5; _i2++) {
+                    if (fullCellsOnly.length < 5) fullCellsOnly.unshift({ level: 0 });
+                }return fullCellsOnly;
+            };
+
+            var removeEmptyLeft = function removeEmptyLeft(cells) {
+
+                var fullCellsOnly = [];
+
+                cells.forEach(function (cell) {
+                    if (cell) if (cell.level > 0) fullCellsOnly.push(cell);
+                });
+
+                for (var i = 0; i < 5; i++) {
+                    if (!fullCellsOnly[i]) fullCellsOnly.push({ level: 0 });
+                }return fullCellsOnly;
+            };
+
+            var removeEmptyRight = function removeEmptyRight(cells) {
+
+                var fullCellsOnly = [];
+
+                cells.forEach(function (cell) {
+                    if (cell) if (cell.level > 0) fullCellsOnly.push(cell);
+                });
+
+                for (var i = 0; i < 5; i++) {
+                    if (!fullCellsOnly[i]) fullCellsOnly.unshift({ level: 0 });
+                }return fullCellsOnly;
+            };
+
+            var mergeLeft = function mergeLeft(cells) {
+
+                for (var i = 0; i < 5; i++) {
+                    if (cells[i].level > 0 && cells[i + 1]) if (cells[i].level === cells[i + 1].level) {
+                        cells[i].level++;
+                        cells[i].key2 = cells[i + 1].key1;
+                        cells[i + 1].level = 0;
+                    }
+                }
+
+                cells = removeEmptyLeft(cells);
+
+                for (var _i3 = 0; _i3 < 5; _i3++) {
+                    if (!cells[_i3]) cells.push({ level: 0 });
+                }
+
+                return cells;
+            };
+
+            var mergeRight = function mergeRight(cells) {
+
+                for (var i = 4; i > -1; i--) {
+                    if (cells[i].level > 0 && cells[i - 1]) {
+                        if (cells[i].level === cells[i - 1].level) {
+                            cells[i].level++;
+                            cells[i].key2 = cells[i - 1].key1;
+                            cells[i - 1].level = 0;
+                        }
+                    }
+                }
+
+                cells = removeEmptyRight(cells);
+
+                for (var _i4 = 5; _i4 = 0; _i4--) {
+                    if (!cells[_i4]) cells.unshift({ level: 0 });
+                }
+
+                return cells;
+            };
+
+            if (direction === "left") {
+
+                row1 = removeEmptyAndFixKeysLeft(row1);
+                row2 = removeEmptyAndFixKeysLeft(row2);
+                row3 = removeEmptyAndFixKeysLeft(row3);
+                row4 = removeEmptyAndFixKeysLeft(row4);
+                row5 = removeEmptyAndFixKeysLeft(row5);
+
+                row1 = mergeLeft(row1);
+                row2 = mergeLeft(row2);
+                row3 = mergeLeft(row3);
+                row4 = mergeLeft(row4);
+                row5 = mergeLeft(row5);
+
+                return [row1, row2, row3, row4, row5];
+            }
+
+            if (direction === "right") {
+
+                row1 = removeEmptyAndFixKeysRight(row1);
+                row2 = removeEmptyAndFixKeysRight(row2);
+                row3 = removeEmptyAndFixKeysRight(row3);
+                row4 = removeEmptyAndFixKeysRight(row4);
+                row5 = removeEmptyAndFixKeysRight(row5);
+
+                row1 = mergeRight(row1);
+                row2 = mergeRight(row2);
+                row3 = mergeRight(row3);
+                row4 = mergeRight(row4);
+                row5 = mergeRight(row5);
+
+                return [row1, row2, row3, row4, row5];
+            }
+
+            if (direction === "up") {
+
+                cells = _this3.changePlane(cells);
+
+                var col1 = cells[0];
+                var col2 = cells[1];
+                var col3 = cells[2];
+                var col4 = cells[3];
+                var col5 = cells[4];
+
+                col1 = removeEmptyAndFixKeysLeft(col1);
+                col2 = removeEmptyAndFixKeysLeft(col2);
+                col3 = removeEmptyAndFixKeysLeft(col3);
+                col4 = removeEmptyAndFixKeysLeft(col4);
+                col5 = removeEmptyAndFixKeysLeft(col5);
+
+                col1 = mergeLeft(col1);
+                col2 = mergeLeft(col2);
+                col3 = mergeLeft(col3);
+                col4 = mergeLeft(col4);
+                col5 = mergeLeft(col5);
+
+                cells = [].concat(_toConsumableArray(col1), _toConsumableArray(col2), _toConsumableArray(col3), _toConsumableArray(col4), _toConsumableArray(col5));
+
+                return _this3.changePlane(cells);
+            }
+
+            if (direction === "down") {
+
+                cells = _this3.changePlane(cells);
+
+                var _col = cells[0];
+                var _col2 = cells[1];
+                var _col3 = cells[2];
+                var _col4 = cells[3];
+                var _col5 = cells[4];
+
+                _col = removeEmptyAndFixKeysRight(_col);
+                _col2 = removeEmptyAndFixKeysRight(_col2);
+                _col3 = removeEmptyAndFixKeysRight(_col3);
+                _col4 = removeEmptyAndFixKeysRight(_col4);
+                _col5 = removeEmptyAndFixKeysRight(_col5);
+
+                _col = mergeRight(_col);
+                _col2 = mergeRight(_col2);
+                _col3 = mergeRight(_col3);
+                _col4 = mergeRight(_col4);
+                _col5 = mergeRight(_col5);
+
+                cells = [].concat(_toConsumableArray(_col), _toConsumableArray(_col2), _toConsumableArray(_col3), _toConsumableArray(_col4), _toConsumableArray(_col5));
+
+                return _this3.changePlane(cells);
+            }
+        };
+
+        _this3.calculateAnimations = function (cells) {
+
+            var coordinates = [];
+
+            cells.forEach(function (element, index) {
+                if (element.key2) coordinates.push([index, element.key1, element.key2]);
+                if (element.key1 && !element.key2) coordinates.push([index, element.key1]);
             });
-
-            // console.log(arr1Levels);
-            // console.log(arr2Levels);
-
-            //
-            // let usedIndexes = [];
-            //
-            //     // if (arr[0] === 0){
-            //     //     if (arr[1] > 0) {
-            //     //         coordinatesArray.push([0, 1]);
-            //     //     }
-            //     //     if ((arr[2] > 0) && (arr[1] === arr[2])) {
-            //     //         coordinatesArray.push([0, 2]);
-            //     //     }
-            //     //     if ((arr[2] > 0) && (arr[1] !== arr[2])) {
-            //     //         coordinatesArray.push([1, 2]);
-            //     //     }
-            //     //     if (arr[3] > 0) {
-            //     //         coordinatesArray.push([0, 3]);
-            //     //     }
-            //     //     if (arr[4] > 0){
-            //     //         coordinatesArray.push([0, 4]);
-            //     //     }
-            //     //
-            //
-            // let arr = [1, 1, 0, 1, 0];
-            // console.log(arr1Levels);
-
-            // let full = [false, false, false, false, false];
-            //
-            // for (let i = 0; i < 5; i++){
-            //
-            //     for (let j = 1; j < 5; j++){
-            //         if (arr[i] > 0)
-            //             if ((arr[i] === arr[j]) && full[i] === false){
-            //                 coordinatesArray.push([i, j]);
-            //                 full[i] = true;
-            //             }
-            //
-            //
-            //
-            //     }
-            // }
-
-
-            //
-            // for (let i = 0; i < arr1Levels.length -1; i++){
-            //     let coinsCounter = 0;
-            //     for (let j = i + 1; j < arr1Levels.length; j++){
-            //         if ((((arr1Levels[i] === 0) || (arr1Levels[i] === arr1Levels[j])) && (arr1Levels[j] > 0)) || ((arr1Levels[i] === arr1Levels[j]) && arr1Levels[i] !== 0)){
-            //             if ((usedIndexes.indexOf(j) < 0)){
-            //                 if (coinsCounter < 2){
-            //                     coordinatesArray.push([i, j]);
-            //                     usedIndexes.push(j);
-            //                     coinsCounter++;
-            //
-            //                 }
-            //                 else {
-            //                     coordinatesArray.push([i + 1, j]);
-            //                     usedIndexes.push(j);
-            //
-            //                 }
-            //             }
-            //         }
-            //     }
-            // }
-            //
-            // console.log(coordinatesArray);
+            return coordinates;
         };
 
         _this3.handleKeys = function (key) {
 
+            _this3.setState({ previousCells: _this3.state.cells });
+
             var leftArrow = 37;
             if (key.which === leftArrow) {
 
-                _this3.setState({ previousCells: _this3.state.cells });
+                var allCells = _this3.moveCells("left", _this3.state.cells);
 
-                var allCells = _this3.state.cells;
+                var row1Animations = _this3.calculateAnimations(allCells[0]);
+                var row2Animations = _this3.calculateAnimations(allCells[1]);
+                var row3Animations = _this3.calculateAnimations(allCells[2]);
+                var row4Animations = _this3.calculateAnimations(allCells[3]);
+                var row5Animations = _this3.calculateAnimations(allCells[4]);
 
-                var row1 = allCells.slice(0, 5);
-                var row2 = allCells.slice(5, 10);
-                var row3 = allCells.slice(10, 15);
-                var row4 = allCells.slice(15, 20);
-                var row5 = allCells.slice(20, 25);
+                allCells = allCells[0].concat(allCells[1], allCells[2], allCells[3], allCells[4]);
 
-                var moveLeft = function moveLeft(arr) {
-                    return arr.filter(function (e) {
-                        return e > 0;
-                    }).concat([0, 0, 0, 0, 0]).slice(0, 5);
-                };
-
-                var moveLeftAndIncrementLevels = function moveLeftAndIncrementLevels(arr) {
-
-                    var levels = arr.map(function (e) {
-                        return e.level;
-                    });
-
-                    levels = moveLeft(levels);
-
-                    for (var i = 0; i < 4; i++) {
-                        if (levels[i] < 1) continue;
-
-                        if (levels[i] === levels[i + 1]) {
-                            levels[i]++;
-                            levels[i + 1] = 0;
-                        }
-                    }
-
-                    levels = moveLeft(levels);
-
-                    return levels.map(function (e) {
-                        return { level: e };
-                    });
-                };
-
-                var nextRow1 = moveLeftAndIncrementLevels(row1);
-                var nextRow2 = moveLeftAndIncrementLevels(row2);
-                var nextRow3 = moveLeftAndIncrementLevels(row3);
-                var nextRow4 = moveLeftAndIncrementLevels(row4);
-                var nextRow5 = moveLeftAndIncrementLevels(row5);
-
-                // this.checkMovement(row1, nextRow1);
-
-                var nextAllCells = [].concat(_toConsumableArray(nextRow1), _toConsumableArray(nextRow2), _toConsumableArray(nextRow3), _toConsumableArray(nextRow4), _toConsumableArray(nextRow5));
+                var newCells = [];
 
                 for (var i = 0; i < allCells.length; i++) {
-                    nextAllCells[i].key = i;
-                    nextAllCells[i].number = i;
-                }
+                    newCells.push({ level: allCells[i].level, key: i });
+                }_this3.setState({ cells: newCells });
 
-                _this3.setState({
-                    cells: nextAllCells, points: _this3.countMoney()
-                });
                 _this3.addNewCells();
-                // let timer = setTimeout(() => {
-                //     }, 500);
             }
 
             var rightArrow = 39;
             if (key.which === rightArrow) {
 
-                _this3.setState({ previousCells: _this3.state.cells });
+                var _allCells = _this3.moveCells("right", _this3.state.cells);
 
-                var _allCells = _this3.state.cells;
+                var _row1Animations = _this3.calculateAnimations(_allCells[0]);
+                var _row2Animations = _this3.calculateAnimations(_allCells[1]);
+                var _row3Animations = _this3.calculateAnimations(_allCells[2]);
+                var _row4Animations = _this3.calculateAnimations(_allCells[3]);
+                var _row5Animations = _this3.calculateAnimations(_allCells[4]);
 
-                var _row = _allCells.slice(0, 5);
-                var _row2 = _allCells.slice(5, 10);
-                var _row3 = _allCells.slice(10, 15);
-                var _row4 = _allCells.slice(15, 20);
-                var _row5 = _allCells.slice(20, 25);
+                _allCells = _allCells[0].concat(_allCells[1], _allCells[2], _allCells[3], _allCells[4]);
 
-                var moveRight = function moveRight(arr) {
+                var _newCells = [];
 
-                    var filtered = arr.filter(function (e) {
-                        return e > 0;
-                    });
+                for (var _i5 = 0; _i5 < _allCells.length; _i5++) {
+                    _newCells.push({ level: _allCells[_i5].level, key: _i5 });
+                }_this3.setState({ cells: _newCells });
 
-                    if (filtered.length < 5) {
-                        for (var _i = filtered.length; _i < 5; _i++) {
-                            filtered.unshift(0);
-                        }
-                    }
-                    return filtered;
-                };
-
-                var moveRightAndIncrementLevels = function moveRightAndIncrementLevels(arr) {
-
-                    var levels = arr.map(function (e) {
-                        return e.level;
-                    });
-
-                    levels = moveRight(levels);
-
-                    for (var _i2 = levels.length - 1; _i2 > 0; _i2--) {
-                        if (levels[_i2] < 1) continue;
-
-                        if (levels[_i2] === levels[_i2 - 1]) {
-                            levels[_i2]++;
-                            levels[_i2 - 1] = 0;
-                        }
-                    }
-
-                    levels = moveRight(levels);
-
-                    return levels.map(function (e) {
-                        return { level: e };
-                    });
-                };
-
-                _row = moveRightAndIncrementLevels(_row);
-                _row2 = moveRightAndIncrementLevels(_row2);
-                _row3 = moveRightAndIncrementLevels(_row3);
-                _row4 = moveRightAndIncrementLevels(_row4);
-                _row5 = moveRightAndIncrementLevels(_row5);
-
-                _allCells = [].concat(_toConsumableArray(_row), _toConsumableArray(_row2), _toConsumableArray(_row3), _toConsumableArray(_row4), _toConsumableArray(_row5));
-
-                for (var _i3 = 0; _i3 < _allCells.length; _i3++) {
-                    _allCells[_i3].key = _i3;
-                    _allCells[_i3].number = _i3;
-                }
-                _this3.setState({
-                    cells: _allCells, points: _this3.countMoney()
-                });
                 _this3.addNewCells();
-                // let timer = setTimeout(() => {
-                //     }, 500);
             }
 
             var upArrow = 38;
             if (key.which === upArrow) {
 
-                _this3.setState({ previousCells: _this3.state.cells });
+                var _allCells2 = _this3.moveCells("up", _this3.state.cells);
 
-                var col1 = [];
-                var col2 = [];
-                var col3 = [];
-                var col4 = [];
-                var col5 = [];
+                var col1Animations = _this3.calculateAnimations(_allCells2[0]);
+                var col2Animations = _this3.calculateAnimations(_allCells2[1]);
+                var col3Animations = _this3.calculateAnimations(_allCells2[2]);
+                var col4Animations = _this3.calculateAnimations(_allCells2[3]);
+                var col5Animations = _this3.calculateAnimations(_allCells2[4]);
 
-                _this3.state.cells.forEach(function (e) {
-                    if (e.key % 5 === 0) col1.push(e);
-                    if (e.key % 5 === 1) col2.push(e);
-                    if (e.key % 5 === 2) col3.push(e);
-                    if (e.key % 5 === 3) col4.push(e);
-                    if (e.key % 5 === 4) col5.push(e);
-                });
+                console.log(col1Animations);
+                console.log(col2Animations);
+                console.log(col3Animations);
+                console.log(col4Animations);
+                console.log(col5Animations);
 
-                var moveUp = function moveUp(arr) {
+                _allCells2 = _allCells2[0].concat(_allCells2[1], _allCells2[2], _allCells2[3], _allCells2[4]);
 
-                    var filtered = arr.filter(function (e) {
-                        return e > 0;
-                    });
+                for (var _i6 = 0; _i6 < _allCells2.length; _i6++) {
+                    _allCells2[_i6].key = _i6;
+                }_this3.setState({ cells: _allCells2 });
 
-                    if (filtered.length < 5) {
-                        for (var _i4 = filtered.length; _i4 < 5; _i4++) {
-                            filtered.push(0);
-                        }
-                    }
-                    return filtered;
-                };
-
-                var moveUpAndIncrementLevels = function moveUpAndIncrementLevels(arr) {
-
-                    var levels = arr.map(function (e) {
-                        return e.level;
-                    });
-
-                    levels = moveUp(levels);
-
-                    for (var _i5 = 0; _i5 < levels.length - 1; _i5++) {
-                        if (levels[_i5] < 1) continue;
-
-                        if (levels[_i5] === levels[_i5 + 1]) {
-                            levels[_i5]++;
-                            levels[_i5 + 1] = 0;
-                        }
-                    }
-
-                    levels = moveUp(levels);
-
-                    return levels.map(function (e) {
-                        return { level: e };
-                    });
-                };
-
-                col1 = moveUpAndIncrementLevels(col1);
-                col2 = moveUpAndIncrementLevels(col2);
-                col3 = moveUpAndIncrementLevels(col3);
-                col4 = moveUpAndIncrementLevels(col4);
-                col5 = moveUpAndIncrementLevels(col5);
-
-                var _allCells2 = [];
-
-                for (var _i6 = 0; _i6 < 5; _i6++) {
-                    _allCells2.push(col1[_i6], col2[_i6], col3[_i6], col4[_i6], col5[_i6]);
-                }for (var _i7 = 0; _i7 < _allCells2.length; _i7++) {
-                    _allCells2[_i7].number = _i7;
-                    _allCells2[_i7].key = _i7;
-                }
-
-                _this3.setState({
-                    cells: _allCells2, points: _this3.countMoney()
-                });
                 _this3.addNewCells();
-                // let timer = setTimeout(() => {
-                //    }, 500);
             }
 
             var downArrow = 40;
             if (key.which === downArrow) {
 
-                _this3.setState({ previousCells: _this3.state.cells });
+                var _allCells3 = _this3.moveCells("down", _this3.state.cells);
 
-                var _col = [];
-                var _col2 = [];
-                var _col3 = [];
-                var _col4 = [];
-                var _col5 = [];
+                var _col1Animations = _this3.calculateAnimations(_allCells3[0]);
+                var _col2Animations = _this3.calculateAnimations(_allCells3[1]);
+                var _col3Animations = _this3.calculateAnimations(_allCells3[2]);
+                var _col4Animations = _this3.calculateAnimations(_allCells3[3]);
+                var _col5Animations = _this3.calculateAnimations(_allCells3[4]);
 
-                _this3.state.cells.forEach(function (e) {
-                    if (e.key % 5 === 0) _col.push(e);
-                    if (e.key % 5 === 1) _col2.push(e);
-                    if (e.key % 5 === 2) _col3.push(e);
-                    if (e.key % 5 === 3) _col4.push(e);
-                    if (e.key % 5 === 4) _col5.push(e);
-                });
+                console.log(_col1Animations);
+                console.log(_col2Animations);
+                console.log(_col3Animations);
+                console.log(_col4Animations);
+                console.log(_col5Animations);
 
-                var moveDown = function moveDown(arr) {
+                _allCells3 = _allCells3[0].concat(_allCells3[1], _allCells3[2], _allCells3[3], _allCells3[4]);
 
-                    var filtered = arr.filter(function (e) {
-                        return e > 0;
-                    });
+                for (var _i7 = 0; _i7 < _allCells3.length; _i7++) {
+                    _allCells3[_i7].key = _i7;
+                }_this3.setState({ cells: _allCells3 });
 
-                    if (filtered.length < 5) {
-                        for (var _i8 = filtered.length; _i8 < 5; _i8++) {
-                            filtered.unshift(0);
-                        }
-                    }
-                    return filtered;
-                };
-
-                var moveDownAndIncrementLevels = function moveDownAndIncrementLevels(arr) {
-
-                    var levels = arr.map(function (e) {
-                        return e.level;
-                    });
-
-                    levels = moveDown(levels);
-
-                    for (var _i9 = levels.length - 1; _i9 > 0; _i9--) {
-                        if (levels[_i9] < 1) continue;
-
-                        if (levels[_i9] === levels[_i9 - 1]) {
-                            levels[_i9]++;
-                            levels[_i9 - 1] = 0;
-                        }
-                    }
-
-                    levels = moveDown(levels);
-
-                    return levels.map(function (e) {
-                        return { level: e };
-                    });
-                };
-
-                _col = moveDownAndIncrementLevels(_col);
-                _col2 = moveDownAndIncrementLevels(_col2);
-                _col3 = moveDownAndIncrementLevels(_col3);
-                _col4 = moveDownAndIncrementLevels(_col4);
-                _col5 = moveDownAndIncrementLevels(_col5);
-
-                var _allCells3 = [];
-
-                for (var _i10 = 0; _i10 < 5; _i10++) {
-                    _allCells3.push(_col[_i10], _col2[_i10], _col3[_i10], _col4[_i10], _col5[_i10]);
-                }for (var _i11 = 0; _i11 < _allCells3.length; _i11++) {
-                    _allCells3[_i11].number = _i11;
-                    _allCells3[_i11].key = _i11;
-                }
-
-                _this3.setState({
-                    cells: _allCells3, points: _this3.countMoney()
-                });
                 _this3.addNewCells();
-                // let timer = setTimeout(() => {
-                //     }, 500);
             }
         };
 
@@ -10279,7 +10199,7 @@ var Game = function (_React$Component3) {
 
         };
         return _this3;
-    } //co wstawić zamiast prompt
+    }
 
     _createClass(Game, [{
         key: 'render',
@@ -10292,7 +10212,7 @@ var Game = function (_React$Component3) {
 
             if (this.state.cells.length === 0) return null;
             var cells = this.state.cells.map(function (element, index) {
-                return _react2.default.createElement(Cell, { number: _this4.state.cells[index].number, key: _this4.state.cells[index].key, level: _this4.state.cells[index].level });
+                return _react2.default.createElement(Cell, { key: _this4.state.cells[index].key, level: _this4.state.cells[index].level });
             });
 
             return _react2.default.createElement(
