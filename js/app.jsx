@@ -15,7 +15,8 @@ class Cell extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            level: this.props.level
+            level: this.props.level,
+            oldLevel: this.props.oldLevel
         }
     }
 
@@ -27,39 +28,30 @@ class Cell extends React.Component{
     render(){
             const cellWidth = 100;
             const cellHeight = 100;
-            if (this.state.level === 0)
-                return <div className="cell0" key={this.props.number} style={{backgroundColor: "lightgrey", float: "left", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box", border: "5px solid black", borderRadius: "50px"}}> </div>;
-            if (this.state.level === 1)
-                return <div className="cell1" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/1gr3.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
-            if (this.state.level === 2)
-                return <div className="cell2" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/2gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
-            if (this.state.level === 3)
-                return <div className="cell3" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/5gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", textAlign: "center", boxSizing: "border-box"}}> </div>;
-            if (this.state.level === 4)
-                return <div className="cell4" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/10gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
-            if (this.state.level === 5)
-                return <div className="cell5" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/20gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
-            if (this.state.level === 6)
-                return <div className="cell6" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/50gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
-            if (this.state.level === 7)
-                return <div className="cell7" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/1zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
-            if (this.state.level === 8)
-                return <div className="cell8" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/2zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
-            if (this.state.level === 9)
-                return <div className="cell9" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/5zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
-            if (this.state.level === 10)
-                return <div className="cell10" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/10zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
-            if (this.state.level === 11)
-                return <div className="cell11" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/20zl.jpeg")', backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
-            if (this.state.level === 12)
-                return <div className="cell12" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/50zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
-            if (this.state.level === 13)
-                return <div className="cell13" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/100zl.jpeg")', backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
-            if (this.state.level === 14)
-                return <div className="cell14" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/200zl.jpeg")', backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
-            if (this.state.level === 15)
-                return <div className="cell15" key={this.props.number} style={{float: "left", backgroundImage: 'url("./img/500zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"}}> </div>;
-        }
+            let styles = [
+                {backgroundColor: "lightgrey" , float: "left", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box", border: "5px solid black", borderRadius: "50px"},
+                {backgroundImage: 'url("./img/1gr3.png")' , float: "left",backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box", border: "5px solid black", borderRadius: "50px"},
+                {float: "left", backgroundImage: 'url("./img/2gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"},
+                {float: "left", backgroundImage: 'url("./img/5gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"},
+                {float: "left", backgroundImage: 'url("./img/10gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"},
+                {float: "left", backgroundImage: 'url("./img/20gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"},
+                {float: "left", backgroundImage: 'url("./img/50gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"},
+                {float: "left", backgroundImage: 'url("./img/1zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"},
+                {float: "left", backgroundImage: 'url("./img/2zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"},
+                {float: "left", backgroundImage: 'url("./img/5zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"},
+                {float: "left", backgroundImage: 'url("./img/10zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"},
+                {float: "left", backgroundImage: 'url("./img/20zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"},
+                {float: "left", backgroundImage: 'url("./img/50zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"},
+                {float: "left", backgroundImage: 'url("./img/100zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"},
+                {float: "left", backgroundImage: 'url("./img/200zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"},
+                {float: "left", backgroundImage: 'url("./img/500.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box"},
+            ];
+            let cellStyle = styles[this.state.level];
+            if (this.state.oldLevel)
+                cellStyle = styles[this.state.oldLevel];
+
+            return <div className={this.props.class} key={this.props.number} style={cellStyle}> </div>;
+            }
 }
 
 class Game extends React.Component {
@@ -72,7 +64,6 @@ class Game extends React.Component {
             movesBack: 3,
             points: 0,
             previousCells: []
-
         }
     };
 
@@ -105,7 +96,7 @@ class Game extends React.Component {
     createBoard = () => {
         let start =[];
         for (let i = 0; i < 25; i++){
-            start[i] = {level: 0, key: i}
+            start[i] = {level: 0, key: i, class: "static"}
         }
 
         return start;
@@ -130,10 +121,14 @@ class Game extends React.Component {
 
     moveBack = () => {
         if (this.state.points > 2) {
-            if ((this.state.movesBack > 0) && (this.state.previousCells !== this.state.cells))
-                this.setState({cells: this.state.previousCells, movesBack: this.state.movesBack - 1, points: this.countMoney()}); //liczenie kasy nie działa
+            if ((this.state.movesBack > 0) && (this.state.previousCells !== this.state.cells)){
+                let previousCells = this.state.previousCells;
+                previousCells.forEach((cell, index) => cell.key = index);
+                this.setState({cells: previousCells, movesBack: this.state.movesBack - 1, points: this.countMoney()});
+            }
+
         }
-    };
+    };  //nie działa dobrze
 
     addNewCells = () => {
         this.gameOverCheck();
@@ -155,12 +150,12 @@ class Game extends React.Component {
         }
 
         let newCells = this.state.cells;
-        //
-        // newCell1 = 20;
-        // newCell2 = 24;
+        // //
+        // newCell1 = 1;
+        // newCell2 = 3;
 
-        newCells[newCell1] = {level: 1, key: newCell1};
-        newCells[newCell2] = {level: 1, key: newCell2};
+        newCells[newCell1] = {level: 1, key: newCell1, class: "static"};
+        newCells[newCell2] = {level: 1, key: newCell2, class: "static"};
 
         this.setState({cells: newCells, points: this.countMoney()});
 
@@ -169,6 +164,7 @@ class Game extends React.Component {
     componentDidMount = () => {
         document.addEventListener("keyup", this.handleKeys);
         this.addNewCells();
+
     };
 
     countMoney = () => {
@@ -229,8 +225,6 @@ class Game extends React.Component {
        return [col1, col2, col3, col4, col5];
     };
 
-
-
     moveCells = (direction, cells) => {
 
         let row1 = cells.slice(0, 5);
@@ -246,20 +240,26 @@ class Game extends React.Component {
             for (let i = 0; i < 5; i++)
                 cells[i].key1 = i;
 
-            cells.forEach((cell) => {
+            cells.forEach(cell => {
                 if (cell.level > 0)
                     fullCellsOnly.push(cell);
+
             });
 
             for (let i = 0; i < 5; i++)
                 if (fullCellsOnly.length < 5)
                     fullCellsOnly.push({level: 0});
 
+
+                fullCellsOnly.forEach((e,i) => {
+                   e.oldLevel = cells[i].oldLevel;
+               });
+
+
             return fullCellsOnly;
         };
 
         let removeEmptyAndFixKeysRight = (cells) => {
-
             let fullCellsOnly = [];
 
             for (let i = 0; i < 5; i++)
@@ -295,7 +295,6 @@ class Game extends React.Component {
         };
 
         let removeEmptyRight = (cells) => {
-
             let fullCellsOnly = [];
 
             cells.forEach((cell) => {
@@ -312,10 +311,10 @@ class Game extends React.Component {
         };
 
         let mergeLeft = (cells) => {
-
             for (let i = 0; i < 5; i++){
                 if ((cells[i].level > 0) && (cells[i + 1]))
                     if (cells[i].level === cells[i + 1].level){
+                        cells[i].oldLevel = cells[i].level;
                         cells[i].level++;
                         cells[i].key2 = cells[i + 1].key1;
                         cells[i + 1].level = 0;
@@ -330,11 +329,9 @@ class Game extends React.Component {
             }
 
             return cells;
-
         };
 
         let mergeRight = (cells) => {
-
             for (let i = 4; i > -1; i--){
                 if ((cells[i].level > 0) && (cells[i - 1])){
                     if (cells[i].level === cells[i - 1].level){
@@ -353,9 +350,7 @@ class Game extends React.Component {
             }
 
             return cells;
-
         };
-
 
         if (direction === "left"){
 
@@ -446,45 +441,132 @@ class Game extends React.Component {
         }
     };
 
-    calculateAnimations = (cells) => {
+    calculateAnimations = (cells, direction) => {
 
         let coordinates = [];
 
-        cells.forEach((element, index) => {
-            if (element.key2)
-                coordinates.push([index, element.key1, element.key2]);
-            if (element.key1 && !element.key2)
-                coordinates.push([index, element.key1]);
-        });
+        if (direction = "left"){
+
+            cells.forEach((e, i) => {
+                if (e.level !== 0){
+                    if ((e.key1 !== i) && e.key1 && (!e.key2)){
+                        coordinates.push({toIndex: i, index1: e.key1});
+                    }
+
+
+                }
+
+                if (e.key2){
+                    if ((i !== e.key1) && (i !== e.key2))
+                        coordinates.push({toIndex: i, index1: e.key1, index2: e.key2});
+                    if ((i !== e.key1) && (i === e.key2))
+                        coordinates.push({toIndex: i, index1: e.key1});
+                    if ((i === e.key1) && (i !== e.key2))
+                        coordinates.push({toIndex: i, index1: e.key2});
+
+                }
+
+
+            });
+        }
+
         return coordinates;
     };
 
+    calculateClass = (row) => {
+
+        let defineClass = (count) => {
+            if (count === 1) return "moveLeft1";
+            if (count === 2) return "moveLeft2";
+            if (count === 3) return "moveLeft3";
+            if (count === 4) return "moveLeft4";
+        };
+
+        let classes = ["static", "static", "static", "static", "static"];
+
+        row.forEach((e, index) => {
+            if (e.key1 && !e.key2){
+                classes[e.key1] = defineClass(e.key1 - index);
+                console.log(index, e.key1);
+            }
+
+            if (e.key2){
+                classes[e.key1] = defineClass(e.key1 - index);
+                classes[e.key2] = defineClass(e.key2 - index);
+            }
+        });
+
+        return classes;
+
+    };
 
     handleKeys = (key) => {
 
-        this.setState({previousCells: this.state.cells});
+        this.setState({previousCells: this.state.cells.slice(0)});
 
         let leftArrow = 37;
         if (key.which === leftArrow) {
 
-            let allCells = this.moveCells("left", this.state.cells);
 
-            let row1Animations = this.calculateAnimations(allCells[0]);
-            let row2Animations = this.calculateAnimations(allCells[1]);
-            let row3Animations = this.calculateAnimations(allCells[2]);
-            let row4Animations = this.calculateAnimations(allCells[3]);
-            let row5Animations = this.calculateAnimations(allCells[4]);
+            let oldCells = [];
+            for (let i = 0; i < 25; i++){
+                oldCells[i] = Object.assign({}, this.state.cells[i]);
+            }
 
-            allCells = allCells[0].concat(allCells[1], allCells[2], allCells[3], allCells[4]);
+            let newCells = this.moveCells("left", oldCells);
 
-            let newCells = [];
+            newCells = newCells[0].concat(newCells[1], newCells[2], newCells[3], newCells[4]);
 
-            for (let i = 0; i < allCells.length; i++)
-                newCells.push({level: allCells[i].level, key: i});
+            let row1 = newCells.slice(0, 5);
+            let row2 = newCells.slice(5, 10);
+            let row3 = newCells.slice(10, 15);
+            let row4 = newCells.slice(15, 20);
+            let row5 = newCells.slice(20, 25);
 
-            this.setState({cells: newCells});
+            row1.forEach((e, i) => {
+                e.class = this.calculateClass(row1)[i];
+            });
 
-            this.addNewCells();
+            row2.forEach((e, i) => {
+                e.class = this.calculateClass(row2)[i];
+            });
+
+            row3.forEach((e, i) => {
+                e.class = this.calculateClass(row3)[i];
+            });
+
+            row4.forEach((e, i) => {
+                e.class = this.calculateClass(row4)[i];
+            });
+
+            row5.forEach((e, i) => {
+                e.class = this.calculateClass(row5)[i];
+            });
+
+            let animatedCells = [...row1, ...row2, ...row3, ...row4, ...row5];
+
+            animatedCells.forEach((e, i) => e.key = i);
+
+            console.log(animatedCells);
+
+
+            this.setState({cells: animatedCells}, () => {
+                for (let i = 0; i < newCells.length; i++){
+                    animatedCells[i].key = i;
+                    animatedCells[i].class = "static";
+                    animatedCells[i].key1 = 0;
+                    animatedCells[i].key2 = 0;
+                    animatedCells[i].oldLevel = false;
+                }
+
+                let timer = setTimeout(() => {
+                    this.setState({cells: newCells});
+
+                    this.addNewCells();
+                }, 500);
+
+            });
+
         }
 
         let rightArrow = 39;
@@ -497,6 +579,12 @@ class Game extends React.Component {
             let row3Animations = this.calculateAnimations(allCells[2]);
             let row4Animations = this.calculateAnimations(allCells[3]);
             let row5Animations = this.calculateAnimations(allCells[4]);
+
+            console.log(row1Animations);
+            console.log(row2Animations);
+            console.log(row3Animations);
+            console.log(row4Animations);
+            console.log(row5Animations);
 
             allCells = allCells[0].concat(allCells[1], allCells[2], allCells[3], allCells[4]);
 
@@ -574,9 +662,12 @@ class Game extends React.Component {
         let countGr = this.state.points % 100;
 
         if (this.state.cells.length === 0) return null;
-        let cells = this.state.cells.map((element, index) => <Cell key={this.state.cells[index].key} level={this.state.cells[index].level}/>);
+        let cells = this.state.cells.map((element, index) => <Cell key={this.state.cells[index].key} oldLevel={this.state.cells[index].oldLevel} level={this.state.cells[index].level} class={this.state.cells[index].class}/>);
 
         return <div style={{backgroundImage: 'url("./img/money.png")', backgroundSize: "cover", width: "100%", height: "900px"}}>
+            <div style={{height: "300px", width: "100px", float: "left", backgroundColor: "black", position: "relative", top: "38%", left: "20%"}}>
+
+            </div>
                     <h1 style={{textAlign: "center", fontSize: "70px", background: "lightgrey", opacity: "0.8"}}>Super Zbieracz - THE GAME !!!</h1>
                     <div style={{height: "100%", width: "100%", margin: "0 auto", backgroundColor: "transparent"}}>
                         <div style={{margin: "5px auto", width: "300px", height: "100px", boxSizing: "borderBox", padding: "10px"}}>
@@ -584,9 +675,9 @@ class Game extends React.Component {
                             <div style={{width: "100px", height: "100px", float: "left", border: "1px solid black", borderRadius:"50px", boxSizing: "border-box", background: "mediumseagreen", backgroundImage: 'url("./img/back.svg")', backgroundSize: "contain"}} onClick={this.moveBack}><span style={{fontSize: "20px", fontWeight: "bold", position: "relative", top: "25px", left: "20px"}}>{this.state.movesBack}</span></div>
                             <div style={{width: "100px", height: "100px", float: "left", border: "1px solid black", borderRadius:"50px", boxSizing: "border-box", background: "mediumseagreen", backgroundImage: 'url("./img/wand.svg")', backgroundSize: "contain"}} onClick={this.magicWand}><span style={{fontSize: "20px", fontWeight: "bold", position: "relative", top: "25px", left: "20px"}}>{this.state.wands}</span></div>
                         </div>
-                    <div style={{width: "500px", height: "500px", margin: "0 auto", position: "relative"}}>{cells}
-                        {/*<div style={{width: "500px", height: "500px", margin: "0 auto", position: "relative"}}>{cells}</div>*/}
-                    </div>
+
+                    <div style={{width: "500px", height: "500px", margin: "0 auto", position: "relative"}}>{cells}</div>
+
                     <h2 style={{textAlign: "center", fontSize: "70px", background: "lightgrey", opacity: "0.8"}}>Uzbierałeś: {countZl} zł i {countGr} gr! </h2>
                     </div>
                 </div>
