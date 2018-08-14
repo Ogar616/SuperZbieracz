@@ -189,12 +189,12 @@
 
 .moveLeft1 {
     position: relative;
-    animation: moveLeft1 0.5s infinite;
+    animation: moveLeft1 0.5s;
 }
 
 .moveLeft2 {
     position: relative;
-    animation: moveLeft2 0.5s infinite;
+    animation: moveLeft2 0.5s;
 }
 
 .moveLeft3 {
@@ -204,7 +204,7 @@
 
 .moveLeft4 {
     position: relative;
-    animation: moveLeft4 0.5s infinite;
+    animation: moveLeft4 0.5s;
 }
 
 .moveRight1 {
@@ -265,6 +265,10 @@
 .moveDown4 {
     position: relative;
     animation: moveDown4 0.5s infinite;
+}
+
+.static {
+    background-color: black;
 }
 
 
