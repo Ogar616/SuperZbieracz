@@ -9644,7 +9644,8 @@ var Cell = function (_React$Component2) {
         _initialiseProps.call(_this2);
 
         _this2.state = {
-            level: _this2.props.level
+            level: _this2.props.level,
+            oldLevel: _this2.props.oldLevel
         };
         return _this2;
     }
@@ -9654,84 +9655,13 @@ var Cell = function (_React$Component2) {
         value: function render() {
             var cellWidth = 100;
             var cellHeight = 100;
-            if (this.state.level === 0) return _react2.default.createElement(
+            var styles = [{ backgroundColor: "lightgrey", float: "left", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box", border: "5px solid black", borderRadius: "50px" }, { backgroundImage: 'url("./img/1gr3.png")', float: "left", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box", border: "5px solid black", borderRadius: "50px" }, { float: "left", backgroundImage: 'url("./img/2gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" }, { float: "left", backgroundImage: 'url("./img/5gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" }, { float: "left", backgroundImage: 'url("./img/10gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" }, { float: "left", backgroundImage: 'url("./img/20gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" }, { float: "left", backgroundImage: 'url("./img/50gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" }, { float: "left", backgroundImage: 'url("./img/1zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" }, { float: "left", backgroundImage: 'url("./img/2zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" }, { float: "left", backgroundImage: 'url("./img/5zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" }, { float: "left", backgroundImage: 'url("./img/10zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" }, { float: "left", backgroundImage: 'url("./img/20zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" }, { float: "left", backgroundImage: 'url("./img/50zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" }, { float: "left", backgroundImage: 'url("./img/100zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" }, { float: "left", backgroundImage: 'url("./img/200zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" }, { float: "left", backgroundImage: 'url("./img/500.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" }];
+            var cellStyle = styles[this.state.level];
+            if (this.state.oldLevel) cellStyle = styles[this.state.oldLevel];
+
+            return _react2.default.createElement(
                 'div',
-                { className: this.props.class, key: this.props.number, style: { backgroundColor: "lightgrey", float: "left", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box", border: "5px solid black", borderRadius: "50px" } },
-                ' '
-            );
-            if (this.state.level === 1) return _react2.default.createElement(
-                'div',
-                { className: this.props.class, key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/1gr3.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" } },
-                ' '
-            );
-            if (this.state.level === 2) return _react2.default.createElement(
-                'div',
-                { className: this.props.class, key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/2gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" } },
-                ' '
-            );
-            if (this.state.level === 3) return _react2.default.createElement(
-                'div',
-                { className: this.props.class, key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/5gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", textAlign: "center", boxSizing: "border-box" } },
-                ' '
-            );
-            if (this.state.level === 4) return _react2.default.createElement(
-                'div',
-                { className: this.props.class, key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/10gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" } },
-                ' '
-            );
-            if (this.state.level === 5) return _react2.default.createElement(
-                'div',
-                { className: this.props.class, key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/20gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" } },
-                ' '
-            );
-            if (this.state.level === 6) return _react2.default.createElement(
-                'div',
-                { className: this.props.class, key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/50gr.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" } },
-                ' '
-            );
-            if (this.state.level === 7) return _react2.default.createElement(
-                'div',
-                { className: this.props.class, key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/1zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" } },
-                ' '
-            );
-            if (this.state.level === 8) return _react2.default.createElement(
-                'div',
-                { className: this.props.class, key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/2zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" } },
-                ' '
-            );
-            if (this.state.level === 9) return _react2.default.createElement(
-                'div',
-                { className: this.props.class, key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/5zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" } },
-                ' '
-            );
-            if (this.state.level === 10) return _react2.default.createElement(
-                'div',
-                { className: this.props.class, key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/10zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" } },
-                ' '
-            );
-            if (this.state.level === 11) return _react2.default.createElement(
-                'div',
-                { className: this.props.class, key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/20zl.jpeg")', backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" } },
-                ' '
-            );
-            if (this.state.level === 12) return _react2.default.createElement(
-                'div',
-                { className: this.props.class, key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/50zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" } },
-                ' '
-            );
-            if (this.state.level === 13) return _react2.default.createElement(
-                'div',
-                { className: this.props.class, key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/100zl.jpeg")', backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" } },
-                ' '
-            );
-            if (this.state.level === 14) return _react2.default.createElement(
-                'div',
-                { className: this.props.class, key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/200zl.jpeg")', backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" } },
-                ' '
-            );
-            if (this.state.level === 15) return _react2.default.createElement(
-                'div',
-                { className: this.props.class, key: this.props.number, style: { float: "left", backgroundImage: 'url("./img/500zl.png")', backgroundSize: "contain", backgroundRepeat: "no-repeat", backgroundPosition: "center", width: cellWidth + "px", height: cellHeight + "px", boxSizing: "border-box" } },
+                { className: this.props.class, key: this.props.number, style: cellStyle },
                 ' '
             );
         }
@@ -9911,7 +9841,11 @@ var Game = function (_React$Component3) {
 
                 for (var _i = 0; _i < 5; _i++) {
                     if (fullCellsOnly.length < 5) fullCellsOnly.push({ level: 0 });
-                }return fullCellsOnly;
+                }fullCellsOnly.forEach(function (e, i) {
+                    e.oldLevel = cells[i].level;
+                });
+
+                return fullCellsOnly;
             };
 
             var removeEmptyAndFixKeysRight = function removeEmptyAndFixKeysRight(cells) {
@@ -9933,12 +9867,16 @@ var Game = function (_React$Component3) {
                 var fullCellsOnly = [];
 
                 cells.forEach(function (cell) {
-                    if (cell) if (cell.level > 0) fullCellsOnly.push(cell);
+                    if (cell.level > 0) fullCellsOnly.push(cell);
                 });
 
                 for (var i = 0; i < 5; i++) {
                     if (!fullCellsOnly[i]) fullCellsOnly.push({ level: 0 });
-                }return fullCellsOnly;
+                } // fullCellsOnly.forEach((e,i) => {
+                //     e.oldLevel = cells[i].level;
+                // });
+
+                return fullCellsOnly;
             };
 
             var removeEmptyRight = function removeEmptyRight(cells) {
@@ -9954,8 +9892,15 @@ var Game = function (_React$Component3) {
             };
 
             var mergeLeft = function mergeLeft(cells) {
+                var oldLevels = [0, 0, 0, 0, 0];
+                cells.forEach(function (e, i) {
+                    if (e.oldLevel) oldLevels[i] = e.oldLevel;
+                });
+                console.log("oldLevcels;   :  ");
+                console.log(oldLevels);
                 for (var i = 0; i < 5; i++) {
                     if (cells[i].level > 0 && cells[i + 1]) if (cells[i].level === cells[i + 1].level) {
+                        // cells[i].oldLevel = cells[i].level;
                         cells[i].level++;
                         cells[i].key2 = cells[i + 1].key1;
                         cells[i + 1].level = 0;
@@ -9967,6 +9912,9 @@ var Game = function (_React$Component3) {
                 for (var _i3 = 0; _i3 < 5; _i3++) {
                     if (!cells[_i3]) cells.push({ level: 0 });
                 }
+                oldLevels.forEach(function (e, i) {
+                    if (e.oldLevel && e.oldLevel > 0) e.oldLevel = cells[i].level;
+                });
 
                 return cells;
             };
@@ -10113,38 +10061,42 @@ var Game = function (_React$Component3) {
                 if (count === 4) return "moveLeft4";
             };
 
-            var arr = ["static", "static", "static", "static", "static"];
+            var classes = ["static", "static", "static", "static", "static"];
 
             row.forEach(function (e, index) {
                 if (e.key1 && !e.key2) {
-                    arr[e.key1] = defineClass(e.key1 - index);
+                    classes[e.key1] = defineClass(e.key1 - index);
                     console.log(index, e.key1);
                 }
 
                 if (e.key2) {
-                    arr[e.key1] = defineClass(e.key1 - index);
-                    arr[e.key2] = defineClass(e.key2 - index);
+                    classes[e.key1] = defineClass(e.key1 - index);
+                    classes[e.key2] = defineClass(e.key2 - index);
                 }
             });
-            //
-            // for (let i = 0; i < 5; i++){
-            //     if (!arr[i])
-            //         arr[i] = "static"
-            // }
 
-            return arr;
+            return classes;
         };
 
         _this3.handleKeys = function (key) {
 
-            _this3.setState({ previousCells: _this3.state.cells });
+            _this3.setState({ previousCells: _this3.state.cells.slice(0) });
 
             var leftArrow = 37;
             if (key.which === leftArrow) {
 
-                var newCells = _this3.moveCells("left", _this3.state.cells);
+                var oldCells = [];
+                for (var i = 0; i < 25; i++) {
+                    oldCells[i] = Object.assign({}, _this3.state.cells[i]);
+                }
+
+                var newCells = _this3.moveCells("left", oldCells);
 
                 newCells = newCells[0].concat(newCells[1], newCells[2], newCells[3], newCells[4]);
+
+                newCells.forEach(function (e, i) {
+                    return e.key = i;
+                });
 
                 var row1 = newCells.slice(0, 5);
                 var row2 = newCells.slice(5, 10);
@@ -10172,19 +10124,23 @@ var Game = function (_React$Component3) {
                     e.class = _this3.calculateClass(row5)[i];
                 });
 
-                var newAllCells = [].concat(_toConsumableArray(row1), _toConsumableArray(row2), _toConsumableArray(row3), _toConsumableArray(row4), _toConsumableArray(row5));
+                var animatedCells = [].concat(_toConsumableArray(row1), _toConsumableArray(row2), _toConsumableArray(row3), _toConsumableArray(row4), _toConsumableArray(row5));
 
-                newAllCells.forEach(function (e, i) {
+                animatedCells.forEach(function (e, i) {
                     return e.key = i;
                 });
 
-                console.log(newAllCells);
+                console.log(animatedCells);
 
-                _this3.setState({ cells: newAllCells }, function () {
-                    for (var i = 0; i < newCells.length; i++) {
-                        newCells[i].key = i;
-                        newCells[i].class = "static";
+                _this3.setState({ cells: animatedCells }, function () {
+                    for (var _i5 = 0; _i5 < 25; _i5++) {
+                        animatedCells[_i5].key = _i5;
+                        animatedCells[_i5].class = "static";
+                        animatedCells[_i5].key1 = 0;
+                        animatedCells[_i5].key2 = 0;
+                        animatedCells[_i5].oldLevel = false;
                     }
+
                     var timer = setTimeout(function () {
                         _this3.setState({ cells: newCells });
 
@@ -10214,8 +10170,8 @@ var Game = function (_React$Component3) {
 
                 var _newCells = [];
 
-                for (var i = 0; i < allCells.length; i++) {
-                    _newCells.push({ level: allCells[i].level, key: i });
+                for (var _i6 = 0; _i6 < allCells.length; _i6++) {
+                    _newCells.push({ level: allCells[_i6].level, key: _i6 });
                 }_this3.setState({ cells: _newCells });
 
                 _this3.addNewCells();
@@ -10240,8 +10196,8 @@ var Game = function (_React$Component3) {
 
                 _allCells = _allCells[0].concat(_allCells[1], _allCells[2], _allCells[3], _allCells[4]);
 
-                for (var _i5 = 0; _i5 < _allCells.length; _i5++) {
-                    _allCells[_i5].key = _i5;
+                for (var _i7 = 0; _i7 < _allCells.length; _i7++) {
+                    _allCells[_i7].key = _i7;
                 }_this3.setState({ cells: _allCells });
 
                 _this3.addNewCells();
@@ -10266,8 +10222,8 @@ var Game = function (_React$Component3) {
 
                 _allCells2 = _allCells2[0].concat(_allCells2[1], _allCells2[2], _allCells2[3], _allCells2[4]);
 
-                for (var _i6 = 0; _i6 < _allCells2.length; _i6++) {
-                    _allCells2[_i6].key = _i6;
+                for (var _i8 = 0; _i8 < _allCells2.length; _i8++) {
+                    _allCells2[_i8].key = _i8;
                 }_this3.setState({ cells: _allCells2 });
 
                 _this3.addNewCells();
@@ -10282,7 +10238,7 @@ var Game = function (_React$Component3) {
             previousCells: []
         };
         return _this3;
-    } //nie działa dobrze
+    } //// nie zmienia punktow
 
     _createClass(Game, [{
         key: 'render',
@@ -10295,13 +10251,12 @@ var Game = function (_React$Component3) {
 
             if (this.state.cells.length === 0) return null;
             var cells = this.state.cells.map(function (element, index) {
-                return _react2.default.createElement(Cell, { key: _this4.state.cells[index].key, level: _this4.state.cells[index].level, 'class': _this4.state.cells[index].class });
+                return _react2.default.createElement(Cell, { key: _this4.state.cells[index].key, oldLevel: _this4.state.cells[index].oldLevel, level: _this4.state.cells[index].level, 'class': _this4.state.cells[index].class });
             });
 
             return _react2.default.createElement(
                 'div',
                 { style: { backgroundImage: 'url("./img/money.png")', backgroundSize: "cover", width: "100%", height: "900px" } },
-                _react2.default.createElement('div', { style: { height: "300px", width: "100px", float: "left", backgroundColor: "black", position: "relative", top: "38%", left: "20%" } }),
                 _react2.default.createElement(
                     'h1',
                     { style: { textAlign: "center", fontSize: "70px", background: "lightgrey", opacity: "0.8" } },
@@ -10340,6 +10295,30 @@ var Game = function (_React$Component3) {
                     _react2.default.createElement(
                         'div',
                         { style: { width: "500px", height: "500px", margin: "0 auto", position: "relative" } },
+                        _react2.default.createElement(
+                            'div',
+                            { style: { height: "400px", width: "100px", float: "left", position: "absolute", top: "50px", left: "-150px" } },
+                            _react2.default.createElement(
+                                'div',
+                                { style: { height: "100px", width: "100px", backgroundImage: 'url("./img/up.png")' } },
+                                ' '
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                { style: { height: "100px", width: "100px", backgroundImage: 'url("./img/down.png")' } },
+                                ' '
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                { style: { height: "100px", width: "100px", backgroundImage: 'url("./img/left.png")' } },
+                                ' '
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                { style: { height: "100px", width: "100px", backgroundImage: 'url("./img/right.png")' } },
+                                ' '
+                            )
+                        ),
                         cells
                     ),
                     _react2.default.createElement(

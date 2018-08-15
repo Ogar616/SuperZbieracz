@@ -91,7 +91,7 @@ class Game extends React.Component {
                 }, () => console.log("callback in wand")));
                 this.setState({points: this.countMoney()}, () => console.log("ddd")) /// nie zmienia punktow
             }
-    };
+    };  //// nie zmienia punktow
 
     createBoard = () => {
         let start =[];
@@ -128,7 +128,7 @@ class Game extends React.Component {
             }
 
         }
-    };  //nie działa dobrze
+    };
 
     addNewCells = () => {
         this.gameOverCheck();
@@ -252,9 +252,8 @@ class Game extends React.Component {
 
 
                 fullCellsOnly.forEach((e,i) => {
-                   e.oldLevel = cells[i].oldLevel;
+                   e.oldLevel = cells[i].level;
                });
-
 
             return fullCellsOnly;
         };
@@ -282,7 +281,6 @@ class Game extends React.Component {
             let fullCellsOnly = [];
 
             cells.forEach((cell) => {
-                if (cell)
                     if (cell.level > 0)
                         fullCellsOnly.push(cell);
             });
@@ -290,6 +288,10 @@ class Game extends React.Component {
             for (let i = 0; i < 5; i++)
                 if (!fullCellsOnly[i])
                     fullCellsOnly.push({level: 0});
+
+            // fullCellsOnly.forEach((e,i) => {
+            //     e.oldLevel = cells[i].level;
+            // });
 
             return fullCellsOnly;
         };
@@ -311,10 +313,17 @@ class Game extends React.Component {
         };
 
         let mergeLeft = (cells) => {
+            let oldLevels = [0, 0, 0, 0, 0];
+            cells.forEach((e, i) => {
+                if (e.oldLevel)
+                    oldLevels[i] = e.oldLevel;
+            });
+            console.log("oldLevcels;   :  ");
+            console.log(oldLevels);
             for (let i = 0; i < 5; i++){
                 if ((cells[i].level > 0) && (cells[i + 1]))
                     if (cells[i].level === cells[i + 1].level){
-                        cells[i].oldLevel = cells[i].level;
+                        // cells[i].oldLevel = cells[i].level;
                         cells[i].level++;
                         cells[i].key2 = cells[i + 1].key1;
                         cells[i + 1].level = 0;
@@ -327,6 +336,11 @@ class Game extends React.Component {
                 if (!cells[i])
                     cells.push({level: 0});
             }
+            oldLevels.forEach((e, i) => {
+                if (e.oldLevel && (e.oldLevel > 0))
+                    e.oldLevel = cells[i].level;
+            });
+
 
             return cells;
         };
@@ -517,6 +531,8 @@ class Game extends React.Component {
 
             newCells = newCells[0].concat(newCells[1], newCells[2], newCells[3], newCells[4]);
 
+            newCells.forEach((e, i) => e.key = i);
+
             let row1 = newCells.slice(0, 5);
             let row2 = newCells.slice(5, 10);
             let row3 = newCells.slice(10, 15);
@@ -551,7 +567,7 @@ class Game extends React.Component {
 
 
             this.setState({cells: animatedCells}, () => {
-                for (let i = 0; i < newCells.length; i++){
+                for (let i = 0; i < 25; i++){
                     animatedCells[i].key = i;
                     animatedCells[i].class = "static";
                     animatedCells[i].key1 = 0;
@@ -665,9 +681,7 @@ class Game extends React.Component {
         let cells = this.state.cells.map((element, index) => <Cell key={this.state.cells[index].key} oldLevel={this.state.cells[index].oldLevel} level={this.state.cells[index].level} class={this.state.cells[index].class}/>);
 
         return <div style={{backgroundImage: 'url("./img/money.png")', backgroundSize: "cover", width: "100%", height: "900px"}}>
-            <div style={{height: "300px", width: "100px", float: "left", backgroundColor: "black", position: "relative", top: "38%", left: "20%"}}>
 
-            </div>
                     <h1 style={{textAlign: "center", fontSize: "70px", background: "lightgrey", opacity: "0.8"}}>Super Zbieracz - THE GAME !!!</h1>
                     <div style={{height: "100%", width: "100%", margin: "0 auto", backgroundColor: "transparent"}}>
                         <div style={{margin: "5px auto", width: "300px", height: "100px", boxSizing: "borderBox", padding: "10px"}}>
@@ -675,9 +689,13 @@ class Game extends React.Component {
                             <div style={{width: "100px", height: "100px", float: "left", border: "1px solid black", borderRadius:"50px", boxSizing: "border-box", background: "mediumseagreen", backgroundImage: 'url("./img/back.svg")', backgroundSize: "contain"}} onClick={this.moveBack}><span style={{fontSize: "20px", fontWeight: "bold", position: "relative", top: "25px", left: "20px"}}>{this.state.movesBack}</span></div>
                             <div style={{width: "100px", height: "100px", float: "left", border: "1px solid black", borderRadius:"50px", boxSizing: "border-box", background: "mediumseagreen", backgroundImage: 'url("./img/wand.svg")', backgroundSize: "contain"}} onClick={this.magicWand}><span style={{fontSize: "20px", fontWeight: "bold", position: "relative", top: "25px", left: "20px"}}>{this.state.wands}</span></div>
                         </div>
-
-                    <div style={{width: "500px", height: "500px", margin: "0 auto", position: "relative"}}>{cells}</div>
-
+                    <div style={{width: "500px", height: "500px", margin: "0 auto", position: "relative"}}>
+                        <div style={{height: "400px", width: "100px", float: "left", position: "absolute", top: "50px", left: "-150px"}}>
+                            <div style={{height: "100px", width: "100px", backgroundImage: 'url("./img/up.png")'}}> </div>
+                            <div style={{height: "100px", width: "100px", backgroundImage: 'url("./img/down.png")'}}> </div>
+                            <div style={{height: "100px", width: "100px", backgroundImage: 'url("./img/left.png")'}}> </div>
+                            <div style={{height: "100px", width: "100px", backgroundImage: 'url("./img/right.png")'}}> </div>
+                        </div>{cells}</div>
                     <h2 style={{textAlign: "center", fontSize: "70px", background: "lightgrey", opacity: "0.8"}}>Uzbierałeś: {countZl} zł i {countGr} gr! </h2>
                     </div>
                 </div>
