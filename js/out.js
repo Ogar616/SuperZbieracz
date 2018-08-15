@@ -10297,26 +10297,30 @@ var Game = function (_React$Component3) {
                         { style: { width: "500px", height: "500px", margin: "0 auto", position: "relative" } },
                         _react2.default.createElement(
                             'div',
-                            { style: { height: "400px", width: "100px", float: "left", position: "absolute", top: "50px", left: "-150px" } },
+                            { className: "container", style: { height: "400px", width: "100px", float: "left", position: "absolute", top: "50px", left: "-150px", padding: "3px", overflow: "hidden" } },
                             _react2.default.createElement(
                                 'div',
-                                { style: { height: "100px", width: "100px", backgroundImage: 'url("./img/up.png")' } },
-                                ' '
-                            ),
-                            _react2.default.createElement(
-                                'div',
-                                { style: { height: "100px", width: "100px", backgroundImage: 'url("./img/down.png")' } },
-                                ' '
-                            ),
-                            _react2.default.createElement(
-                                'div',
-                                { style: { height: "100px", width: "100px", backgroundImage: 'url("./img/left.png")' } },
-                                ' '
-                            ),
-                            _react2.default.createElement(
-                                'div',
-                                { style: { height: "100px", width: "100px", backgroundImage: 'url("./img/right.png")' } },
-                                ' '
+                                { className: "marquee" },
+                                _react2.default.createElement(
+                                    'div',
+                                    { style: { height: "100px", width: "100px", backgroundImage: 'url("./img/up.png")' } },
+                                    ' '
+                                ),
+                                _react2.default.createElement(
+                                    'div',
+                                    { style: { height: "100px", width: "100px", backgroundImage: 'url("./img/down.png")' } },
+                                    ' '
+                                ),
+                                _react2.default.createElement(
+                                    'div',
+                                    { style: { height: "100px", width: "100px", backgroundImage: 'url("./img/left.png")' } },
+                                    ' '
+                                ),
+                                _react2.default.createElement(
+                                    'div',
+                                    { style: { height: "100px", width: "100px", backgroundImage: 'url("./img/right.png")' } },
+                                    ' '
+                                )
                             )
                         ),
                         cells
