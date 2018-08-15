@@ -209,68 +209,83 @@
 
 .moveRight1 {
     position: relative;
-    animation: moveRight1 0.5s infinite;
+    animation: moveRight1 0.5s;
 }
 
 .moveRight2 {
     position: relative;
-    animation: moveRight2 0.5s infinite;
+    animation: moveRight2 0.5s;
 }
 
 .moveRight3 {
     position: relative;
-    animation: moveRight3 0.5s infinite;
+    animation: moveRight3 0.5s;
 }
 
 .moveRight4 {
     position: relative;
-    animation: moveRight4 0.5s infinite;
+    animation: moveRight4 0.5s;
 }
 
 .moveUp1 {
     position: relative;
-    animation: moveUp1 0.5s infinite;
+    animation: moveUp1 0.5s;
 }
 
 .moveUp2 {
     position: relative;
-    animation: moveUp2 0.5s infinite;
+    animation: moveUp2 0.5s;
 }
 
 .moveUp3 {
     position: relative;
-    animation: moveUp3 0.5s infinite;
+    animation: moveUp3 0.5s;
 }
 
 .moveUp4 {
     position: relative;
-    animation: moveUp4 0.5s infinite;
+    animation: moveUp4 0.5s;
 }
 
 .moveDown1 {
     position: relative;
-    animation: moveDown1 0.5s infinite;
+    animation: moveDown1 0.5s;
 }
 
 .moveDown2 {
     position: relative;
-    animation: moveDown2 0.5s infinite;
+    animation: moveDown2 0.5s;
 }
 
 .moveDown3 {
     position: relative;
-    animation: moveDown3 0.5s infinite;
+    animation: moveDown3 0.5s;
 }
 
 .moveDown4 {
     position: relative;
-    animation: moveDown4 0.5s infinite;
+    animation: moveDown4 0.5s;
 }
 
 .static {
     background-color: black;
 }
 
+.arrowUp {
+    background-image: url("/img/up.png");
+}
+
+.arrowDown {
+    background-image: url("/img/down.png");
+}
+
+.arrowLeft {
+    background-image: url("/img/left.png");
+}
+
+.arrowRight {
+    background-image: url("/img/right.png");
+}
 
 
 
