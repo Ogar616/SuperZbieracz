@@ -690,11 +690,13 @@ class Game extends React.Component {
                             <div style={{width: "100px", height: "100px", float: "left", border: "1px solid black", borderRadius:"50px", boxSizing: "border-box", background: "mediumseagreen", backgroundImage: 'url("./img/wand.svg")', backgroundSize: "contain"}} onClick={this.magicWand}><span style={{fontSize: "20px", fontWeight: "bold", position: "relative", top: "25px", left: "20px"}}>{this.state.wands}</span></div>
                         </div>
                     <div style={{width: "500px", height: "500px", margin: "0 auto", position: "relative"}}>
-                        <div style={{height: "400px", width: "100px", float: "left", position: "absolute", top: "50px", left: "-150px"}}>
-                            <div style={{height: "100px", width: "100px", backgroundImage: 'url("./img/up.png")'}}> </div>
-                            <div style={{height: "100px", width: "100px", backgroundImage: 'url("./img/down.png")'}}> </div>
-                            <div style={{height: "100px", width: "100px", backgroundImage: 'url("./img/left.png")'}}> </div>
-                            <div style={{height: "100px", width: "100px", backgroundImage: 'url("./img/right.png")'}}> </div>
+                        <div className={"container"} style={{height: "400px", width: "100px", float: "left", position: "absolute", top: "50px", left: "-150px", padding: "3px", overflow: "hidden"}}>
+                            <div className={"marquee"}>
+                                <div style={{height: "100px", width: "100px", backgroundImage: 'url("./img/up.png")'}}> </div>
+                                <div style={{height: "100px", width: "100px", backgroundImage: 'url("./img/down.png")'}}> </div>
+                                <div style={{height: "100px", width: "100px", backgroundImage: 'url("./img/left.png")'}}> </div>
+                                <div style={{height: "100px", width: "100px", backgroundImage: 'url("./img/right.png")'}}> </div>
+                            </div>
                         </div>{cells}</div>
                     <h2 style={{textAlign: "center", fontSize: "70px", background: "lightgrey", opacity: "0.8"}}>Uzbierałeś: {countZl} zł i {countGr} gr! </h2>
                     </div>

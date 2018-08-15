@@ -271,20 +271,26 @@
     background-color: black;
 }
 
-.arrowUp {
-    background-image: url("/img/up.png");
+.marquee{
+    display:block;
+    position:relative;
+    animation:scroll 8s;
+    padding:3px;
 }
 
-.arrowDown {
-    background-image: url("/img/down.png");
-}
-
-.arrowLeft {
-    background-image: url("/img/left.png");
-}
-
-.arrowRight {
-    background-image: url("/img/right.png");
+/* Make it move */
+@keyframes scroll{
+    0% {top: 0;}
+    10% {top: 350px;}
+    20% {top: -350px;}
+    30% {top: 250px;}
+    40% {top: -250px;}
+    50% {top: 150px;}
+    60% {top: -150px;}
+    70% {top: 100px;}
+    80% {top: -100px;}
+    90% {top: 50px;}
+    100% {top: 0;}
 }
 
 
