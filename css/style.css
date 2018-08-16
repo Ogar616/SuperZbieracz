@@ -1,3 +1,46 @@
+@keyframes zoomIn {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3);
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes shake {
+    10%, 90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+
+    20%, 80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%, 50%, 70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%, 60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
+@keyframes scroll{
+    0% {top: 0;}
+    10% {top: 350px;}
+    20% {top: -350px;}
+    30% {top: 250px;}
+    40% {top: -250px;}
+    50% {top: 150px;}
+    60% {top: -150px;}
+    70% {top: 100px;}
+    80% {top: -100px;}
+    90% {top: 50px;}
+    100% {top: 0;}
+}
+
 @keyframes moveLeft1 {
     0% {
         left: 0;
@@ -185,8 +228,6 @@
     }
 }
 
-
-
 .moveLeft1 {
     position: relative;
     animation: moveLeft1 0.5s;
@@ -267,31 +308,29 @@
     animation: moveDown4 0.5s;
 }
 
-.static {
-    background-color: black;
-}
-
 .marquee{
-    display:block;
-    position:relative;
-    animation:scroll 8s;
-    padding:3px;
+    display: block;
+    position: relative;
+    animation: scroll 0.4s;
+    padding: 3px;
 }
 
-/* Make it move */
-@keyframes scroll{
-    0% {top: 0;}
-    10% {top: 350px;}
-    20% {top: -350px;}
-    30% {top: 250px;}
-    40% {top: -250px;}
-    50% {top: 150px;}
-    60% {top: -150px;}
-    70% {top: 100px;}
-    80% {top: -100px;}
-    90% {top: 50px;}
-    100% {top: 0;}
+.newCell {
+    animation: shake 0.15s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
 }
+
+.lvlUp {
+    -webkit-animation-name: zoomIn;
+    animation-name: zoomIn;
+    -webkit-animation-duration: 0.3s;
+    animation-duration: 0.3s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    animation-delay: 0.5s;
+}
+
 
 
 
