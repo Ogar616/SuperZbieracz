@@ -52,7 +52,10 @@ class Game extends React.Component {
             wands: 3,
             movesBack: 3,
             points: 0,
-            previousCells: []
+            previousCells: [],
+            hideGameOver: true,
+            topPlayers: []
+
         }
     };
 
@@ -81,6 +84,7 @@ class Game extends React.Component {
     };
 
     createBoard = () => {
+
         let start =[];
         for (let i = 0; i < 25; i++){
             start[i] = {level: 0, key: i, class: "static"}
@@ -90,23 +94,28 @@ class Game extends React.Component {
     };
 
     gameOverCheck = () => {
+
         let emptyCells = [];
         this.state.cells.forEach(e => {
             if (e.level < 1)
                 emptyCells.push(e);
         });
-        if (emptyCells.length < 2) {
-            if (this.handleKeys){
-                console.log("GAME OVER  !!! ");
-
-            }
-
-
-
+        if (emptyCells.length < 2){
+            let newName = prompt("Podaj swoje imię");
+            let list = this.state.topPlayers;
+            console.log(list);
+            list.push([newName, this.state.points]);
+            console.log(list);
+            list.sort((a, b) => a[1] - b[1]);
+            console.log(list);
+            this.setState({hideGameOver: false, topPlayers: list}, console.log("Game over"))
         }
+
+
     };
 
     moveBack = () => {
+
         if (this.state.points > 2) {
             if ((this.state.movesBack > 0) && (this.state.previousCells !== this.state.cells)){
                 let previousCells = this.state.previousCells;
@@ -118,7 +127,10 @@ class Game extends React.Component {
     };
 
     addNewCells = () => {
+
         this.gameOverCheck();
+
+        if (this.state.hideGameOver === false) return;
 
         let newCell1 = -1;
         let newCell2 = -1;
@@ -603,7 +615,7 @@ class Game extends React.Component {
 
             newCells = newCells[0].concat(newCells[1], newCells[2], newCells[3], newCells[4]);
 
-            //
+
             newCells.forEach((e, i) => e.key = i);
 
             let row1 = newCells.slice(0, 5);
@@ -674,6 +686,8 @@ class Game extends React.Component {
 
             newCells = [...newCells[0], ...newCells[1], ...newCells[2], ...newCells[3], ...newCells[4]];
 
+            newCells.forEach((e, i) => e.key = i);
+
             let row1 = newCells.slice(0, 5);
             let row2 = newCells.slice(5, 10);
             let row3 = newCells.slice(10, 15);
@@ -700,18 +714,9 @@ class Game extends React.Component {
                 e.class = this.calculateClass(row5, "up")[i];
             });
 
-
-
-
-
             let animatedCells = [...row1, ...row2, ...row3, ...row4, ...row5];
 
-
-
             animatedCells = this.changePlane(animatedCells);
-
-
-
 
             animatedCells = animatedCells[0].concat(animatedCells[1], animatedCells[2], animatedCells[3], animatedCells[4]);
 
@@ -745,8 +750,6 @@ class Game extends React.Component {
                     this.addNewCells();
                 }, 500);
             });
-
-
         }
 
         let downArrow = 40;
@@ -772,8 +775,11 @@ class Game extends React.Component {
             countZl = Math.floor(this.state.points / 100);
         let countGr = this.state.points % 100;
 
+
+
         if (this.state.cells.length === 0) return null;
         let cells = this.state.cells.map(element => <Cell key={element.key} oldLevel={element.oldLevel} level={element.level} class={element.class}/>);
+        let list = this.state.topPlayers.map((e, i) => <li key={i}>{e[0]} - {e[1]}</li>);
 
         return <div style={{backgroundImage: 'url("./img/money.png")', backgroundSize: "cover", width: "100%", height: "900px"}}>
 
@@ -785,14 +791,11 @@ class Game extends React.Component {
                     <div style={{width: "100px", height: "100px", float: "left", border: "1px solid black", borderRadius:"50px", boxSizing: "border-box", background: "mediumseagreen", backgroundImage: 'url("./img/wand.svg")', backgroundSize: "contain"}} onClick={this.magicWand}><span style={{fontSize: "20px", fontWeight: "bold", position: "relative", top: "25px", left: "20px"}}>{this.state.wands}</span></div>
                 </div>
                 <div style={{width: "500px", height: "500px", margin: "0 auto", position: "relative"}}>
-                    <div className={"container"} style={{height: "400px", width: "80px", float: "left", position: "absolute", top: "50px", left: "-150px", padding: "3px", overflow: "hidden", backgroundColor: "mediumseagreen", borderRadius: "50px", border: "7px solid black"}}>
-                        <div className={"marquee"}>
-                            <div style={{height: "100px", width: "100px", backgroundImage: 'url("./img/up.png")', backgroundSize: "contain", position: "relative", right: "14px"}}> </div>
-                            <div style={{height: "100px", width: "100px", backgroundImage: 'url("./img/down.png")', backgroundSize: "contain", position: "relative", right: "14px"}}> </div>
-                            <div style={{height: "100px", width: "100px", backgroundImage: 'url("./img/left.png")', backgroundSize: "contain", position: "relative", right: "14px"}}> </div>
-                            <div style={{height: "100px", width: "100px", backgroundImage: 'url("./img/right.png")', backgroundSize: "contain",position: "relative", right: "14px"}}> </div>
-                        </div>
-                    </div>{cells}</div>
+                    <div className={"fadeIn"} style={{boxSizing: "border-box", height: "100px", width: "100px", float: "left", position: "absolute", top: "200px", left: "-180px", padding: "3px", overflow: "hidden", backgroundColor: "mediumseagreen", borderRadius: "75px", border: "10px solid black", backgroundImage: 'url("./img/4arrows.png")', backgroundSize: "contain"}}>
+
+                    </div>{cells}<div style={{display: "inline-lock", height: "400px", width: "200px", backgroundColor: "mediumseagreen", position: "absolute", left: "550px", top: "50px", borderRadius: "50px", border: "10px solid black", textAlign: "center", fontSize: "20px", paddingTop: "20px"}}>Najlepsze wyniki: <ol>{list}</ol></div></div>
+
+                <div hidden={this.state.hideGameOver} style={{textAlign: "center", color: "red", backgroundColor: "mediumseagreen", fontSize: "60px", fontWeight: "bold", marginBottom: "-50px"}}>Koniec Gry!</div>
                 <h2 style={{textAlign: "center", fontSize: "70px", background: "lightgrey", opacity: "0.8"}}>Uzbierałeś: {countZl} zł i {countGr} gr! </h2>
             </div>
         </div>

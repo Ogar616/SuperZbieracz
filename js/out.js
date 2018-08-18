@@ -9703,6 +9703,7 @@ var Game = function (_React$Component3) {
         };
 
         _this3.createBoard = function () {
+
             var start = [];
             for (var i = 0; i < 25; i++) {
                 start[i] = { level: 0, key: i, class: "static" };
@@ -9712,18 +9713,27 @@ var Game = function (_React$Component3) {
         };
 
         _this3.gameOverCheck = function () {
+
             var emptyCells = [];
             _this3.state.cells.forEach(function (e) {
                 if (e.level < 1) emptyCells.push(e);
             });
             if (emptyCells.length < 2) {
-                if (_this3.handleKeys) {
-                    console.log("GAME OVER  !!! ");
-                }
+                var newName = prompt("Podaj swoje imię");
+                var list = _this3.state.topPlayers;
+                console.log(list);
+                list.push([newName, _this3.state.points]);
+                console.log(list);
+                list.sort(function (a, b) {
+                    return a[1] - b[1];
+                });
+                console.log(list);
+                _this3.setState({ hideGameOver: false, topPlayers: list }, console.log("Game over"));
             }
         };
 
         _this3.moveBack = function () {
+
             if (_this3.state.points > 2) {
                 if (_this3.state.movesBack > 0 && _this3.state.previousCells !== _this3.state.cells) {
                     var previousCells = _this3.state.previousCells;
@@ -9736,7 +9746,10 @@ var Game = function (_React$Component3) {
         };
 
         _this3.addNewCells = function () {
+
             _this3.gameOverCheck();
+
+            if (_this3.state.hideGameOver === false) return;
 
             var newCell1 = -1;
             var newCell2 = -1;
@@ -10192,7 +10205,6 @@ var Game = function (_React$Component3) {
 
                 _newCells = _newCells[0].concat(_newCells[1], _newCells[2], _newCells[3], _newCells[4]);
 
-                //
                 _newCells.forEach(function (e, i) {
                     return e.key = i;
                 });
@@ -10263,6 +10275,10 @@ var Game = function (_React$Component3) {
                 _newCells2 = _this3.changePlane(_oldCells2);
 
                 _newCells2 = [].concat(_toConsumableArray(_newCells2[0]), _toConsumableArray(_newCells2[1]), _toConsumableArray(_newCells2[2]), _toConsumableArray(_newCells2[3]), _toConsumableArray(_newCells2[4]));
+
+                _newCells2.forEach(function (e, i) {
+                    return e.key = i;
+                });
 
                 var _row6 = _newCells2.slice(0, 5);
                 var _row7 = _newCells2.slice(5, 10);
@@ -10349,7 +10365,10 @@ var Game = function (_React$Component3) {
             wands: 3,
             movesBack: 3,
             points: 0,
-            previousCells: []
+            previousCells: [],
+            hideGameOver: true,
+            topPlayers: []
+
         };
         return _this3;
     }
@@ -10364,6 +10383,15 @@ var Game = function (_React$Component3) {
             if (this.state.cells.length === 0) return null;
             var cells = this.state.cells.map(function (element) {
                 return _react2.default.createElement(Cell, { key: element.key, oldLevel: element.oldLevel, level: element.level, 'class': element.class });
+            });
+            var list = this.state.topPlayers.map(function (e, i) {
+                return _react2.default.createElement(
+                    'li',
+                    { key: i },
+                    e[0],
+                    ' - ',
+                    e[1]
+                );
             });
 
             return _react2.default.createElement(
@@ -10407,35 +10435,23 @@ var Game = function (_React$Component3) {
                     _react2.default.createElement(
                         'div',
                         { style: { width: "500px", height: "500px", margin: "0 auto", position: "relative" } },
+                        _react2.default.createElement('div', { className: "fadeIn", style: { boxSizing: "border-box", height: "100px", width: "100px", float: "left", position: "absolute", top: "200px", left: "-180px", padding: "3px", overflow: "hidden", backgroundColor: "mediumseagreen", borderRadius: "75px", border: "10px solid black", backgroundImage: 'url("./img/4arrows.png")', backgroundSize: "contain" } }),
+                        cells,
                         _react2.default.createElement(
                             'div',
-                            { className: "container", style: { height: "400px", width: "80px", float: "left", position: "absolute", top: "50px", left: "-150px", padding: "3px", overflow: "hidden", backgroundColor: "mediumseagreen", borderRadius: "50px", border: "7px solid black" } },
+                            { style: { display: "inline-lock", height: "400px", width: "200px", backgroundColor: "mediumseagreen", position: "absolute", left: "550px", top: "50px", borderRadius: "50px", border: "10px solid black", textAlign: "center", fontSize: "20px", paddingTop: "20px" } },
+                            'Najlepsze wyniki: ',
                             _react2.default.createElement(
-                                'div',
-                                { className: "marquee" },
-                                _react2.default.createElement(
-                                    'div',
-                                    { style: { height: "100px", width: "100px", backgroundImage: 'url("./img/up.png")', backgroundSize: "contain", position: "relative", right: "14px" } },
-                                    ' '
-                                ),
-                                _react2.default.createElement(
-                                    'div',
-                                    { style: { height: "100px", width: "100px", backgroundImage: 'url("./img/down.png")', backgroundSize: "contain", position: "relative", right: "14px" } },
-                                    ' '
-                                ),
-                                _react2.default.createElement(
-                                    'div',
-                                    { style: { height: "100px", width: "100px", backgroundImage: 'url("./img/left.png")', backgroundSize: "contain", position: "relative", right: "14px" } },
-                                    ' '
-                                ),
-                                _react2.default.createElement(
-                                    'div',
-                                    { style: { height: "100px", width: "100px", backgroundImage: 'url("./img/right.png")', backgroundSize: "contain", position: "relative", right: "14px" } },
-                                    ' '
-                                )
+                                'ol',
+                                null,
+                                list
                             )
-                        ),
-                        cells
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { hidden: this.state.hideGameOver, style: { textAlign: "center", color: "red", backgroundColor: "mediumseagreen", fontSize: "60px", fontWeight: "bold", marginBottom: "-50px" } },
+                        'Koniec Gry!'
                     ),
                     _react2.default.createElement(
                         'h2',
