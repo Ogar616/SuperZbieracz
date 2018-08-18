@@ -9880,7 +9880,11 @@ var Game = function (_React$Component3) {
 
                 for (var i = 0; i < 5; i++) {
                     if (!fullCellsOnly[i]) fullCellsOnly.push({ level: 0, oldLevel: oldLevels[i] });
-                }return fullCellsOnly;
+                }for (var _i3 = 0; _i3 < 5; _i3++) {
+                    fullCellsOnly[_i3].oldLevel = oldLevels[_i3] || 0;
+                }
+
+                return fullCellsOnly;
             };
 
             var removeEmptyRight = function removeEmptyRight(cells, oldLevels) {
@@ -9893,8 +9897,8 @@ var Game = function (_React$Component3) {
 
                 for (var i = 0; i < 5; i++) {
                     if (!fullCellsOnly[i]) fullCellsOnly.unshift({ level: 0 });
-                }for (var _i3 = 0; _i3 < 5; _i3++) {
-                    fullCellsOnly[_i3].oldLevel = oldLevels[_i3];
+                }for (var _i4 = 0; _i4 < 5; _i4++) {
+                    fullCellsOnly[_i4].oldLevel = oldLevels[_i4] || 0;
                 }
 
                 return fullCellsOnly;
@@ -9991,6 +9995,7 @@ var Game = function (_React$Component3) {
                 col4 = removeEmptyAndFixKeysLeft(col4);
                 col5 = removeEmptyAndFixKeysLeft(col5);
 
+                console.log("rotated board after remove and fix");
                 console.log([].concat(_toConsumableArray(col1), _toConsumableArray(col2), _toConsumableArray(col3), _toConsumableArray(col4), _toConsumableArray(col5)));
 
                 col1 = mergeLeft(col1);
@@ -9999,6 +10004,7 @@ var Game = function (_React$Component3) {
                 col4 = mergeLeft(col4);
                 col5 = mergeLeft(col5);
 
+                console.log("rotated board after merge");
                 console.log([].concat(_toConsumableArray(col1), _toConsumableArray(col2), _toConsumableArray(col3), _toConsumableArray(col4), _toConsumableArray(col5)));
 
                 cells = [].concat(_toConsumableArray(col1), _toConsumableArray(col2), _toConsumableArray(col3), _toConsumableArray(col4), _toConsumableArray(col5));
@@ -10176,16 +10182,16 @@ var Game = function (_React$Component3) {
 
                 animatedCells.forEach(function (e, i) {
                     e.key = i;
-                    if (e.class === "lvl+") newCells[i].class = "lvlUp"; ////////////////////////////////////////////
+                    if (e.class === "lvl+") newCells[i].class = "lvlUp";
                 });
 
                 _this3.setState({ cells: animatedCells }, function () {
-                    for (var _i4 = 0; _i4 < 25; _i4++) {
-                        animatedCells[_i4].key = _i4;
-                        // animatedCells[i].class = "static"; //////////////////////////
-                        animatedCells[_i4].key1 = 0;
-                        animatedCells[_i4].key2 = 0;
-                        animatedCells[_i4].oldLevel = false;
+                    for (var _i5 = 0; _i5 < 25; _i5++) {
+                        animatedCells[_i5].key = _i5;
+                        animatedCells[_i5].class = "static"; //////////////////////////
+                        animatedCells[_i5].key1 = 0;
+                        animatedCells[_i5].key2 = 0;
+                        animatedCells[_i5].oldLevel = false;
                     }
 
                     var timer = setTimeout(function () {
@@ -10199,8 +10205,8 @@ var Game = function (_React$Component3) {
             if (key.which === rightArrow) {
 
                 var _oldCells = [];
-                for (var _i5 = 0; _i5 < 25; _i5++) {
-                    _oldCells[_i5] = Object.assign({}, _this3.state.cells[_i5]);
+                for (var _i6 = 0; _i6 < 25; _i6++) {
+                    _oldCells[_i6] = Object.assign({}, _this3.state.cells[_i6]);
                 }
 
                 var _newCells = _this3.moveCells("right", _oldCells);
@@ -10241,16 +10247,16 @@ var Game = function (_React$Component3) {
 
                 _animatedCells.forEach(function (e, i) {
                     e.key = i;
-                    if (e.class === "lvl+") _newCells[i].class = "lvlUp"; ////////////////////////////////////////////
+                    if (e.class === "lvl+") _newCells[i].class = "lvlUp";
                 });
 
                 _this3.setState({ cells: _animatedCells }, function () {
-                    for (var _i6 = 0; _i6 < 25; _i6++) {
-                        _animatedCells[_i6].key = _i6;
-                        // animatedCells[i].class = "static";
-                        _animatedCells[_i6].key1 = 0;
-                        _animatedCells[_i6].key2 = 0;
-                        _animatedCells[_i6].oldLevel = false;
+                    for (var _i7 = 0; _i7 < 25; _i7++) {
+                        _animatedCells[_i7].key = _i7;
+                        _animatedCells[_i7].class = "static";
+                        _animatedCells[_i7].key1 = 0;
+                        _animatedCells[_i7].key2 = 0;
+                        _animatedCells[_i7].oldLevel = false;
                     }
 
                     var timer = setTimeout(function () {
@@ -10264,30 +10270,31 @@ var Game = function (_React$Component3) {
             if (key.which === upArrow) {
 
                 var _oldCells2 = [];
-                for (var _i7 = 0; _i7 < 25; _i7++) {
-                    _oldCells2[_i7] = Object.assign({}, _this3.state.cells[_i7]);
+                for (var _i8 = 0; _i8 < 25; _i8++) {
+                    _oldCells2[_i8] = Object.assign({}, _this3.state.cells[_i8]);
                 }
 
                 var _newCells2 = _this3.moveCells("up", _oldCells2);
 
                 _newCells2 = _newCells2[0].concat(_newCells2[1], _newCells2[2], _newCells2[3], _newCells2[4]);
 
-                console.log("row1]s befor");
-                console.log(_oldCells2);
-
-                _newCells2 = _this3.changePlane(_oldCells2);
-
-                _newCells2 = [].concat(_toConsumableArray(_newCells2[0]), _toConsumableArray(_newCells2[1]), _toConsumableArray(_newCells2[2]), _toConsumableArray(_newCells2[3]), _toConsumableArray(_newCells2[4]));
-
                 _newCells2.forEach(function (e, i) {
                     return e.key = i;
                 });
 
-                var _row6 = _newCells2.slice(0, 5);
-                var _row7 = _newCells2.slice(5, 10);
-                var _row8 = _newCells2.slice(10, 15);
-                var _row9 = _newCells2.slice(15, 20);
-                var _row10 = _newCells2.slice(20, 25);
+                _newCells2 = _this3.changePlane(_newCells2);
+
+                var _row6 = _newCells2[0];
+                var _row7 = _newCells2[1];
+                var _row8 = _newCells2[2];
+                var _row9 = _newCells2[3];
+                var _row10 = _newCells2[4];
+
+                // let row1 = newCells.slice(0, 5);
+                // let row2 = newCells.slice(5, 10);
+                // let row3 = newCells.slice(10, 15);
+                // let row4 = newCells.slice(15, 20);
+                // let row5 = newCells.slice(20, 25);
 
                 _row6.forEach(function (e, i) {
                     e.class = _this3.calculateClass(_row6, "up")[i];
@@ -10316,20 +10323,20 @@ var Game = function (_React$Component3) {
                 _animatedCells2 = _animatedCells2[0].concat(_animatedCells2[1], _animatedCells2[2], _animatedCells2[3], _animatedCells2[4]);
 
                 _animatedCells2.forEach(function (e, i) {
-                    return e.key = i;
+                    e.key = i;
+                    if (e.class === "lvl+") _newCells2[i].class = "lvlUp";
                 });
 
-                console.log("animated:");
-                console.log(_animatedCells2);
+                _newCells2 = _newCells2[0].concat(_newCells2[1], _newCells2[2], _newCells2[3], _newCells2[4]);
+                _newCells2 = _this3.changePlane(_newCells2);
+
+                _newCells2 = _newCells2[0].concat(_newCells2[1], _newCells2[2], _newCells2[3], _newCells2[4]);
 
                 _newCells2.forEach(function (e, i) {
                     return e.key = i;
                 });
-                for (var _i8 = 0; _i8 < 25; _i8++) {
-                    _newCells2[_i8].key = _i8;
-                }
 
-                console.log("newcells");
+                console.log("new cells");
                 console.log(_newCells2);
 
                 _this3.setState({ cells: _animatedCells2 }, function () {
@@ -10351,15 +10358,90 @@ var Game = function (_React$Component3) {
             var downArrow = 40;
             if (key.which === downArrow) {
 
-                var allCells = _this3.moveCells("down", _this3.state.cells);
+                var _oldCells3 = [];
+                for (var _i10 = 0; _i10 < 25; _i10++) {
+                    _oldCells3[_i10] = Object.assign({}, _this3.state.cells[_i10]);
+                }
 
-                allCells = allCells[0].concat(allCells[1], allCells[2], allCells[3], allCells[4]);
+                var _newCells3 = _this3.moveCells("down", _oldCells3);
 
-                for (var _i10 = 0; _i10 < allCells.length; _i10++) {
-                    allCells[_i10].key = _i10;
-                }_this3.setState({ cells: allCells });
+                _newCells3 = _newCells3[0].concat(_newCells3[1], _newCells3[2], _newCells3[3], _newCells3[4]);
 
-                _this3.addNewCells();
+                _newCells3.forEach(function (e, i) {
+                    return e.key = i;
+                });
+
+                _newCells3 = _this3.changePlane(_newCells3);
+
+                var _row11 = _newCells3[0];
+                var _row12 = _newCells3[1];
+                var _row13 = _newCells3[2];
+                var _row14 = _newCells3[3];
+                var _row15 = _newCells3[4];
+
+                // let row1 = newCells.slice(0, 5);
+                // let row2 = newCells.slice(5, 10);
+                // let row3 = newCells.slice(10, 15);
+                // let row4 = newCells.slice(15, 20);
+                // let row5 = newCells.slice(20, 25);
+
+                _row11.forEach(function (e, i) {
+                    e.class = _this3.calculateClass(_row11, "down")[i];
+                });
+
+                _row12.forEach(function (e, i) {
+                    e.class = _this3.calculateClass(_row12, "down")[i];
+                });
+
+                _row13.forEach(function (e, i) {
+                    e.class = _this3.calculateClass(_row13, "down")[i];
+                });
+
+                _row14.forEach(function (e, i) {
+                    e.class = _this3.calculateClass(_row14, "down")[i];
+                });
+
+                _row15.forEach(function (e, i) {
+                    e.class = _this3.calculateClass(_row15, "down")[i];
+                });
+
+                var _animatedCells3 = [].concat(_toConsumableArray(_row11), _toConsumableArray(_row12), _toConsumableArray(_row13), _toConsumableArray(_row14), _toConsumableArray(_row15));
+
+                _animatedCells3 = _this3.changePlane(_animatedCells3);
+
+                _animatedCells3 = _animatedCells3[0].concat(_animatedCells3[1], _animatedCells3[2], _animatedCells3[3], _animatedCells3[4]);
+
+                _animatedCells3.forEach(function (e, i) {
+                    e.key = i;
+                    if (e.class === "lvl+") _newCells3[i].class = "lvlUp";
+                });
+
+                _newCells3 = _newCells3[0].concat(_newCells3[1], _newCells3[2], _newCells3[3], _newCells3[4]);
+                _newCells3 = _this3.changePlane(_newCells3);
+
+                _newCells3 = _newCells3[0].concat(_newCells3[1], _newCells3[2], _newCells3[3], _newCells3[4]);
+
+                _newCells3.forEach(function (e, i) {
+                    return e.key = i;
+                });
+
+                console.log("new cells");
+                console.log(_newCells3);
+
+                _this3.setState({ cells: _animatedCells3 }, function () {
+                    for (var _i11 = 0; _i11 < 25; _i11++) {
+                        _animatedCells3[_i11].key = _i11;
+                        _animatedCells3[_i11].class = "static"; //////////////////////////
+                        _animatedCells3[_i11].key1 = 0;
+                        _animatedCells3[_i11].key2 = 0;
+                        _animatedCells3[_i11].oldLevel = false;
+                    }
+
+                    var timer = setTimeout(function () {
+                        _this3.setState({ cells: _newCells3 });
+                        _this3.addNewCells();
+                    }, 500);
+                });
             }
         };
 

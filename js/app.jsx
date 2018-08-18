@@ -239,7 +239,7 @@ class Game extends React.Component {
                     fullCellsOnly.push({level: 0});
 
 
-            fullCellsOnly.forEach((e,i) => {
+            fullCellsOnly.forEach((e, i) => {
                 e.oldLevel = cells[i].level;
             });
 
@@ -282,6 +282,10 @@ class Game extends React.Component {
                 if (!fullCellsOnly[i])
                     fullCellsOnly.push({level: 0, oldLevel: oldLevels[i]});
 
+            for (let i = 0; i < 5; i++) {
+                fullCellsOnly[i].oldLevel = oldLevels[i] || 0;
+            }
+
             return fullCellsOnly;
         };
 
@@ -299,7 +303,7 @@ class Game extends React.Component {
                     fullCellsOnly.unshift({level: 0});
 
             for (let i = 0; i < 5; i++) {
-                fullCellsOnly[i].oldLevel = oldLevels[i];
+                fullCellsOnly[i].oldLevel = oldLevels[i] || 0;
             }
 
             return fullCellsOnly;
@@ -400,6 +404,7 @@ class Game extends React.Component {
             col5 = removeEmptyAndFixKeysLeft(col5);
 
 
+            console.log("rotated board after remove and fix");
             console.log([...col1, ...col2, ...col3, ...col4, ...col5]);
 
             col1 = mergeLeft(col1);
@@ -409,6 +414,7 @@ class Game extends React.Component {
             col5 = mergeLeft(col5);
 
 
+            console.log("rotated board after merge");
             console.log([...col1, ...col2, ...col3, ...col4, ...col5]);
 
             cells = [...col1, ...col2, ...col3, ...col4, ...col5];
@@ -449,7 +455,7 @@ class Game extends React.Component {
         let classes = ["static", "static", "static", "static", "static"];
 
         if (direction === "left"){
-            let defineClass = (count) => {
+            let defineClass = count => {
                 if (count === 1) return "moveLeft1";
                 if (count === 2) return "moveLeft2";
                 if (count === 3) return "moveLeft3";
@@ -472,7 +478,7 @@ class Game extends React.Component {
 
         if (direction === "right"){
 
-            let defineClass = (count) => {
+            let defineClass = count => {
                 if (count === 1) return "moveRight1";
                 if (count === 2) return "moveRight2";
                 if (count === 3) return "moveRight3";
@@ -493,7 +499,7 @@ class Game extends React.Component {
 
         if (direction === "up"){
 
-            let defineClass = (count) => {
+            let defineClass = count => {
                 if (count === 1) return "moveUp1";
                 if (count === 2) return "moveUp2";
                 if (count === 3) return "moveUp3";
@@ -514,7 +520,7 @@ class Game extends React.Component {
 
         if (direction === "down"){
 
-            let defineClass = (count) => {
+            let defineClass = count => {
                 if (count === 1) return "moveDown1";
                 if (count === 2) return "moveDown2";
                 if (count === 3) return "moveDown3";
@@ -585,13 +591,13 @@ class Game extends React.Component {
             animatedCells.forEach((e, i) => {
                 e.key = i;
                 if (e.class === "lvl+")
-                    newCells[i].class = "lvlUp";   ////////////////////////////////////////////
+                    newCells[i].class = "lvlUp";
             });
 
             this.setState({cells: animatedCells}, () => {
                 for (let i = 0; i < 25; i++){
                     animatedCells[i].key = i;
-                    // animatedCells[i].class = "static"; //////////////////////////
+                    animatedCells[i].class = "static"; //////////////////////////
                     animatedCells[i].key1 = 0;
                     animatedCells[i].key2 = 0;
                     animatedCells[i].oldLevel = false;
@@ -616,7 +622,6 @@ class Game extends React.Component {
             let newCells = this.moveCells("right", oldCells);
 
             newCells = newCells[0].concat(newCells[1], newCells[2], newCells[3], newCells[4]);
-
 
             newCells.forEach((e, i) => e.key = i);
 
@@ -651,13 +656,13 @@ class Game extends React.Component {
             animatedCells.forEach((e, i) => {
                 e.key = i;
                 if (e.class === "lvl+")
-                    newCells[i].class = "lvlUp";   ////////////////////////////////////////////
+                    newCells[i].class = "lvlUp";
             });
 
             this.setState({cells: animatedCells}, () => {
                 for (let i = 0; i < 25; i++){
                     animatedCells[i].key = i;
-                    // animatedCells[i].class = "static";
+                    animatedCells[i].class = "static";
                     animatedCells[i].key1 = 0;
                     animatedCells[i].key2 = 0;
                     animatedCells[i].oldLevel = false;
@@ -682,23 +687,21 @@ class Game extends React.Component {
 
             newCells = newCells[0].concat(newCells[1], newCells[2], newCells[3], newCells[4]);
 
-
-
-            console.log("row1]s befor");
-            console.log(oldCells);
-
-
-            newCells = this.changePlane(oldCells);
-
-            newCells = [...newCells[0], ...newCells[1], ...newCells[2], ...newCells[3], ...newCells[4]];
-
             newCells.forEach((e, i) => e.key = i);
 
-            let row1 = newCells.slice(0, 5);
-            let row2 = newCells.slice(5, 10);
-            let row3 = newCells.slice(10, 15);
-            let row4 = newCells.slice(15, 20);
-            let row5 = newCells.slice(20, 25);
+            newCells = this.changePlane(newCells);
+
+            let row1 = newCells[0];
+            let row2 = newCells[1];
+            let row3 = newCells[2];
+            let row4 = newCells[3];
+            let row5 = newCells[4];
+
+            // let row1 = newCells.slice(0, 5);
+            // let row2 = newCells.slice(5, 10);
+            // let row3 = newCells.slice(10, 15);
+            // let row4 = newCells.slice(15, 20);
+            // let row5 = newCells.slice(20, 25);
 
             row1.forEach((e, i) => {
                 e.class = this.calculateClass(row1, "up")[i];
@@ -726,20 +729,22 @@ class Game extends React.Component {
 
             animatedCells = animatedCells[0].concat(animatedCells[1], animatedCells[2], animatedCells[3], animatedCells[4]);
 
+            animatedCells.forEach((e, i) => {
+                e.key = i;
+                if (e.class === "lvl+")
+                    newCells[i].class = "lvlUp";
+            });
 
 
-            animatedCells.forEach((e, i) => e.key = i);
+            newCells = newCells[0].concat(newCells[1], newCells[2], newCells[3], newCells[4]);
+            newCells = this.changePlane(newCells);
 
-            console.log("animated:");
-            console.log(animatedCells);
-
+            newCells = newCells[0].concat(newCells[1], newCells[2], newCells[3], newCells[4]);
 
             newCells.forEach((e, i) => e.key = i);
-            for (let i = 0; i < 25; i ++){
-                newCells[i].key = i;
-            }
 
-            console.log("newcells");
+
+            console.log("new cells");
             console.log(newCells);
 
             this.setState({cells: animatedCells}, () => {
@@ -761,16 +766,89 @@ class Game extends React.Component {
         let downArrow = 40;
         if (key.which === downArrow){
 
-            let allCells = this.moveCells("down", this.state.cells);
+            let oldCells = [];
+            for (let i = 0; i < 25; i++){
+                oldCells[i] = Object.assign({}, this.state.cells[i]);
+            }
 
-            allCells = allCells[0].concat(allCells[1], allCells[2], allCells[3], allCells[4]);
+            let newCells = this.moveCells("down", oldCells);
 
-            for (let i = 0; i < allCells.length; i++)
-                allCells[i].key = i;
+            newCells = newCells[0].concat(newCells[1], newCells[2], newCells[3], newCells[4]);
 
-            this.setState({cells: allCells});
+            newCells.forEach((e, i) => e.key = i);
 
-            this.addNewCells();
+            newCells = this.changePlane(newCells);
+
+            let row1 = newCells[0];
+            let row2 = newCells[1];
+            let row3 = newCells[2];
+            let row4 = newCells[3];
+            let row5 = newCells[4];
+
+            // let row1 = newCells.slice(0, 5);
+            // let row2 = newCells.slice(5, 10);
+            // let row3 = newCells.slice(10, 15);
+            // let row4 = newCells.slice(15, 20);
+            // let row5 = newCells.slice(20, 25);
+
+            row1.forEach((e, i) => {
+                e.class = this.calculateClass(row1, "down")[i];
+            });
+
+            row2.forEach((e, i) => {
+                e.class = this.calculateClass(row2, "down")[i];
+            });
+
+            row3.forEach((e, i) => {
+                e.class = this.calculateClass(row3, "down")[i];
+            });
+
+            row4.forEach((e, i) => {
+                e.class = this.calculateClass(row4, "down")[i];
+            });
+
+            row5.forEach((e, i) => {
+                e.class = this.calculateClass(row5, "down")[i];
+            });
+
+            let animatedCells = [...row1, ...row2, ...row3, ...row4, ...row5];
+
+            animatedCells = this.changePlane(animatedCells);
+
+            animatedCells = animatedCells[0].concat(animatedCells[1], animatedCells[2], animatedCells[3], animatedCells[4]);
+
+            animatedCells.forEach((e, i) => {
+                e.key = i;
+                if (e.class === "lvl+")
+                    newCells[i].class = "lvlUp";
+            });
+
+
+            newCells = newCells[0].concat(newCells[1], newCells[2], newCells[3], newCells[4]);
+            newCells = this.changePlane(newCells);
+
+            newCells = newCells[0].concat(newCells[1], newCells[2], newCells[3], newCells[4]);
+
+            newCells.forEach((e, i) => e.key = i);
+
+
+            console.log("new cells");
+            console.log(newCells);
+
+            this.setState({cells: animatedCells}, () => {
+                for (let i = 0; i < 25; i++){
+                    animatedCells[i].key = i;
+                    animatedCells[i].class = "static"; //////////////////////////
+                    animatedCells[i].key1 = 0;
+                    animatedCells[i].key2 = 0;
+                    animatedCells[i].oldLevel = false;
+                }
+
+                let timer = setTimeout(() => {
+                    this.setState({cells: newCells});
+                    this.addNewCells();
+                }, 500);
+            });
         }
 
     };
