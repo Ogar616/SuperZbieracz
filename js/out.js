@@ -9684,6 +9684,7 @@ var Game = function (_React$Component3) {
         };
 
         _this3.magicWand = function () {
+
             var emptyCells = [];
             _this3.state.cells.forEach(function (e) {
                 if (e.level === 0) emptyCells.push(e);
@@ -9718,16 +9719,14 @@ var Game = function (_React$Component3) {
             _this3.state.cells.forEach(function (e) {
                 if (e.level < 1) emptyCells.push(e);
             });
+
             if (emptyCells.length < 2) {
                 var newName = prompt("Podaj swoje imię");
                 var list = _this3.state.topPlayers;
-                console.log(list);
                 list.push([newName, _this3.state.points]);
-                console.log(list);
                 list.sort(function (a, b) {
                     return a[1] - b[1];
                 });
-                console.log(list);
                 _this3.setState({ hideGameOver: false, topPlayers: list }, console.log("Game over"));
             }
         };
@@ -9768,17 +9767,17 @@ var Game = function (_React$Component3) {
             }
 
             var newCells = _this3.state.cells;
-            // //
-            // newCell1 = 1;
-            // newCell2 = 3;
 
-            newCells[newCell1] = { level: 1, key: newCell1, class: "newCell" };
-            newCells[newCell2] = { level: 1, key: newCell2, class: "newCell" };
+            // newCells[newCell1] = {level: 1, key: newCell1, class: "newCell"};
+            // newCells[newCell2] = {level: 1, key: newCell2, class: "newCell"};
 
+            newCells[0] = { level: 1, key: 0, class: "newCell" };
+            newCells[1] = { level: 1, key: 1, class: "newCell" };
             _this3.setState({ cells: newCells, points: _this3.countMoney() });
         };
 
         _this3.componentDidMount = function () {
+
             document.addEventListener("keyup", _this3.handleKeys);
             _this3.addNewCells();
 
@@ -9786,23 +9785,17 @@ var Game = function (_React$Component3) {
             for (var i = 0; i < 25; i++) {
                 arr.push(i);
             }
-
-            // console.log(arr);
-            // arr = this.changePlane(arr);
-            // console.log(arr);
-            // arr = [...arr[0], ...arr[1], ...arr[2], ...arr[3], ...arr[4]];
-            // arr = this.changePlane(arr);
-            // console.log(arr)
-
         };
 
         _this3.levelValues = [0, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000];
 
         _this3.countMoney = function () {
+
             var moneyCounter = 0;
             for (var i = 0; i < _this3.state.cells.length; i++) {
                 moneyCounter += _this3.levelValues[_this3.state.cells[i].level];
             }
+
             return moneyCounter;
         };
 
@@ -9821,6 +9814,7 @@ var Game = function (_React$Component3) {
                 if (index % 5 === 3) col4.push(cell);
                 if (index % 5 === 4) col5.push(cell);
             });
+
             return [col1, col2, col3, col4, col5];
         };
 
@@ -9995,17 +9989,11 @@ var Game = function (_React$Component3) {
                 col4 = removeEmptyAndFixKeysLeft(col4);
                 col5 = removeEmptyAndFixKeysLeft(col5);
 
-                console.log("rotated board after remove and fix");
-                console.log([].concat(_toConsumableArray(col1), _toConsumableArray(col2), _toConsumableArray(col3), _toConsumableArray(col4), _toConsumableArray(col5)));
-
                 col1 = mergeLeft(col1);
                 col2 = mergeLeft(col2);
                 col3 = mergeLeft(col3);
                 col4 = mergeLeft(col4);
                 col5 = mergeLeft(col5);
-
-                console.log("rotated board after merge");
-                console.log([].concat(_toConsumableArray(col1), _toConsumableArray(col2), _toConsumableArray(col3), _toConsumableArray(col4), _toConsumableArray(col5)));
 
                 cells = [].concat(_toConsumableArray(col1), _toConsumableArray(col2), _toConsumableArray(col3), _toConsumableArray(col4), _toConsumableArray(col5));
 
@@ -10040,6 +10028,19 @@ var Game = function (_React$Component3) {
             }
         };
 
+        _this3.concatRows = function (cells) {
+
+            var allCells = [];
+
+            cells.forEach(function (e) {
+                e.forEach(function (e) {
+                    allCells.push(e);
+                });
+            });
+
+            return allCells;
+        };
+
         _this3.calculateClass = function (row, direction) {
 
             var classes = ["static", "static", "static", "static", "static"];
@@ -10061,7 +10062,7 @@ var Game = function (_React$Component3) {
                     if (e.key2) {
                         classes[e.key1] = defineClass(e.key1 - i);
                         classes[e.key2] = defineClass(e.key2 - i);
-                        classes[i] = "lvl+"; ///////////////////////
+                        classes[i] = "lvl+";
                     }
                 });
             }
@@ -10083,6 +10084,7 @@ var Game = function (_React$Component3) {
                     if (e.key2) {
                         classes[e.key1] = _defineClass(i - e.key1);
                         classes[e.key2] = _defineClass(i - e.key2);
+                        classes[i] = "lvl+";
                     }
                 });
             }
@@ -10098,12 +10100,13 @@ var Game = function (_React$Component3) {
 
                 row.forEach(function (e, i) {
                     if (e.key1 && !e.key2) {
-                        classes[e.key1] = _defineClass2(e.key1 - i); ///////////////////
+                        classes[e.key1] = _defineClass2(e.key1 - i);
                     }
 
                     if (e.key2) {
                         classes[e.key1] = _defineClass2(e.key1 - i);
                         classes[e.key2] = _defineClass2(e.key2 - i);
+                        classes[i] = "lvl+";
                     }
                 });
             }
@@ -10125,6 +10128,7 @@ var Game = function (_React$Component3) {
                     if (e.key2) {
                         classes[e.key1] = _defineClass3(i - e.key1);
                         classes[e.key2] = _defineClass3(i - e.key2);
+                        classes[i] = "lvl+";
                     }
                 });
             }
@@ -10146,7 +10150,7 @@ var Game = function (_React$Component3) {
 
                 var newCells = _this3.moveCells("left", oldCells);
 
-                newCells = newCells[0].concat(newCells[1], newCells[2], newCells[3], newCells[4]);
+                newCells = _this3.concatRows(newCells);
 
                 newCells.forEach(function (e, i) {
                     return e.key = i;
@@ -10178,23 +10182,27 @@ var Game = function (_React$Component3) {
                     e.class = _this3.calculateClass(row5, "left")[i];
                 });
 
-                var animatedCells = [].concat(_toConsumableArray(row1), _toConsumableArray(row2), _toConsumableArray(row3), _toConsumableArray(row4), _toConsumableArray(row5));
+                var animatedCells = JSON.parse(JSON.stringify([].concat(_toConsumableArray(row1), _toConsumableArray(row2), _toConsumableArray(row3), _toConsumableArray(row4), _toConsumableArray(row5))));
 
                 animatedCells.forEach(function (e, i) {
-                    e.key = i;
-                    if (e.class === "lvl+") newCells[i].class = "lvlUp";
+                    return e.key = i;
                 });
 
                 _this3.setState({ cells: animatedCells }, function () {
-                    for (var _i5 = 0; _i5 < 25; _i5++) {
-                        animatedCells[_i5].key = _i5;
-                        animatedCells[_i5].class = "static"; //////////////////////////
-                        animatedCells[_i5].key1 = 0;
-                        animatedCells[_i5].key2 = 0;
-                        animatedCells[_i5].oldLevel = false;
-                    }
 
                     var timer = setTimeout(function () {
+                        for (var _i5 = 0; _i5 < 25; _i5++) {
+                            newCells[_i5].key = _i5;
+                            newCells[_i5].class = "static";
+                            newCells[_i5].key1 = 0;
+                            newCells[_i5].key2 = 0;
+                            newCells[_i5].oldLevel = false;
+                        }
+
+                        animatedCells.forEach(function (e, i) {
+                            if (e.class === "lvl+") newCells[i].class = "lvlUp";
+                        });
+
                         _this3.setState({ cells: newCells });
                         _this3.addNewCells();
                     }, 500);
@@ -10211,7 +10219,7 @@ var Game = function (_React$Component3) {
 
                 var _newCells = _this3.moveCells("right", _oldCells);
 
-                _newCells = _newCells[0].concat(_newCells[1], _newCells[2], _newCells[3], _newCells[4]);
+                _newCells = _this3.concatRows(_newCells);
 
                 _newCells.forEach(function (e, i) {
                     return e.key = i;
@@ -10243,23 +10251,27 @@ var Game = function (_React$Component3) {
                     e.class = _this3.calculateClass(_row5, "right")[i];
                 });
 
-                var _animatedCells = [].concat(_toConsumableArray(_row), _toConsumableArray(_row2), _toConsumableArray(_row3), _toConsumableArray(_row4), _toConsumableArray(_row5));
+                var _animatedCells = JSON.parse(JSON.stringify([].concat(_toConsumableArray(_row), _toConsumableArray(_row2), _toConsumableArray(_row3), _toConsumableArray(_row4), _toConsumableArray(_row5))));
 
                 _animatedCells.forEach(function (e, i) {
-                    e.key = i;
-                    if (e.class === "lvl+") _newCells[i].class = "lvlUp";
+                    return e.key = i;
                 });
 
                 _this3.setState({ cells: _animatedCells }, function () {
-                    for (var _i7 = 0; _i7 < 25; _i7++) {
-                        _animatedCells[_i7].key = _i7;
-                        _animatedCells[_i7].class = "static";
-                        _animatedCells[_i7].key1 = 0;
-                        _animatedCells[_i7].key2 = 0;
-                        _animatedCells[_i7].oldLevel = false;
-                    }
 
                     var timer = setTimeout(function () {
+                        for (var _i7 = 0; _i7 < 25; _i7++) {
+                            _newCells[_i7].key = _i7;
+                            _newCells[_i7].class = "static";
+                            _newCells[_i7].key1 = 0;
+                            _newCells[_i7].key2 = 0;
+                            _newCells[_i7].oldLevel = false;
+                        }
+
+                        _animatedCells.forEach(function (e, i) {
+                            if (e.class === "lvl+") _newCells[i].class = "lvlUp";
+                        });
+
                         _this3.setState({ cells: _newCells });
                         _this3.addNewCells();
                     }, 500);
@@ -10276,7 +10288,7 @@ var Game = function (_React$Component3) {
 
                 var _newCells2 = _this3.moveCells("up", _oldCells2);
 
-                _newCells2 = _newCells2[0].concat(_newCells2[1], _newCells2[2], _newCells2[3], _newCells2[4]);
+                _newCells2 = _this3.concatRows(_newCells2);
 
                 _newCells2.forEach(function (e, i) {
                     return e.key = i;
@@ -10289,12 +10301,6 @@ var Game = function (_React$Component3) {
                 var _row8 = _newCells2[2];
                 var _row9 = _newCells2[3];
                 var _row10 = _newCells2[4];
-
-                // let row1 = newCells.slice(0, 5);
-                // let row2 = newCells.slice(5, 10);
-                // let row3 = newCells.slice(10, 15);
-                // let row4 = newCells.slice(15, 20);
-                // let row5 = newCells.slice(20, 25);
 
                 _row6.forEach(function (e, i) {
                     e.class = _this3.calculateClass(_row6, "up")[i];
@@ -10316,39 +10322,41 @@ var Game = function (_React$Component3) {
                     e.class = _this3.calculateClass(_row10, "up")[i];
                 });
 
-                var _animatedCells2 = [].concat(_toConsumableArray(_row6), _toConsumableArray(_row7), _toConsumableArray(_row8), _toConsumableArray(_row9), _toConsumableArray(_row10));
+                var _animatedCells2 = JSON.parse(JSON.stringify([].concat(_toConsumableArray(_row6), _toConsumableArray(_row7), _toConsumableArray(_row8), _toConsumableArray(_row9), _toConsumableArray(_row10))));
 
                 _animatedCells2 = _this3.changePlane(_animatedCells2);
 
-                _animatedCells2 = _animatedCells2[0].concat(_animatedCells2[1], _animatedCells2[2], _animatedCells2[3], _animatedCells2[4]);
+                _animatedCells2 = _this3.concatRows(_animatedCells2);
 
                 _animatedCells2.forEach(function (e, i) {
-                    e.key = i;
-                    if (e.class === "lvl+") _newCells2[i].class = "lvlUp";
+                    return e.key = i;
                 });
 
-                _newCells2 = _newCells2[0].concat(_newCells2[1], _newCells2[2], _newCells2[3], _newCells2[4]);
+                _newCells2 = _this3.concatRows(_newCells2);
+
                 _newCells2 = _this3.changePlane(_newCells2);
 
-                _newCells2 = _newCells2[0].concat(_newCells2[1], _newCells2[2], _newCells2[3], _newCells2[4]);
+                _newCells2 = _this3.concatRows(_newCells2);
 
                 _newCells2.forEach(function (e, i) {
                     return e.key = i;
                 });
 
-                console.log("new cells");
-                console.log(_newCells2);
-
                 _this3.setState({ cells: _animatedCells2 }, function () {
-                    for (var _i9 = 0; _i9 < 25; _i9++) {
-                        _animatedCells2[_i9].key = _i9;
-                        _animatedCells2[_i9].class = "static";
-                        _animatedCells2[_i9].key1 = 0;
-                        _animatedCells2[_i9].key2 = 0;
-                        _animatedCells2[_i9].oldLevel = false;
-                    }
 
                     var timer = setTimeout(function () {
+                        for (var _i9 = 0; _i9 < 25; _i9++) {
+                            _newCells2[_i9].key = _i9;
+                            _newCells2[_i9].class = "static";
+                            _newCells2[_i9].key1 = 0;
+                            _newCells2[_i9].key2 = 0;
+                            _newCells2[_i9].oldLevel = false;
+                        }
+
+                        _animatedCells2.forEach(function (e, i) {
+                            if (e.class === "lvl+") _newCells2[i].class = "lvlUp";
+                        });
+
                         _this3.setState({ cells: _newCells2 });
                         _this3.addNewCells();
                     }, 500);
@@ -10365,7 +10373,7 @@ var Game = function (_React$Component3) {
 
                 var _newCells3 = _this3.moveCells("down", _oldCells3);
 
-                _newCells3 = _newCells3[0].concat(_newCells3[1], _newCells3[2], _newCells3[3], _newCells3[4]);
+                _newCells3 = _this3.concatRows(_newCells3);
 
                 _newCells3.forEach(function (e, i) {
                     return e.key = i;
@@ -10378,12 +10386,6 @@ var Game = function (_React$Component3) {
                 var _row13 = _newCells3[2];
                 var _row14 = _newCells3[3];
                 var _row15 = _newCells3[4];
-
-                // let row1 = newCells.slice(0, 5);
-                // let row2 = newCells.slice(5, 10);
-                // let row3 = newCells.slice(10, 15);
-                // let row4 = newCells.slice(15, 20);
-                // let row5 = newCells.slice(20, 25);
 
                 _row11.forEach(function (e, i) {
                     e.class = _this3.calculateClass(_row11, "down")[i];
@@ -10405,39 +10407,41 @@ var Game = function (_React$Component3) {
                     e.class = _this3.calculateClass(_row15, "down")[i];
                 });
 
-                var _animatedCells3 = [].concat(_toConsumableArray(_row11), _toConsumableArray(_row12), _toConsumableArray(_row13), _toConsumableArray(_row14), _toConsumableArray(_row15));
+                var _animatedCells3 = JSON.parse(JSON.stringify([].concat(_toConsumableArray(_row11), _toConsumableArray(_row12), _toConsumableArray(_row13), _toConsumableArray(_row14), _toConsumableArray(_row15))));
 
                 _animatedCells3 = _this3.changePlane(_animatedCells3);
 
-                _animatedCells3 = _animatedCells3[0].concat(_animatedCells3[1], _animatedCells3[2], _animatedCells3[3], _animatedCells3[4]);
+                _animatedCells3 = _this3.concatRows(_animatedCells3);
 
                 _animatedCells3.forEach(function (e, i) {
-                    e.key = i;
-                    if (e.class === "lvl+") _newCells3[i].class = "lvlUp";
+                    return e.key = i;
                 });
 
-                _newCells3 = _newCells3[0].concat(_newCells3[1], _newCells3[2], _newCells3[3], _newCells3[4]);
+                _newCells3 = _this3.concatRows(_newCells3);
+
                 _newCells3 = _this3.changePlane(_newCells3);
 
-                _newCells3 = _newCells3[0].concat(_newCells3[1], _newCells3[2], _newCells3[3], _newCells3[4]);
+                _newCells3 = _this3.concatRows(_newCells3);
 
                 _newCells3.forEach(function (e, i) {
                     return e.key = i;
                 });
 
-                console.log("new cells");
-                console.log(_newCells3);
-
                 _this3.setState({ cells: _animatedCells3 }, function () {
-                    for (var _i11 = 0; _i11 < 25; _i11++) {
-                        _animatedCells3[_i11].key = _i11;
-                        _animatedCells3[_i11].class = "static"; //////////////////////////
-                        _animatedCells3[_i11].key1 = 0;
-                        _animatedCells3[_i11].key2 = 0;
-                        _animatedCells3[_i11].oldLevel = false;
-                    }
 
                     var timer = setTimeout(function () {
+                        for (var _i11 = 0; _i11 < 25; _i11++) {
+                            _newCells3[_i11].key = _i11;
+                            _newCells3[_i11].class = "static";
+                            _newCells3[_i11].key1 = 0;
+                            _newCells3[_i11].key2 = 0;
+                            _newCells3[_i11].oldLevel = false;
+                        }
+
+                        _animatedCells3.forEach(function (e, i) {
+                            if (e.class === "lvl+") _newCells3[i].class = "lvlUp";
+                        });
+
                         _this3.setState({ cells: _newCells3 });
                         _this3.addNewCells();
                     }, 500);
@@ -10453,7 +10457,6 @@ var Game = function (_React$Component3) {
             previousCells: [],
             hideGameOver: true,
             topPlayers: []
-
         };
         return _this3;
     }
