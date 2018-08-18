@@ -9654,7 +9654,7 @@ var Cell = function (_React$Component2) {
         key: 'render',
         value: function render() {
             var cellStyle = this.styles[this.props.level];
-            if (this.props.oldLevel) {
+            if (typeof this.props.oldLevel === "number") {
                 cellStyle = this.styles[this.props.oldLevel];
             }
 
@@ -9892,8 +9892,12 @@ var Game = function (_React$Component3) {
                 });
 
                 for (var i = 0; i < 5; i++) {
-                    if (!fullCellsOnly[i]) fullCellsOnly.unshift({ level: 0, oldLevel: oldLevels[i] });
-                }return fullCellsOnly;
+                    if (!fullCellsOnly[i]) fullCellsOnly.unshift({ level: 0 });
+                }for (var _i3 = 0; _i3 < 5; _i3++) {
+                    fullCellsOnly[_i3].oldLevel = oldLevels[_i3];
+                }
+
+                return fullCellsOnly;
             };
 
             var mergeLeft = function mergeLeft(cells) {
@@ -9998,8 +10002,6 @@ var Game = function (_React$Component3) {
                 console.log([].concat(_toConsumableArray(col1), _toConsumableArray(col2), _toConsumableArray(col3), _toConsumableArray(col4), _toConsumableArray(col5)));
 
                 cells = [].concat(_toConsumableArray(col1), _toConsumableArray(col2), _toConsumableArray(col3), _toConsumableArray(col4), _toConsumableArray(col5));
-                console.log("dsfdfdfdf");
-                console.log(cells);
 
                 return _this3.changePlane(cells);
             }
@@ -10178,12 +10180,12 @@ var Game = function (_React$Component3) {
                 });
 
                 _this3.setState({ cells: animatedCells }, function () {
-                    for (var _i3 = 0; _i3 < 25; _i3++) {
-                        animatedCells[_i3].key = _i3;
+                    for (var _i4 = 0; _i4 < 25; _i4++) {
+                        animatedCells[_i4].key = _i4;
                         // animatedCells[i].class = "static"; //////////////////////////
-                        animatedCells[_i3].key1 = 0;
-                        animatedCells[_i3].key2 = 0;
-                        animatedCells[_i3].oldLevel = false;
+                        animatedCells[_i4].key1 = 0;
+                        animatedCells[_i4].key2 = 0;
+                        animatedCells[_i4].oldLevel = false;
                     }
 
                     var timer = setTimeout(function () {
@@ -10197,8 +10199,8 @@ var Game = function (_React$Component3) {
             if (key.which === rightArrow) {
 
                 var _oldCells = [];
-                for (var _i4 = 0; _i4 < 25; _i4++) {
-                    _oldCells[_i4] = Object.assign({}, _this3.state.cells[_i4]);
+                for (var _i5 = 0; _i5 < 25; _i5++) {
+                    _oldCells[_i5] = Object.assign({}, _this3.state.cells[_i5]);
                 }
 
                 var _newCells = _this3.moveCells("right", _oldCells);
@@ -10238,16 +10240,17 @@ var Game = function (_React$Component3) {
                 var _animatedCells = [].concat(_toConsumableArray(_row), _toConsumableArray(_row2), _toConsumableArray(_row3), _toConsumableArray(_row4), _toConsumableArray(_row5));
 
                 _animatedCells.forEach(function (e, i) {
-                    return e.key = i;
+                    e.key = i;
+                    if (e.class === "lvl+") _newCells[i].class = "lvlUp"; ////////////////////////////////////////////
                 });
 
                 _this3.setState({ cells: _animatedCells }, function () {
-                    for (var _i5 = 0; _i5 < 25; _i5++) {
-                        _animatedCells[_i5].key = _i5;
-                        _animatedCells[_i5].class = "static";
-                        _animatedCells[_i5].key1 = 0;
-                        _animatedCells[_i5].key2 = 0;
-                        _animatedCells[_i5].oldLevel = false;
+                    for (var _i6 = 0; _i6 < 25; _i6++) {
+                        _animatedCells[_i6].key = _i6;
+                        // animatedCells[i].class = "static";
+                        _animatedCells[_i6].key1 = 0;
+                        _animatedCells[_i6].key2 = 0;
+                        _animatedCells[_i6].oldLevel = false;
                     }
 
                     var timer = setTimeout(function () {
@@ -10261,8 +10264,8 @@ var Game = function (_React$Component3) {
             if (key.which === upArrow) {
 
                 var _oldCells2 = [];
-                for (var _i6 = 0; _i6 < 25; _i6++) {
-                    _oldCells2[_i6] = Object.assign({}, _this3.state.cells[_i6]);
+                for (var _i7 = 0; _i7 < 25; _i7++) {
+                    _oldCells2[_i7] = Object.assign({}, _this3.state.cells[_i7]);
                 }
 
                 var _newCells2 = _this3.moveCells("up", _oldCells2);
@@ -10322,20 +10325,20 @@ var Game = function (_React$Component3) {
                 _newCells2.forEach(function (e, i) {
                     return e.key = i;
                 });
-                for (var _i7 = 0; _i7 < 25; _i7++) {
-                    _newCells2[_i7].key = _i7;
+                for (var _i8 = 0; _i8 < 25; _i8++) {
+                    _newCells2[_i8].key = _i8;
                 }
 
                 console.log("newcells");
                 console.log(_newCells2);
 
                 _this3.setState({ cells: _animatedCells2 }, function () {
-                    for (var _i8 = 0; _i8 < 25; _i8++) {
-                        _animatedCells2[_i8].key = _i8;
-                        _animatedCells2[_i8].class = "static";
-                        _animatedCells2[_i8].key1 = 0;
-                        _animatedCells2[_i8].key2 = 0;
-                        _animatedCells2[_i8].oldLevel = false;
+                    for (var _i9 = 0; _i9 < 25; _i9++) {
+                        _animatedCells2[_i9].key = _i9;
+                        _animatedCells2[_i9].class = "static";
+                        _animatedCells2[_i9].key1 = 0;
+                        _animatedCells2[_i9].key2 = 0;
+                        _animatedCells2[_i9].oldLevel = false;
                     }
 
                     var timer = setTimeout(function () {
@@ -10352,8 +10355,8 @@ var Game = function (_React$Component3) {
 
                 allCells = allCells[0].concat(allCells[1], allCells[2], allCells[3], allCells[4]);
 
-                for (var _i9 = 0; _i9 < allCells.length; _i9++) {
-                    allCells[_i9].key = _i9;
+                for (var _i10 = 0; _i10 < allCells.length; _i10++) {
+                    allCells[_i10].key = _i10;
                 }_this3.setState({ cells: allCells });
 
                 _this3.addNewCells();

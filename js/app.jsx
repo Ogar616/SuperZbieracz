@@ -35,7 +35,7 @@ class Cell extends React.Component{
 
     render(){
         let cellStyle = this.styles[this.props.level];
-        if (this.props.oldLevel){
+        if (typeof this.props.oldLevel === "number"){
             cellStyle = this.styles[this.props.oldLevel];
         }
 
@@ -296,7 +296,11 @@ class Game extends React.Component {
 
             for (let i = 0; i < 5; i++)
                 if (!fullCellsOnly[i])
-                    fullCellsOnly.unshift({level: 0, oldLevel: oldLevels[i]});
+                    fullCellsOnly.unshift({level: 0});
+
+            for (let i = 0; i < 5; i++) {
+                fullCellsOnly[i].oldLevel = oldLevels[i];
+            }
 
             return fullCellsOnly;
         };
@@ -408,8 +412,6 @@ class Game extends React.Component {
             console.log([...col1, ...col2, ...col3, ...col4, ...col5]);
 
             cells = [...col1, ...col2, ...col3, ...col4, ...col5];
-            console.log("dsfdfdfdf");
-            console.log(cells);
 
             return this.changePlane(cells);
         }
@@ -646,12 +648,16 @@ class Game extends React.Component {
 
             let animatedCells = [...row1, ...row2, ...row3, ...row4, ...row5];
 
-            animatedCells.forEach((e, i) => e.key = i);
+            animatedCells.forEach((e, i) => {
+                e.key = i;
+                if (e.class === "lvl+")
+                    newCells[i].class = "lvlUp";   ////////////////////////////////////////////
+            });
 
             this.setState({cells: animatedCells}, () => {
                 for (let i = 0; i < 25; i++){
                     animatedCells[i].key = i;
-                    animatedCells[i].class = "static";
+                    // animatedCells[i].class = "static";
                     animatedCells[i].key1 = 0;
                     animatedCells[i].key2 = 0;
                     animatedCells[i].oldLevel = false;
