@@ -106,8 +106,6 @@ class Game extends React.Component {
         newCells[newCell1] = {level: 1, key: newCell1, class: "newCell"};
         newCells[newCell2] = {level: 1, key: newCell2, class: "newCell"};
 
-        // newCells[0] = {level: 1, key: 0, class: "newCell"};
-        // newCells[1] = {level: 1, key: 1, class: "newCell"};
         this.setState({cells: newCells, points: this.countMoney()});
 
     };
@@ -121,6 +119,11 @@ class Game extends React.Component {
         for (let i = 0 ; i < 25; i ++){
             arr.push(i);
         }
+    };
+
+    componentWillUnmount = () => {
+
+        clearTimeout(this.timer);
     };
 
     levelValues = [0, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000];
@@ -545,8 +548,7 @@ class Game extends React.Component {
 
             this.setState({cells: animatedCells}, () => {
 
-
-                let timer = setTimeout(() => {
+                this.timer = setTimeout(() => {
                     for (let i = 0; i < 25; i++){
                         newCells[i].key = i;
                         newCells[i].class = "static";
@@ -612,8 +614,7 @@ class Game extends React.Component {
 
             this.setState({cells: animatedCells}, () => {
 
-
-                let timer = setTimeout(() => {
+                this.timer = setTimeout(() => {
                     for (let i = 0; i < 25; i++){
                         newCells[i].key = i;
                         newCells[i].class = "static";
@@ -693,8 +694,7 @@ class Game extends React.Component {
 
             this.setState({cells: animatedCells}, () => {
 
-
-                let timer = setTimeout(() => {
+                this.timer = setTimeout(() => {
                     for (let i = 0; i < 25; i++){
                         newCells[i].key = i;
                         newCells[i].class = "static";
@@ -774,8 +774,7 @@ class Game extends React.Component {
 
             this.setState({cells: animatedCells}, () => {
 
-
-                let timer = setTimeout(() => {
+                this.timer = setTimeout(() => {
                     for (let i = 0; i < 25; i++){
                         newCells[i].key = i;
                         newCells[i].class = "static";

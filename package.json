@@ -1,14 +1,14 @@
 {
   "name": "game",
   "version": "1.0.0",
-  "description": "## Zadanie rozwiązywane z wykładowcą",
+  "description": "Simple logic game based on 2048",
   "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "./node_modules/.bin/webpack-dev-server --hot"
   },
   "author": "Ogar616",
-  "license": "UNLICENCED",
+  "license": "MIT",
   "dependencies": {
     "move-js": "^0.5.0",
     "react": "^15.4.0",
@@ -28,7 +28,7 @@
     "webpack-dev-server": "^2.7.1"
   },
   "keywords": [
-    "game"
+    "game, 2048, logic, js, react"
   ],
   "repository": {
     "type": "git",
