@@ -12,9 +12,23 @@ class Game extends React.Component {
             points: 0,
             previousCells: [],
             hideGameOver: true,
-            topPlayers: []
+            topPlayers: [],
+            bestHide: true,
+            infoHide: true
         }
     };
+
+    showHideInfo = () => {
+
+        if (this.state.bestHide === true)
+        this.setState({infoHide: this.state.infoHide === true ? false : true});
+    };
+
+    showHideBestPlayers = () => {
+        if (this.state.infoHide ===true)
+        this.setState({bestHide: this.state.bestHide === true ? false : true});
+    };
+
 
     restartGame = () => {
         this.setState({cells: this.createBoard()}, () => this.addNewCells());
@@ -99,7 +113,6 @@ class Game extends React.Component {
         newCells[newCell2.key] = {level: 1, key: newCell2.key, class: "newCell"};
 
         this.setState({cells: newCells, points: this.countMoney()});
-
     };
 
     componentDidMount = () => {
@@ -472,8 +485,6 @@ class Game extends React.Component {
         let cellsBefore;
         let cellsAfter;
 
-
-
         if (key.which === leftArrow) {
 
             let newCells = this.moveCells("left", oldCells);
@@ -668,34 +679,58 @@ class Game extends React.Component {
     };
 
     render(){
+
         let countZl = 0;
         if ((this.state.points / 100) > 1)
         if ((this.state.points / 100) > 1)
             countZl = Math.floor(this.state.points / 100);
         const countGr = this.state.points % 100;
 
-
+        const h1Style = {textAlign: "center", fontSize: "70px", background: "lightgrey", opacity: "0.8"};
+        const infoButtonStyle = {width: "100px", height: "100px", float: "left", border: "10px solid black", borderRadius:"50px", boxSizing: "border-box", background: "mediumseagreen",fontSize: "20px", fontWeight: "bold", textAlign: "center", paddingTop: "32px", cursor: "pointer"};
+        const restartStyle = {width: "100px", height: "100px", float: "left", borderRadius: "50px", border: "10px solid black", boxSizing: "border-box",background: "mediumseagreen", backgroundImage: 'url("./img/restart.png")', backgroundSize: "contain", cursor: "pointer"};
+        const backStyle = {width: "100px", height: "100px", float: "left", border: "1px solid black", borderRadius:"50px", boxSizing: "border-box", background: "mediumseagreen", backgroundImage: 'url("./img/back.svg")', backgroundSize: "contain", cursor: "pointer"};
+        const backSpanStyle = {fontSize: "20px", fontWeight: "bold", position: "relative", top: "25px", left: "20px"};
+        const magicWandStyle = {width: "100px", height: "100px", float: "left", border: "2px solid black", borderRadius:"50px", boxSizing: "border-box", background: "mediumseagreen", backgroundImage: 'url("./img/wand.svg")', backgroundSize: "contain", cursor: "pointer"};
+        const magicWandSpanStyle = {fontSize: "20px", fontWeight: "bold", position: "relative", top: "25px", left: "20px"};
+        const boardStyle = {width: "500px", height: "500px", margin: "0 auto", position: "relative"};
+        const bestButtonStyle = {width: "100px", height: "100px", float: "left", border: "10px solid black", borderRadius:"50px", boxSizing: "border-box", background: "mediumseagreen",fontSize: "20px", fontWeight: "bold", textAlign: "center", paddingTop: "18px", cursor: "pointer"};
+        const backgroundStyle = {backgroundImage: 'url("./img/money.png")', backgroundSize: "cover", maxWidth: "1200px", height: "900px"};
+        const functionsStyle = {margin: "5px auto", width: "500px", height: "100px", boxSizing: "borderBox", padding: "10px"};
+        const gameOverStyle = {textAlign: "center", color: "red", backgroundColor: "mediumseagreen", fontSize: "60px", fontWeight: "bold", marginBottom: "-50px"};
+        const moneyStyle = {textAlign: "center", fontSize: "70px", background: "lightgrey", opacity: "0.8"};
+        const bestStyle = {display: "inline-lock", height: "450px", width: "480px", backgroundColor: "mediumseagreen", position: "absolute", borderRadius: "50px", border: "10px solid black", textAlign: "center", fontSize: "20px", paddingTop: "50px"};
+        const infoStyle = {display: "inline-lock", height: "450px", width: "480px", backgroundColor: "mediumseagreen", position: "absolute", borderRadius: "50px", border: "10px solid black", textAlign: "center", fontSize: "20px", paddingTop: "50px"};
+        const containerStyle = {maxHeight: "800px", maxWidth: "1000px", margin: "0 auto", backgroundColor: "transparent"};
 
         if (this.state.cells.length === 0) return null;
         const cells = this.state.cells.map(element => <Cell key={element.key} oldLevel={element.oldLevel} level={element.level} class={element.class}/>);
         const list = this.state.topPlayers.map((player, index) => <li key={index}>{player[0]} - {player[1]}</li>);
 
-        return <div style={{backgroundImage: 'url("./img/money.png")', backgroundSize: "cover", width: "100%", height: "900px"}}>
+        return <div style={backgroundStyle}>
 
-            <h1 style={{textAlign: "center", fontSize: "70px", background: "lightgrey", opacity: "0.8"}}>Super Zbieracz - THE GAME !!!</h1>
-            <div style={{height: "100%", width: "100%", margin: "0 auto", backgroundColor: "transparent"}}>
-                <div style={{margin: "5px auto", width: "300px", height: "100px", boxSizing: "borderBox", padding: "10px"}}>
-                    <div style={{width: "100px", height: "100px", float: "left", borderRadius: "50px", border: "10px solid black", boxSizing: "border-box",background: "mediumseagreen", backgroundImage: 'url("./img/restart.png")', backgroundSize: "contain"}} onClick={this.restartGame}> </div>
-                    <div style={{width: "100px", height: "100px", float: "left", border: "1px solid black", borderRadius:"50px", boxSizing: "border-box", background: "mediumseagreen", backgroundImage: 'url("./img/back.svg")', backgroundSize: "contain"}} onClick={this.moveBack}><span style={{fontSize: "20px", fontWeight: "bold", position: "relative", top: "25px", left: "20px"}}>{this.state.movesBack}</span></div>
-                    <div style={{width: "100px", height: "100px", float: "left", border: "1px solid black", borderRadius:"50px", boxSizing: "border-box", background: "mediumseagreen", backgroundImage: 'url("./img/wand.svg")', backgroundSize: "contain"}} onClick={this.magicWand}><span style={{fontSize: "20px", fontWeight: "bold", position: "relative", top: "25px", left: "20px"}}>{this.state.wands}</span></div>
+            <div style={containerStyle}>
+                <h1 style={h1Style}>Super Zbieracz - THE GAME !!!</h1>
+                <div style={functionsStyle}>
+                    <div style={infoButtonStyle} onClick={this.showHideInfo}>INFO</div>
+                    <div style={restartStyle} onClick={this.restartGame}> </div>
+                    <div style={backStyle} onClick={this.moveBack}><span style={backSpanStyle}>{this.state.movesBack}</span></div>
+                    <div style={magicWandStyle} onClick={this.magicWand}><span style={magicWandSpanStyle}>{this.state.wands}</span></div>
+                    <div style={bestButtonStyle} onClick={this.showHideBestPlayers}>Best Players</div>
                 </div>
-                <div style={{width: "500px", height: "500px", margin: "0 auto", position: "relative"}}>
-                    <div className={"fadeIn"} style={{boxSizing: "border-box", height: "100px", width: "100px", float: "left", position: "absolute", top: "200px", left: "-180px", padding: "3px", overflow: "hidden", backgroundColor: "mediumseagreen", borderRadius: "75px", border: "10px solid black", backgroundImage: 'url("./img/4arrows.png")', backgroundSize: "contain"}}>
-
-                    </div>{cells}<div style={{display: "inline-lock", height: "400px", width: "200px", backgroundColor: "mediumseagreen", position: "absolute", left: "550px", top: "50px", borderRadius: "50px", border: "10px solid black", textAlign: "center", fontSize: "20px", paddingTop: "20px"}}>Najlepsze wyniki: <ol>{list}</ol></div></div>
-
-                <div hidden={this.state.hideGameOver} style={{textAlign: "center", color: "red", backgroundColor: "mediumseagreen", fontSize: "60px", fontWeight: "bold", marginBottom: "-50px"}}>Koniec Gry!</div>
-                <h2 style={{textAlign: "center", fontSize: "70px", background: "lightgrey", opacity: "0.8"}}>Uzbierałeś: {countZl} zł i {countGr} gr! </h2>
+                <div style={boardStyle}>
+                    {cells}
+                    <div style={bestStyle} hidden={this.state.bestHide}>Najlepsze wyniki: <ol>{list}</ol></div>
+                    <div style={infoStyle} hidden={this.state.infoHide}>
+                        <h1>Zasady gry:</h1>
+                        <p>1. Używaj strzałek na klawiaturze, żeby przesunąć wszystkie monety w zadanym kierunku</p>
+                        <p>2. Łącz dwie monety o takim samym nominale - dostaniesz droższą monetę</p>
+                        <p>3. Po każdym ruchu dwie monety o nominale 1gr. pojawiają się na planszy</p>
+                        <p>4. Uzbieraj jak największą ilość pieniędzy i baw się dobrze :)</p>
+                    </div>
+                </div>
+                <div hidden={this.state.hideGameOver} style={gameOverStyle}>Koniec Gry!</div>
+                <h2 style={moneyStyle}>Uzbierałeś: {countZl} zł i {countGr} gr! </h2>
             </div>
         </div>
     }

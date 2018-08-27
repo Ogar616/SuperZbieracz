@@ -22252,6 +22252,15 @@ var Game = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (Game.__proto__ || Object.getPrototypeOf(Game)).call(this, props));
 
+        _this.showHideInfo = function () {
+
+            if (_this.state.bestHide === true) _this.setState({ infoHide: _this.state.infoHide === true ? false : true });
+        };
+
+        _this.showHideBestPlayers = function () {
+            if (_this.state.infoHide === true) _this.setState({ bestHide: _this.state.bestHide === true ? false : true });
+        };
+
         _this.restartGame = function () {
             _this.setState({ cells: _this.createBoard() }, function () {
                 return _this.addNewCells();
@@ -22933,7 +22942,9 @@ var Game = function (_React$Component) {
             points: 0,
             previousCells: [],
             hideGameOver: true,
-            topPlayers: []
+            topPlayers: [],
+            bestHide: true,
+            infoHide: true
         };
         return _this;
     }
@@ -22941,9 +22952,27 @@ var Game = function (_React$Component) {
     _createClass(Game, [{
         key: "render",
         value: function render() {
+
             var countZl = 0;
             if (this.state.points / 100 > 1) if (this.state.points / 100 > 1) countZl = Math.floor(this.state.points / 100);
             var countGr = this.state.points % 100;
+
+            var h1Style = { textAlign: "center", fontSize: "70px", background: "lightgrey", opacity: "0.8" };
+            var infoButtonStyle = { width: "100px", height: "100px", float: "left", border: "10px solid black", borderRadius: "50px", boxSizing: "border-box", background: "mediumseagreen", fontSize: "20px", fontWeight: "bold", textAlign: "center", paddingTop: "32px", cursor: "pointer" };
+            var restartStyle = { width: "100px", height: "100px", float: "left", borderRadius: "50px", border: "10px solid black", boxSizing: "border-box", background: "mediumseagreen", backgroundImage: 'url("./img/restart.png")', backgroundSize: "contain", cursor: "pointer" };
+            var backStyle = { width: "100px", height: "100px", float: "left", border: "1px solid black", borderRadius: "50px", boxSizing: "border-box", background: "mediumseagreen", backgroundImage: 'url("./img/back.svg")', backgroundSize: "contain", cursor: "pointer" };
+            var backSpanStyle = { fontSize: "20px", fontWeight: "bold", position: "relative", top: "25px", left: "20px" };
+            var magicWandStyle = { width: "100px", height: "100px", float: "left", border: "2px solid black", borderRadius: "50px", boxSizing: "border-box", background: "mediumseagreen", backgroundImage: 'url("./img/wand.svg")', backgroundSize: "contain", cursor: "pointer" };
+            var magicWandSpanStyle = { fontSize: "20px", fontWeight: "bold", position: "relative", top: "25px", left: "20px" };
+            var boardStyle = { width: "500px", height: "500px", margin: "0 auto", position: "relative" };
+            var bestButtonStyle = { width: "100px", height: "100px", float: "left", border: "10px solid black", borderRadius: "50px", boxSizing: "border-box", background: "mediumseagreen", fontSize: "20px", fontWeight: "bold", textAlign: "center", paddingTop: "18px", cursor: "pointer" };
+            var backgroundStyle = { backgroundImage: 'url("./img/money.png")', backgroundSize: "cover", maxWidth: "1200px", height: "900px" };
+            var functionsStyle = { margin: "5px auto", width: "500px", height: "100px", boxSizing: "borderBox", padding: "10px" };
+            var gameOverStyle = { textAlign: "center", color: "red", backgroundColor: "mediumseagreen", fontSize: "60px", fontWeight: "bold", marginBottom: "-50px" };
+            var moneyStyle = { textAlign: "center", fontSize: "70px", background: "lightgrey", opacity: "0.8" };
+            var bestStyle = { display: "inline-lock", height: "450px", width: "480px", backgroundColor: "mediumseagreen", position: "absolute", borderRadius: "50px", border: "10px solid black", textAlign: "center", fontSize: "20px", paddingTop: "50px" };
+            var infoStyle = { display: "inline-lock", height: "450px", width: "480px", backgroundColor: "mediumseagreen", position: "absolute", borderRadius: "50px", border: "10px solid black", textAlign: "center", fontSize: "20px", paddingTop: "50px" };
+            var containerStyle = { maxHeight: "800px", maxWidth: "1000px", margin: "0 auto", backgroundColor: "transparent" };
 
             if (this.state.cells.length === 0) return null;
             var cells = this.state.cells.map(function (element) {
@@ -22961,66 +22990,104 @@ var Game = function (_React$Component) {
 
             return _react2.default.createElement(
                 "div",
-                { style: { backgroundImage: 'url("./img/money.png")', backgroundSize: "cover", width: "100%", height: "900px" } },
-                _react2.default.createElement(
-                    "h1",
-                    { style: { textAlign: "center", fontSize: "70px", background: "lightgrey", opacity: "0.8" } },
-                    "Super Zbieracz - THE GAME !!!"
-                ),
+                { style: backgroundStyle },
                 _react2.default.createElement(
                     "div",
-                    { style: { height: "100%", width: "100%", margin: "0 auto", backgroundColor: "transparent" } },
+                    { style: containerStyle },
+                    _react2.default.createElement(
+                        "h1",
+                        { style: h1Style },
+                        "Super Zbieracz - THE GAME !!!"
+                    ),
                     _react2.default.createElement(
                         "div",
-                        { style: { margin: "5px auto", width: "300px", height: "100px", boxSizing: "borderBox", padding: "10px" } },
+                        { style: functionsStyle },
                         _react2.default.createElement(
                             "div",
-                            { style: { width: "100px", height: "100px", float: "left", borderRadius: "50px", border: "10px solid black", boxSizing: "border-box", background: "mediumseagreen", backgroundImage: 'url("./img/restart.png")', backgroundSize: "contain" }, onClick: this.restartGame },
+                            { style: infoButtonStyle, onClick: this.showHideInfo },
+                            "INFO"
+                        ),
+                        _react2.default.createElement(
+                            "div",
+                            { style: restartStyle, onClick: this.restartGame },
                             " "
                         ),
                         _react2.default.createElement(
                             "div",
-                            { style: { width: "100px", height: "100px", float: "left", border: "1px solid black", borderRadius: "50px", boxSizing: "border-box", background: "mediumseagreen", backgroundImage: 'url("./img/back.svg")', backgroundSize: "contain" }, onClick: this.moveBack },
+                            { style: backStyle, onClick: this.moveBack },
                             _react2.default.createElement(
                                 "span",
-                                { style: { fontSize: "20px", fontWeight: "bold", position: "relative", top: "25px", left: "20px" } },
+                                { style: backSpanStyle },
                                 this.state.movesBack
                             )
                         ),
                         _react2.default.createElement(
                             "div",
-                            { style: { width: "100px", height: "100px", float: "left", border: "1px solid black", borderRadius: "50px", boxSizing: "border-box", background: "mediumseagreen", backgroundImage: 'url("./img/wand.svg")', backgroundSize: "contain" }, onClick: this.magicWand },
+                            { style: magicWandStyle, onClick: this.magicWand },
                             _react2.default.createElement(
                                 "span",
-                                { style: { fontSize: "20px", fontWeight: "bold", position: "relative", top: "25px", left: "20px" } },
+                                { style: magicWandSpanStyle },
                                 this.state.wands
                             )
+                        ),
+                        _react2.default.createElement(
+                            "div",
+                            { style: bestButtonStyle, onClick: this.showHideBestPlayers },
+                            "Best Players"
                         )
                     ),
                     _react2.default.createElement(
                         "div",
-                        { style: { width: "500px", height: "500px", margin: "0 auto", position: "relative" } },
-                        _react2.default.createElement("div", { className: "fadeIn", style: { boxSizing: "border-box", height: "100px", width: "100px", float: "left", position: "absolute", top: "200px", left: "-180px", padding: "3px", overflow: "hidden", backgroundColor: "mediumseagreen", borderRadius: "75px", border: "10px solid black", backgroundImage: 'url("./img/4arrows.png")', backgroundSize: "contain" } }),
+                        { style: boardStyle },
                         cells,
                         _react2.default.createElement(
                             "div",
-                            { style: { display: "inline-lock", height: "400px", width: "200px", backgroundColor: "mediumseagreen", position: "absolute", left: "550px", top: "50px", borderRadius: "50px", border: "10px solid black", textAlign: "center", fontSize: "20px", paddingTop: "20px" } },
+                            { style: bestStyle, hidden: this.state.bestHide },
                             "Najlepsze wyniki: ",
                             _react2.default.createElement(
                                 "ol",
                                 null,
                                 list
                             )
+                        ),
+                        _react2.default.createElement(
+                            "div",
+                            { style: infoStyle, hidden: this.state.infoHide },
+                            _react2.default.createElement(
+                                "h1",
+                                null,
+                                "Zasady gry:"
+                            ),
+                            _react2.default.createElement(
+                                "p",
+                                null,
+                                "1. U\u017Cywaj strza\u0142ek na klawiaturze, \u017Ceby przesun\u0105\u0107 wszystkie monety w zadanym kierunku"
+                            ),
+                            _react2.default.createElement(
+                                "p",
+                                null,
+                                "2. \u0141\u0105cz dwie monety o takim samym nominale - dostaniesz dro\u017Csz\u0105 monet\u0119"
+                            ),
+                            _react2.default.createElement(
+                                "p",
+                                null,
+                                "3. Po ka\u017Cdym ruchu dwie monety o nominale 1gr. pojawiaj\u0105 si\u0119 na planszy"
+                            ),
+                            _react2.default.createElement(
+                                "p",
+                                null,
+                                "4. Uzbieraj jak najwi\u0119ksz\u0105 ilo\u015B\u0107 pieni\u0119dzy i baw si\u0119 dobrze :)"
+                            )
                         )
                     ),
                     _react2.default.createElement(
                         "div",
-                        { hidden: this.state.hideGameOver, style: { textAlign: "center", color: "red", backgroundColor: "mediumseagreen", fontSize: "60px", fontWeight: "bold", marginBottom: "-50px" } },
+                        { hidden: this.state.hideGameOver, style: gameOverStyle },
                         "Koniec Gry!"
                     ),
                     _react2.default.createElement(
                         "h2",
-                        { style: { textAlign: "center", fontSize: "70px", background: "lightgrey", opacity: "0.8" } },
+                        { style: moneyStyle },
                         "Uzbiera\u0142e\u015B: ",
                         countZl,
                         " z\u0142 i ",

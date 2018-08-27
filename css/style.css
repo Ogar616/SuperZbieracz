@@ -329,19 +329,6 @@
     animation: moveDown4 0.5s;
 }
 
-.fadeIn {
-    animation-name: fadeIn;
-    -webkit-animation-name: fadeIn;
-
-    animation-duration: 1.5s;
-    -webkit-animation-duration: 1.5s;
-
-    animation-timing-function: ease-in-out;
-    -webkit-animation-timing-function: ease-in-out;
-
-    visibility: visible;
-}
-
 .newCell {
     animation: shake 0.15s cubic-bezier(.36,.07,.19,.97) both;
     transform: translate3d(0, 0, 0);
