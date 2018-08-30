@@ -22304,7 +22304,7 @@ var Game = function (_React$Component) {
                 if (e.level < 1) emptyCells.push(e);
             });
 
-            if (emptyCells.length < 2) {
+            if (emptyCells.length < 1) {
                 var newName = prompt("Podaj swoje imię");
                 var list = _this.state.topPlayers;
                 list.push([newName, _this.state.points]);
@@ -22334,7 +22334,13 @@ var Game = function (_React$Component) {
 
             if (_this.state.hideGameOver === false) return;
 
-            var arrayOfEmptyCells = _this.state.cells.filter(function (cell) {
+            var newCells = _this.state.cells;
+
+            newCells.forEach(function (cell, index) {
+                return cell.key = index;
+            });
+
+            var arrayOfEmptyCells = newCells.filter(function (cell) {
                 return cell.level < 1;
             });
 
@@ -22343,8 +22349,6 @@ var Game = function (_React$Component) {
             arrayOfEmptyCells.splice(newCell1.key, 1);
 
             var newCell2 = arrayOfEmptyCells[Math.round(Math.random() * arrayOfEmptyCells.length)];
-
-            var newCells = _this.state.cells;
 
             newCells[newCell1.key] = { level: 1, key: newCell1.key, class: "newCell" };
             newCells[newCell2.key] = { level: 1, key: newCell2.key, class: "newCell" };
@@ -22953,9 +22957,7 @@ var Game = function (_React$Component) {
         key: "render",
         value: function render() {
 
-            var countZl = 0;
-            if (this.state.points / 100 > 1) if (this.state.points / 100 > 1) countZl = Math.floor(this.state.points / 100);
-            var countGr = this.state.points % 100;
+            if (this.state.cells.length === 0) return null;
 
             var h1Style = { textAlign: "center", fontSize: "70px", background: "lightgrey", opacity: "0.8" };
             var infoButtonStyle = { width: "100px", height: "100px", float: "left", border: "10px solid black", borderRadius: "50px", boxSizing: "border-box", background: "mediumseagreen", fontSize: "20px", fontWeight: "bold", textAlign: "center", paddingTop: "32px", cursor: "pointer" };
@@ -22966,15 +22968,14 @@ var Game = function (_React$Component) {
             var magicWandSpanStyle = { fontSize: "20px", fontWeight: "bold", position: "relative", top: "25px", left: "20px" };
             var boardStyle = { width: "500px", height: "500px", margin: "0 auto", position: "relative" };
             var bestButtonStyle = { width: "100px", height: "100px", float: "left", border: "10px solid black", borderRadius: "50px", boxSizing: "border-box", background: "mediumseagreen", fontSize: "20px", fontWeight: "bold", textAlign: "center", paddingTop: "18px", cursor: "pointer" };
-            var backgroundStyle = { backgroundImage: 'url("./img/money.png")', backgroundSize: "cover", maxWidth: "1200px", height: "900px" };
+            var backgroundStyle = { backgroundImage: 'url("./img/money.png")', backgroundSize: "cover", width: "100%", height: "100vh" };
             var functionsStyle = { margin: "5px auto", width: "500px", height: "100px", boxSizing: "borderBox", padding: "10px" };
             var gameOverStyle = { textAlign: "center", color: "red", backgroundColor: "mediumseagreen", fontSize: "60px", fontWeight: "bold", marginBottom: "-50px" };
             var moneyStyle = { textAlign: "center", fontSize: "70px", background: "lightgrey", opacity: "0.8" };
             var bestStyle = { display: "inline-lock", height: "450px", width: "480px", backgroundColor: "mediumseagreen", position: "absolute", borderRadius: "50px", border: "10px solid black", textAlign: "center", fontSize: "20px", paddingTop: "50px" };
-            var infoStyle = { display: "inline-lock", height: "450px", width: "480px", backgroundColor: "mediumseagreen", position: "absolute", borderRadius: "50px", border: "10px solid black", textAlign: "center", fontSize: "20px", paddingTop: "50px" };
-            var containerStyle = { maxHeight: "800px", maxWidth: "1000px", margin: "0 auto", backgroundColor: "transparent" };
+            var infoStyle = { display: "inline-lock", height: "450px", width: "440px", backgroundColor: "mediumseagreen", position: "absolute", borderRadius: "50px", border: "10px solid black", textAlign: "center", fontSize: "20px", paddingTop: "40px", paddingLeft: "20px", paddingRight: "20px" };
+            var containerStyle = { maxHeight: "900px", maxWidth: "1000px", margin: "0 auto" };
 
-            if (this.state.cells.length === 0) return null;
             var cells = this.state.cells.map(function (element) {
                 return _react2.default.createElement(_Cell2.default, { key: element.key, oldLevel: element.oldLevel, level: element.level, "class": element.class });
             });
@@ -22987,6 +22988,10 @@ var Game = function (_React$Component) {
                     player[1]
                 );
             });
+
+            var countZl = 0;
+            if (this.state.points / 100 > 1) if (this.state.points / 100 > 1) countZl = Math.floor(this.state.points / 100);
+            var countGr = this.state.points % 100;
 
             return _react2.default.createElement(
                 "div",
@@ -23076,7 +23081,12 @@ var Game = function (_React$Component) {
                             _react2.default.createElement(
                                 "p",
                                 null,
-                                "4. Uzbieraj jak najwi\u0119ksz\u0105 ilo\u015B\u0107 pieni\u0119dzy i baw si\u0119 dobrze :)"
+                                "4. Kiedy sko\u0144czy si\u0119 miejsce - przygrywasz!"
+                            ),
+                            _react2.default.createElement(
+                                "p",
+                                null,
+                                "5. Uzbieraj jak najwi\u0119ksz\u0105 ilo\u015B\u0107 pieni\u0119dzy i baw si\u0119 dobrze :)"
                             )
                         )
                     ),

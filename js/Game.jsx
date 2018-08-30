@@ -73,7 +73,7 @@ class Game extends React.Component {
                 emptyCells.push(e);
         });
 
-        if (emptyCells.length < 2){
+        if (emptyCells.length < 1){
             const newName = prompt("Podaj swoje imię");
             const list = this.state.topPlayers;
             list.push([newName, this.state.points]);
@@ -99,15 +99,17 @@ class Game extends React.Component {
 
         if (this.state.hideGameOver === false) return;
 
-        const arrayOfEmptyCells = this.state.cells.filter(cell => cell.level < 1);
+        const newCells = this.state.cells;
+
+        newCells.forEach((cell, index) => cell.key = index);
+
+        const arrayOfEmptyCells = newCells.filter(cell => cell.level < 1);
 
         const newCell1 = arrayOfEmptyCells[Math.round(Math.random() * arrayOfEmptyCells.length)];
 
         arrayOfEmptyCells.splice(newCell1.key, 1);
 
         const newCell2 = arrayOfEmptyCells[Math.round(Math.random() * arrayOfEmptyCells.length)];
-
-        const newCells = this.state.cells;
 
         newCells[newCell1.key] = {level: 1, key: newCell1.key, class: "newCell"};
         newCells[newCell2.key] = {level: 1, key: newCell2.key, class: "newCell"};
@@ -680,11 +682,7 @@ class Game extends React.Component {
 
     render(){
 
-        let countZl = 0;
-        if ((this.state.points / 100) > 1)
-        if ((this.state.points / 100) > 1)
-            countZl = Math.floor(this.state.points / 100);
-        const countGr = this.state.points % 100;
+        if (this.state.cells.length === 0) return null;
 
         const h1Style = {textAlign: "center", fontSize: "70px", background: "lightgrey", opacity: "0.8"};
         const infoButtonStyle = {width: "100px", height: "100px", float: "left", border: "10px solid black", borderRadius:"50px", boxSizing: "border-box", background: "mediumseagreen",fontSize: "20px", fontWeight: "bold", textAlign: "center", paddingTop: "32px", cursor: "pointer"};
@@ -695,20 +693,25 @@ class Game extends React.Component {
         const magicWandSpanStyle = {fontSize: "20px", fontWeight: "bold", position: "relative", top: "25px", left: "20px"};
         const boardStyle = {width: "500px", height: "500px", margin: "0 auto", position: "relative"};
         const bestButtonStyle = {width: "100px", height: "100px", float: "left", border: "10px solid black", borderRadius:"50px", boxSizing: "border-box", background: "mediumseagreen",fontSize: "20px", fontWeight: "bold", textAlign: "center", paddingTop: "18px", cursor: "pointer"};
-        const backgroundStyle = {backgroundImage: 'url("./img/money.png")', backgroundSize: "cover", maxWidth: "1200px", height: "900px"};
+        const backgroundStyle = {backgroundImage: 'url("./img/money.png")', backgroundSize: "cover", width: "100%", height: "100vh"};
         const functionsStyle = {margin: "5px auto", width: "500px", height: "100px", boxSizing: "borderBox", padding: "10px"};
         const gameOverStyle = {textAlign: "center", color: "red", backgroundColor: "mediumseagreen", fontSize: "60px", fontWeight: "bold", marginBottom: "-50px"};
         const moneyStyle = {textAlign: "center", fontSize: "70px", background: "lightgrey", opacity: "0.8"};
         const bestStyle = {display: "inline-lock", height: "450px", width: "480px", backgroundColor: "mediumseagreen", position: "absolute", borderRadius: "50px", border: "10px solid black", textAlign: "center", fontSize: "20px", paddingTop: "50px"};
-        const infoStyle = {display: "inline-lock", height: "450px", width: "480px", backgroundColor: "mediumseagreen", position: "absolute", borderRadius: "50px", border: "10px solid black", textAlign: "center", fontSize: "20px", paddingTop: "50px"};
-        const containerStyle = {maxHeight: "800px", maxWidth: "1000px", margin: "0 auto", backgroundColor: "transparent"};
+        const infoStyle = {display: "inline-lock", height: "450px", width: "440px", backgroundColor: "mediumseagreen", position: "absolute", borderRadius: "50px", border: "10px solid black", textAlign: "center", fontSize: "20px", paddingTop: "40px", paddingLeft: "20px", paddingRight: "20px"};
+        const containerStyle = {maxHeight: "900px", maxWidth: "1000px", margin: "0 auto"};
 
-        if (this.state.cells.length === 0) return null;
         const cells = this.state.cells.map(element => <Cell key={element.key} oldLevel={element.oldLevel} level={element.level} class={element.class}/>);
         const list = this.state.topPlayers.map((player, index) => <li key={index}>{player[0]} - {player[1]}</li>);
 
-        return <div style={backgroundStyle}>
+        let countZl = 0;
+        if ((this.state.points / 100) > 1)
+            if ((this.state.points / 100) > 1)
+                countZl = Math.floor(this.state.points / 100);
+        const countGr = this.state.points % 100;
 
+
+        return <div style={backgroundStyle}>
             <div style={containerStyle}>
                 <h1 style={h1Style}>Super Zbieracz - THE GAME !!!</h1>
                 <div style={functionsStyle}>
@@ -726,7 +729,8 @@ class Game extends React.Component {
                         <p>1. Używaj strzałek na klawiaturze, żeby przesunąć wszystkie monety w zadanym kierunku</p>
                         <p>2. Łącz dwie monety o takim samym nominale - dostaniesz droższą monetę</p>
                         <p>3. Po każdym ruchu dwie monety o nominale 1gr. pojawiają się na planszy</p>
-                        <p>4. Uzbieraj jak największą ilość pieniędzy i baw się dobrze :)</p>
+                        <p>4. Kiedy skończy się miejsce - przygrywasz!</p>
+                        <p>5. Uzbieraj jak największą ilość pieniędzy i baw się dobrze :)</p>
                     </div>
                 </div>
                 <div hidden={this.state.hideGameOver} style={gameOverStyle}>Koniec Gry!</div>
