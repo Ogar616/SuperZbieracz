@@ -17,9 +17,9 @@ Game does not require any installation - just run it in your favourite browser
 
 ## Screenshots
 
-<img alt="screenshot" src="img/screenshots/screenshot1">
-<img alt="screenshot" src="img/screenshots/screenshot2">
-<img alt="screenshot" src="img/screenshots/screenshot3">
+<img alt="screenshot" src="http://i65.tinypic.com/hvnp7k.png">
+<img alt="screenshot" src="http://i67.tinypic.com/9pn8gn.png">
+<img alt="screenshot" src="http://i65.tinypic.com/2por30g.png">
 
 
 
