@@ -3,8 +3,8 @@
 ## About
 
 <p align="center"><b>Super Zbieracz</b></p>
-<p align="center">**Simple logic game**</p>
-<p align="center">**Variation about 2048**</p>
+<p align="center">Logic Game inspired by 2048</p>
+<p align="center">JavaScript</p>
 
 
 
