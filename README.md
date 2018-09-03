@@ -1,14 +1,14 @@
-<p align="center"></b># Super Zbieracz</b></p>
+</b># Super Zbieracz</b>
 
-<p align="center">## About</p>
+## About
 
 
-<p align="center"><b>###Super Zbieracz</b></p>
+<p align="center"><b>Super Zbieracz</b></p>
 <p align="center">Logic Game inspired by 2048</p>
 <p align="center">JavaScript</p>
 
 
-<p align="center">## Rules</p>
+## Rules
 
 > Use keyboard arrows to move all the coins on chosen direction.
 > Merge two coins to get a higher level coin.
@@ -16,12 +16,12 @@
 > Game is over when board is full.
 > Collect as much money as you can and have fun ! :)
 
-<p align="center">## Instalation</p>
+## Instalation
 
 
 Game does not require any installation - just run it in your favourite browser
 
-<p align="center">## Screenshotsn</p> 
+## Screenshotsn
 
 
 <img alt="screenshot" src="http://i65.tinypic.com/hvnp7k.png">
