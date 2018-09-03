@@ -2,7 +2,7 @@
 
 ## About
 
-Super Zbieracz is a simple logic game - variation about 2048.
+<center>Super Zbieracz</center> is a simple logic game - variation about 2048.
 
 ### Rules
 > Use keyboard arrows to move all the coins on chosen direction.
