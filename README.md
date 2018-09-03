@@ -1,4 +1,4 @@
-</b># Super Zbieracz</b>
+# Super Zbieracz
 
 ## About
 
