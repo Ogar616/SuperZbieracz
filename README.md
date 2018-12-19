@@ -6,6 +6,7 @@
 <p align="center"><b>Super Zbieracz</b></p>
 <p align="center">Logic Game inspired by 2048</p>
 <p align="center">JavaScript</p>
+<p align="center">Desktop version only!</p>
 
 
 ## Rules
