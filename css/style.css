@@ -1,0 +1,399 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+@keyframes zoomIn {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3);
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes shake {
+    10%, 90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+
+    20%, 80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%, 50%, 70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%, 60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        transform: scale(0);
+        opacity: 0.0;
+    }
+    60% {
+        transform: scale(1.1);
+    }
+    80% {
+        transform: scale(0.9);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    0% {
+        -webkit-transform: scale(0);
+        opacity: 0.0;
+    }
+    60% {
+        -webkit-transform: scale(1.1);
+    }
+    80% {
+        -webkit-transform: scale(0.9);
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: scale(1);
+        opacity: 1;
+    }
+}
+@keyframes moveLeft1 {
+    0% {
+        left: 0;
+        top: 0;
+    }
+    100% {
+        left: -100px;
+        top: 0px;
+    }
+}
+
+@keyframes moveLeft2 {
+    0% {
+        left: 0;
+        top: 0;
+    }
+    100% {
+        left: -200px;
+        top: 0px;
+    }
+}
+
+@keyframes moveLeft3 {
+    0% {
+        left: 0;
+        top: 0;
+    }
+    100% {
+        left: -300px;
+        top: 0px;
+    }
+}
+
+@keyframes moveLeft4 {
+    0% {
+        left: 0;
+        top: 0;
+    }
+    100% {
+        left: -400px;
+        top: 0px;
+    }
+}
+
+@keyframes moveRight1 {
+    0% {
+        left: 0;
+        top: 0;
+    }
+    100% {
+        left: 100px;
+        top: 0px;
+    }
+}
+
+@keyframes moveRight2 {
+    0% {
+        left: 0;
+        top: 0;
+    }
+    100% {
+        left: 200px;
+        top: 0px;
+    }
+}
+
+@keyframes moveRight3 {
+    0% {
+        left: 0;
+        top: 0;
+    }
+    100% {
+        left: 300px;
+        top: 0px;
+    }
+}
+
+@keyframes moveRight4 {
+    0% {
+        left: 0;
+        top: 0;
+    }
+    100% {
+        left: 400px;
+        top: 0px;
+    }
+}
+
+@keyframes moveDown1 {
+    0% {
+        left: 0;
+        top: 0;
+    }
+    100% {
+        left: 0px;
+        top: 100px;
+    }
+}
+
+@keyframes moveDown2 {
+    0% {
+        left: 0;
+        top: 0;
+    }
+    100% {
+        left: 0px;
+        top: 200px;
+    }
+}
+
+@keyframes moveDown3 {
+    0% {
+        left: 0;
+        top: 0;
+    }
+    100% {
+        left: 0px;
+        top: 300px;
+    }
+}
+
+@keyframes moveDown4 {
+    0% {
+        left: 0;
+        top: 0;
+    }
+    100% {
+        left: 0px;
+        top: 400px;
+    }
+}
+
+@keyframes moveUp1 {
+    0% {
+        left: 0;
+        top: 0;
+    }
+    100% {
+        left: 0px;
+        top: -100px;
+    }
+}
+
+@keyframes moveUp2 {
+    0% {
+        left: 0;
+        top: 0;
+    }
+    100% {
+        left: 0px;
+        top: -200px;
+    }
+}
+
+@keyframes moveUp2 {
+    0% {
+        left: 0;
+        top: 0;
+    }
+    100% {
+        left: 0px;
+        top: -200px;
+    }
+}
+
+@keyframes moveUp3 {
+    0% {
+        left: 0;
+        top: 0;
+    }
+    100% {
+        left: 0px;
+        top: -300px;
+    }
+}
+
+@keyframes moveUp4 {
+    0% {
+        left: 0;
+        top: 0;
+    }
+    100% {
+        left: 0px;
+        top: -400px;
+    }
+}
+
+.moveLeft1 {
+    position: relative;
+    animation: moveLeft1 0.5s;
+}
+
+.moveLeft2 {
+    position: relative;
+    animation: moveLeft2 0.5s;
+}
+
+.moveLeft3 {
+    position: relative;
+    animation: moveLeft3 0.5s;
+}
+
+.moveLeft4 {
+    position: relative;
+    animation: moveLeft4 0.5s;
+}
+
+.moveRight1 {
+    position: relative;
+    animation: moveRight1 0.5s;
+}
+
+.moveRight2 {
+    position: relative;
+    animation: moveRight2 0.5s;
+}
+
+.moveRight3 {
+    position: relative;
+    animation: moveRight3 0.5s;
+}
+
+.moveRight4 {
+    position: relative;
+    animation: moveRight4 0.5s;
+}
+
+.moveUp1 {
+    position: relative;
+    animation: moveUp1 0.5s;
+}
+
+.moveUp2 {
+    position: relative;
+    animation: moveUp2 0.5s;
+}
+
+.moveUp3 {
+    position: relative;
+    animation: moveUp3 0.5s;
+}
+
+.moveUp4 {
+    position: relative;
+    animation: moveUp4 0.5s;
+}
+
+.moveDown1 {
+    position: relative;
+    animation: moveDown1 0.5s;
+}
+
+.moveDown2 {
+    position: relative;
+    animation: moveDown2 0.5s;
+}
+
+.moveDown3 {
+    position: relative;
+    animation: moveDown3 0.5s;
+}
+
+.moveDown4 {
+    position: relative;
+    animation: moveDown4 0.5s;
+}
+
+.newCell {
+    animation: shake 0.15s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+}
+
+.lvlUp {
+    -webkit-animation-name: zoomIn;
+    animation-name: zoomIn;
+    -webkit-animation-duration: 0.3s;
+    animation-duration: 0.3s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+
+
+
+
