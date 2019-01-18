@@ -28,9 +28,9 @@
 ## Instalation
 
 
-Game does not require any installation - just run it in your favourite browser
+Game does not require any installation - just run it in your favourite browser (git clone => npm install, or check website)
 
-## Screenshotsn
+## Screenshots
 
 
 <img alt="screenshot" src="http://i65.tinypic.com/hvnp7k.png">
