@@ -8,7 +8,7 @@
 
 h1 {
     text-align: center;
-    font-size: vw;
+    font-size: 4vw;
     background-color: lightgrey;
     opacity: 0.8;
 }
@@ -57,7 +57,7 @@ h1 {
     border-radius: 50px;
     border: 1px solid black;
     background: mediumseagreen;
-    background-image: url("../assets/back.svg");
+    background-image: url('../assets/back.svg');
     background-size: contain;
     cursor: pointer;
 }
@@ -77,7 +77,7 @@ h1 {
     border-radius: 50px;
     border: 2px solid black;
     background: mediumseagreen;
-    background-image: url("../assets/wand.svg");
+    background-image: url('../assets/wand.svg');
     background-size: contain;
     cursor: pointer;
 }
