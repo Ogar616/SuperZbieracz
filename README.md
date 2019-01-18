@@ -1,6 +1,9 @@
 
 # REPOSITORY UNDER MAINTANCE - REBUILDING !
-# SOME OR MANY OF FEATURES WILL NOT WORK!
+# SOME OR MANY FEATURES WILL NOT WORK!
+
+## PREVIEW (Desktopts only)
+> http://superzbieracz.pl/
 
 
 # Super Zbieracz
