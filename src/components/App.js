@@ -107,16 +107,16 @@ class Game extends React.Component {
 
     const arrayOfEmptyCells = newCells.filter(cell => cell.level < 1);
 
-    const newCell1 =
-      arrayOfEmptyCells[Math.round(Math.random() * arrayOfEmptyCells.length)];
+    const newCell1 = arrayOfEmptyCells[Math.round(Math.random() * arrayOfEmptyCells.length -1) + 0]
+   ;
 
-      console.log(newCell1);
-      console.log(newCell1.key);
+      console.log('newCell1: ', newCell1);
+      console.log('newCell1.key: ', newCell1.key);
 
     arrayOfEmptyCells.splice(newCell1.key, 1);
 
     const newCell2 =
-      arrayOfEmptyCells[Math.round(Math.random() * arrayOfEmptyCells.length)];
+    arrayOfEmptyCells[Math.round(Math.random() * arrayOfEmptyCells.length -1) + 0]
 
     newCells[newCell1.key] = { level: 1, key: newCell1.key, class: "newCell" };
     newCells[newCell2.key] = { level: 1, key: newCell2.key, class: "newCell" };
