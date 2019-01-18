@@ -110,6 +110,9 @@ class Game extends React.Component {
     const newCell1 =
       arrayOfEmptyCells[Math.round(Math.random() * arrayOfEmptyCells.length)];
 
+      console.log(newCell1);
+      console.log(newCell1.key);
+
     arrayOfEmptyCells.splice(newCell1.key, 1);
 
     const newCell2 =
