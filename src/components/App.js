@@ -101,22 +101,30 @@ class Game extends React.Component {
 
     // if (this.state.hideGameOver === false) return;
 
-    const newCells = this.state.cells;
+    let newCells = this.state.cells.map((cell, index) => {
+      cell.key = index;
+      return cell;
+    })
 
-    newCells.forEach((cell, index) => (cell.key = index));
+    let arrayOfEmptyCells = newCells.filter(cell => cell.level < 1);
 
-    const arrayOfEmptyCells = newCells.filter(cell => cell.level < 1);
+    const newCell1 =
+      arrayOfEmptyCells[
+        Math.floor(Math.random() * (arrayOfEmptyCells.length - 1))
+      ];
 
-    const newCell1 = arrayOfEmptyCells[Math.round(Math.random() * arrayOfEmptyCells.length -1) + 0]
-   ;
+    let newCell1Position;
 
-      console.log('newCell1: ', newCell1);
-      console.log('newCell1.key: ', newCell1.key);
+    arrayOfEmptyCells.forEach((cell, index) => {
+      if (cell.key === newCell1.key) newCell1Position = index;
+    });
 
-    arrayOfEmptyCells.splice(newCell1.key, 1);
+    arrayOfEmptyCells.splice(newCell1Position, 1);
 
     const newCell2 =
-    arrayOfEmptyCells[Math.round(Math.random() * arrayOfEmptyCells.length -1) + 0]
+      arrayOfEmptyCells[
+        Math.floor(Math.random() * (arrayOfEmptyCells.length - 1))
+      ];
 
     newCells[newCell1.key] = { level: 1, key: newCell1.key, class: "newCell" };
     newCells[newCell2.key] = { level: 1, key: newCell2.key, class: "newCell" };
@@ -194,7 +202,9 @@ class Game extends React.Component {
       for (let i = 0; i < 5; i++)
         if (!fullCellsOnly[i]) fullCellsOnly.push({ level: 0 });
 
-      fullCellsOnly.forEach((cell, index) => (cell.oldLevel = cells[index].level));
+      fullCellsOnly.forEach(
+        (cell, index) => (cell.oldLevel = cells[index].level)
+      );
 
       return fullCellsOnly;
     };

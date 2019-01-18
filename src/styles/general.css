@@ -8,7 +8,7 @@
 
 h1 {
     text-align: center;
-    font-size: 70px;
+    font-size: vw;
     background-color: lightgrey;
     opacity: 0.8;
 }
@@ -134,7 +134,7 @@ img {
 
 .money-counter {
     text-align: center;
-   font-size: 70px;
+   font-size: 3vw;
    background: lightgrey;
    opacity: 0.8;
 }
