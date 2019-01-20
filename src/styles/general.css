@@ -1,6 +1,7 @@
-#root {
-  /* background-image: url("../assets/money.png");
-   */
+body {
+  background-image: url("../assets/money.png");
+  background-size: cover;
+  
 }
 .container {
   height: 100vh;
@@ -10,10 +11,10 @@
 }
 h1 {
   text-align: center;
-  font-size: 4vw;
+  font-size: 5vw;
   background-color: lightgrey;
   opacity: 0.8;
-  margin: 5%;
+  margin: 3vh;
 }
 .board {
   width: 55vh;
@@ -41,18 +42,14 @@ img {
   width: 100%;
   z-index: 1;
 }
-body {
-  height: 100%;
-  width: 100%;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.money-counter {
-  text-align: center;
-  font-size: 3vw;
-  background: lightgrey;
-  opacity: 0.8;
-}
 .empty {
   z-index: 0;
 }
+.money-counter {
+  text-align: center;
+  font-size: 4vw;
+  background: lightgrey;
+  opacity: 0.8;
+  margin: 2vh;
+}
+
