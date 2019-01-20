@@ -718,17 +718,17 @@ export default class Game extends Component {
         <h1>SuperZbieracz - THE GAME</h1>
         <div className='container'>
           <div className='control-buttons'>
-            <div className='info-button' onClick={this.showHideInfo}>
+            <div className='button' onClick={this.showHideInfo}>
               INFO
             </div>
-            <div className='restart-button' onClick={this.restartGame} />
-            <div className='back-button' onClick={this.moveBack}>
-              <span className='back-span'>{this.state.movesBack}</span>
+            <div className='restart button' onClick={this.restartGame} />
+            <div className='back button' onClick={this.moveBack}>
+              <span>{this.state.movesBack}</span>
             </div>
-            <div className='magic-wand-button' onClick={this.magicWand}>
-              <span className='wand-span'>{this.state.wands}</span>
+            <div className='magic-wand button' onClick={this.magicWand}>
+              <span>{this.state.wands}</span>
             </div>
-            <div className='best-button' onClick={this.showHideBestPlayers}>
+            <div className='best button' onClick={this.showHideBestPlayers}>
               Best Players
             </div>
           </div>

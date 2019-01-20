@@ -1,0 +1,30 @@
+.board {
+    width: 55vh;
+    height: 55vh;
+    max-width: 95vw;
+    position: relative;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+  }
+  .cell {
+    width: 20%;
+    height: width;
+    border-radius: 50%;
+    border: 2px solid black;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+  img {
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+  }
+  .empty {
+    z-index: 0;
+  }

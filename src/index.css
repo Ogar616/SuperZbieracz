@@ -1,6 +1,7 @@
 @import './styles/reset.css';
 @import './styles/keyframes.css';
 @import './styles/moveCells.css';
+@import './styles/board.css';
 @import './styles/general.css';
 @import './styles/panels.css';
 @import './styles/controlButtons.css';
