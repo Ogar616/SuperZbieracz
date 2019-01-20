@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Cell from './Cell.jsx';
+import Cell from './Cell';
 
 export default class Game extends Component {
   constructor(props) {

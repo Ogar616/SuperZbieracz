@@ -1,14 +1,13 @@
-#root{
-  /* background-image: url("../assets/money.png"); */
+#root {
+  /* background-image: url("../assets/money.png");
+   */
 }
-
 .container {
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
 h1 {
   text-align: center;
   font-size: 4vw;
@@ -16,17 +15,15 @@ h1 {
   opacity: 0.8;
   margin: 5%;
 }
-
 .board {
-  width: 60%;
-  height: width;
+  width: 55vh;
+  height: 55vh;
   position: relative;
   display: flex;
   align-items: center;
   align-content: center;
   flex-wrap: wrap;
 }
-
 .cell {
   width: 20%;
   height: width;
@@ -39,28 +36,23 @@ h1 {
   justify-content: center;
   z-index: 2;
 }
-
 img {
   height: 100%;
   width: 100%;
   z-index: 1;
 }
-
 body {
   height: 100%;
   width: 100%;
- 
   background-repeat: no-repeat;
   background-size: cover;
 }
-
 .money-counter {
   text-align: center;
   font-size: 3vw;
   background: lightgrey;
   opacity: 0.8;
 }
-
 .empty {
-    z-index: 0;
+  z-index: 0;
 }

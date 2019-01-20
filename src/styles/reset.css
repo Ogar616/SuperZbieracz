@@ -1,6 +1,4 @@
-html, body, div, span, iframe,
-h1, h2, h3, h4, p, a, img, ul, li, form, label,
-figure, figcaption, footer, header, nav, section {
+html, body, div, span, iframe, h1, h2, h3, h4, p, a, img, ul, li, form, label, figure, figcaption, footer, header, nav, section {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -8,12 +6,10 @@ figure, figcaption, footer, header, nav, section {
 	font: inherit;
 	vertical-align: baseline;
 }
-
 body {
 	line-height: 1;
 	font-weight: 600;
 }
-
 .container {
 	margin-top: 0;
 }
