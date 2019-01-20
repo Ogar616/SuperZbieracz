@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import Cell from './Cell';
+import React, { Component } from "react";
+import Cell from "./Cell";
 
 export default class Game extends Component {
   constructor(props) {
@@ -16,7 +16,7 @@ export default class Game extends Component {
       bestHide: true,
       infoHide: true
     };
-  };
+  }
 
   showHideInfo = () => {
     if (this.state.bestHide === true)
@@ -50,14 +50,14 @@ export default class Game extends Component {
         },
         () => this.setState({ points: this.countMoney() })
       );
-    };
+    }
   };
 
   createBoard = () => {
     const start = [];
     for (let i = 0; i < 25; i++) {
       start[i] = { level: 0, key: i };
-    };
+    }
     return start;
   };
 
@@ -68,15 +68,15 @@ export default class Game extends Component {
     });
 
     if (emptyCells.length < 1) {
-      const newName = prompt('Podaj swoje imię');
+      const newName = prompt("Podaj swoje imię");
       const list = this.state.topPlayers;
       list.push([newName, this.state.points]);
       list.sort((a, b) => a[1] - b[1]);
       this.setState(
         { hideGameOver: false, topPlayers: list },
-        console.log('Game over')
+        console.log("Game over")
       );
-    };
+    }
   };
 
   moveBack = () => {
@@ -88,15 +88,15 @@ export default class Game extends Component {
         const previousCells = this.state.previousCells;
         previousCells.forEach((cell, index) => {
           cell.key = index;
-          cell.class = '';
+          cell.class = "";
         });
         this.setState({
           cells: previousCells,
           movesBack: this.state.movesBack - 1,
           points: this.countMoney()
         });
-      };
-    };
+      }
+    }
   };
 
   addNewCells = () => {
@@ -129,14 +129,14 @@ export default class Game extends Component {
         Math.floor(Math.random() * (arrayOfEmptyCells.length - 1))
       ];
 
-    newCells[newCell1.key] = { level: 1, key: newCell1.key, class: 'newCell' };
-    newCells[newCell2.key] = { level: 1, key: newCell2.key, class: 'newCell' };
+    newCells[newCell1.key] = { level: 1, key: newCell1.key, class: "newCell" };
+    newCells[newCell2.key] = { level: 1, key: newCell2.key, class: "newCell" };
 
     this.setState({ cells: newCells, points: this.countMoney() });
   };
 
   componentDidMount = () => {
-    document.addEventListener('keyup', this.handleKeys);
+    document.addEventListener("keyup", this.handleKeys);
     this.addNewCells();
   };
 
@@ -200,7 +200,7 @@ export default class Game extends Component {
     const removeEmptyAndFixKeysLeft = cells => {
       let fullCellsOnly = cells.filter(cell => cell.level > 0);
 
-      cells.forEach((cell, index) => cells[index].key1 = index);
+      cells.forEach((cell, index) => (cells[index].key1 = index));
 
       for (let i = 0; i < 5; i++)
         if (!fullCellsOnly[i]) fullCellsOnly.push({ level: 0 });
@@ -215,7 +215,7 @@ export default class Game extends Component {
     const removeEmptyAndFixKeysRight = cells => {
       const fullCellsOnly = cells.filter(cell => cell.level > 0);
 
-      cells.forEach((cell, index) => cells[index].key1 = index);
+      cells.forEach((cell, index) => (cells[index].key1 = index));
 
       for (let i = 0; i < 5; i++)
         if (!fullCellsOnly[i]) fullCellsOnly.unshift({ level: 0 });
@@ -233,7 +233,7 @@ export default class Game extends Component {
           fullCellsOnly.push({ level: 0, oldLevel: oldLevels[i] });
 
       fullCellsOnly.forEach(
-        (cell, index) => fullCellsOnly[index].oldLevel = oldLevels[index] || 0
+        (cell, index) => (fullCellsOnly[index].oldLevel = oldLevels[index] || 0)
       );
 
       return fullCellsOnly;
@@ -247,7 +247,7 @@ export default class Game extends Component {
           fullCellsOnly.unshift({ level: 0, oldLevel: oldLevels[i] });
 
       fullCellsOnly.forEach(
-        (cell, index) => fullCellsOnly[index].oldLevel = oldLevels[index] || 0
+        (cell, index) => (fullCellsOnly[index].oldLevel = oldLevels[index] || 0)
       );
 
       return fullCellsOnly;
@@ -264,10 +264,10 @@ export default class Game extends Component {
         if (cells[index].level > 0 && cells[index + 1])
           if (cells[index].level === cells[index + 1].level) {
             cells[index].level++;
-            cells[index].class = 'lvl-up';
+            cells[index].class = "lvl-up";
             cells[index].key2 = cells[index + 1].key1;
             cells[index + 1].level = 0;
-          };
+          }
       });
 
       return removeEmptyLeft(cells, oldLevels);
@@ -286,14 +286,14 @@ export default class Game extends Component {
             cells[index].level++;
             cells[index].key2 = cells[index - 1].key1;
             cells[index - 1].level = 0;
-          };
-        };
+          }
+        }
       });
 
       return removeEmptyRight(cells, oldLevels);
     };
 
-    if (direction === 'left') {
+    if (direction === "left") {
       row1 = removeEmptyAndFixKeysLeft(row1);
       row2 = removeEmptyAndFixKeysLeft(row2);
       row3 = removeEmptyAndFixKeysLeft(row3);
@@ -307,9 +307,9 @@ export default class Game extends Component {
       row5 = mergeLeft(row5);
 
       return [row1, row2, row3, row4, row5];
-    };
+    }
 
-    if (direction === 'right') {
+    if (direction === "right") {
       row1 = removeEmptyAndFixKeysRight(row1);
       row2 = removeEmptyAndFixKeysRight(row2);
       row3 = removeEmptyAndFixKeysRight(row3);
@@ -323,9 +323,9 @@ export default class Game extends Component {
       row5 = mergeRight(row5);
 
       return [row1, row2, row3, row4, row5];
-    };
+    }
 
-    if (direction === 'up') {
+    if (direction === "up") {
       cells = this.changePlane(cells);
 
       let col1 = cells[0];
@@ -349,9 +349,9 @@ export default class Game extends Component {
       cells = [...col1, ...col2, ...col3, ...col4, ...col5];
 
       return this.changePlane(cells);
-    };
+    }
 
-    if (direction === 'down') {
+    if (direction === "down") {
       cells = this.changePlane(cells);
 
       let col1 = cells[0];
@@ -375,7 +375,7 @@ export default class Game extends Component {
       cells = [...col1, ...col2, ...col3, ...col4, ...col5];
 
       return this.changePlane(cells);
-    };
+    }
   };
 
   concatRows = cells => {
@@ -393,87 +393,87 @@ export default class Game extends Component {
   calculateClass = (row, direction) => {
     let classes = [];
 
-    if (direction === 'left') {
+    if (direction === "left") {
       const defineClass = count => {
-        if (count === 1) return 'moveLeft1';
-        if (count === 2) return 'moveLeft2';
-        if (count === 3) return 'moveLeft3';
-        if (count === 4) return 'moveLeft4';
+        if (count === 1) return "moveLeft1";
+        if (count === 2) return "moveLeft2";
+        if (count === 3) return "moveLeft3";
+        if (count === 4) return "moveLeft4";
       };
 
       row.forEach((cell, index) => {
-        if (typeof cell.key1 === 'number' && typeof cell.key2 !== 'number') {
+        if (typeof cell.key1 === "number" && typeof cell.key2 !== "number") {
           classes[cell.key1] = defineClass(cell.key1 - index);
-        };
+        }
 
-        if (typeof cell.key2 === 'number' && cell.key1 !== cell.key2) {
-          classes[cell.key1] = defineClass(cell.key1 - index);
-          classes[cell.key2] = defineClass(cell.key2 - index);
-          classes[index] = 'lvl+';
-        };
-      });
-    };
-
-    if (direction === 'right') {
-      const defineClass = count => {
-        if (count === 1) return 'moveRight1';
-        if (count === 2) return 'moveRight2';
-        if (count === 3) return 'moveRight3';
-        if (count === 4) return 'moveRight4';
-      };
-
-      row.forEach((cell, index) => {
-        if (typeof cell.key1 === 'number' && typeof cell.key2 !== 'number') {
-          classes[cell.key1] = defineClass(index - cell.key1);
-        };
-
-        if (typeof cell.key2 === 'number' && cell.key1 !== cell.key2) {
-          classes[cell.key1] = defineClass(index - cell.key1);
-          classes[cell.key2] = defineClass(index - cell.key2);
-          classes[index] = 'lvl+';
-        };
-      });
-    };
-
-    if (direction === 'up') {
-      const defineClass = count => {
-        if (count === 1) return 'moveUp1';
-        if (count === 2) return 'moveUp2';
-        if (count === 3) return 'moveUp3';
-        if (count === 4) return 'moveUp4';
-      };
-
-      row.forEach((cell, index) => {
-        if (typeof cell.key1 === 'number' && typeof cell.key2 !== 'number') {
-          classes[cell.key1] = defineClass(cell.key1 - index);
-        };
-
-        if (typeof cell.key2 === 'number' && cell.key1 !== cell.key2) {
+        if (typeof cell.key2 === "number" && cell.key1 !== cell.key2) {
           classes[cell.key1] = defineClass(cell.key1 - index);
           classes[cell.key2] = defineClass(cell.key2 - index);
-          classes[index] = 'lvl+';
-        };
+          classes[index] = "lvl+";
+        }
       });
-    };
+    }
 
-    if (direction === 'down') {
+    if (direction === "right") {
       const defineClass = count => {
-        if (count === 1) return 'moveDown1';
-        if (count === 2) return 'moveDown2';
-        if (count === 3) return 'moveDown3';
-        if (count === 4) return 'moveDown4';
+        if (count === 1) return "moveRight1";
+        if (count === 2) return "moveRight2";
+        if (count === 3) return "moveRight3";
+        if (count === 4) return "moveRight4";
       };
 
       row.forEach((cell, index) => {
-        if (typeof cell.key1 === 'number' && typeof cell.key2 !== 'number') {
+        if (typeof cell.key1 === "number" && typeof cell.key2 !== "number") {
           classes[cell.key1] = defineClass(index - cell.key1);
-        };
+        }
 
-        if (typeof cell.key2 === 'number' && cell.key1 !== cell.key2) {
+        if (typeof cell.key2 === "number" && cell.key1 !== cell.key2) {
           classes[cell.key1] = defineClass(index - cell.key1);
           classes[cell.key2] = defineClass(index - cell.key2);
-          classes[index] = 'lvl+';
-        };
+          classes[index] = "lvl+";
+        }
+      });
+    }
+
+    if (direction === "up") {
+      const defineClass = count => {
+        if (count === 1) return "moveUp1";
+        if (count === 2) return "moveUp2";
+        if (count === 3) return "moveUp3";
+        if (count === 4) return "moveUp4";
+      };
+
+      row.forEach((cell, index) => {
+        if (typeof cell.key1 === "number" && typeof cell.key2 !== "number") {
+          classes[cell.key1] = defineClass(cell.key1 - index);
+        }
+
+        if (typeof cell.key2 === "number" && cell.key1 !== cell.key2) {
+          classes[cell.key1] = defineClass(cell.key1 - index);
+          classes[cell.key2] = defineClass(cell.key2 - index);
+          classes[index] = "lvl+";
+        }
+      });
+    }
+
+    if (direction === "down") {
+      const defineClass = count => {
+        if (count === 1) return "moveDown1";
+        if (count === 2) return "moveDown2";
+        if (count === 3) return "moveDown3";
+        if (count === 4) return "moveDown4";
+      };
+
+      row.forEach((cell, index) => {
+        if (typeof cell.key1 === "number" && typeof cell.key2 !== "number") {
+          classes[cell.key1] = defineClass(index - cell.key1);
+        }
+
+        if (typeof cell.key2 === "number" && cell.key1 !== cell.key2) {
+          classes[cell.key1] = defineClass(index - cell.key1);
+          classes[cell.key2] = defineClass(index - cell.key2);
+          classes[index] = "lvl+";
+        }
       });
     }
 
@@ -498,11 +498,11 @@ export default class Game extends Component {
     let cellsAfter;
 
     if (key.which === leftArrow) {
-      let newCells = this.moveCells('left', oldCells);
+      let newCells = this.moveCells("left", oldCells);
 
       newCells = this.concatRows(newCells);
 
-      newCells.forEach((cell, index) => cell.key = index);
+      newCells.forEach((cell, index) => (cell.key = index));
 
       let row1 = newCells.slice(0, 5);
       let row2 = newCells.slice(5, 10);
@@ -511,19 +511,19 @@ export default class Game extends Component {
       let row5 = newCells.slice(20, 25);
 
       row1.forEach((cell, index) => {
-        cell.class = this.calculateClass(row1, 'left')[index];
+        cell.class = this.calculateClass(row1, "left")[index];
       });
       row2.forEach((cell, index) => {
-        cell.class = this.calculateClass(row2, 'left')[index];
+        cell.class = this.calculateClass(row2, "left")[index];
       });
       row3.forEach((cell, index) => {
-        cell.class = this.calculateClass(row3, 'left')[index];
+        cell.class = this.calculateClass(row3, "left")[index];
       });
       row4.forEach((cell, index) => {
-        cell.class = this.calculateClass(row4, 'left')[index];
+        cell.class = this.calculateClass(row4, "left")[index];
       });
       row5.forEach((cell, index) => {
-        cell.class = this.calculateClass(row5, 'left')[index];
+        cell.class = this.calculateClass(row5, "left")[index];
       });
 
       cellsBefore = JSON.parse(
@@ -531,14 +531,14 @@ export default class Game extends Component {
       );
 
       cellsAfter = newCells;
-    };
+    }
 
     if (key.which === rightArrow) {
-      let newCells = this.moveCells('right', oldCells);
+      let newCells = this.moveCells("right", oldCells);
 
       newCells = this.concatRows(newCells);
 
-      newCells.forEach((cell, index) => cell.key = index);
+      newCells.forEach((cell, index) => (cell.key = index));
 
       let row1 = newCells.slice(0, 5);
       let row2 = newCells.slice(5, 10);
@@ -547,19 +547,19 @@ export default class Game extends Component {
       let row5 = newCells.slice(20, 25);
 
       row1.forEach((cell, index) => {
-        cell.class = this.calculateClass(row1, 'right')[index];
+        cell.class = this.calculateClass(row1, "right")[index];
       });
       row2.forEach((cell, index) => {
-        cell.class = this.calculateClass(row2, 'right')[index];
+        cell.class = this.calculateClass(row2, "right")[index];
       });
       row3.forEach((cell, index) => {
-        cell.class = this.calculateClass(row3, 'right')[index];
+        cell.class = this.calculateClass(row3, "right")[index];
       });
       row4.forEach((cell, index) => {
-        cell.class = this.calculateClass(row4, 'right')[index];
+        cell.class = this.calculateClass(row4, "right")[index];
       });
       row5.forEach((cell, index) => {
-        cell.class = this.calculateClass(row5, 'right')[index];
+        cell.class = this.calculateClass(row5, "right")[index];
       });
 
       cellsBefore = JSON.parse(
@@ -567,14 +567,14 @@ export default class Game extends Component {
       );
 
       cellsAfter = newCells;
-    };
+    }
 
     if (key.which === upArrow) {
-      let newCells = this.moveCells('up', oldCells);
+      let newCells = this.moveCells("up", oldCells);
 
       newCells = this.concatRows(newCells);
 
-      newCells.forEach((e, i) => e.key = i);
+      newCells.forEach((e, i) => (e.key = i));
 
       newCells = this.changePlane(newCells);
 
@@ -585,19 +585,19 @@ export default class Game extends Component {
       let row5 = newCells[4];
 
       row1.forEach((cell, index) => {
-        cell.class = this.calculateClass(row1, 'up')[index];
+        cell.class = this.calculateClass(row1, "up")[index];
       });
       row2.forEach((cell, index) => {
-        cell.class = this.calculateClass(row2, 'up')[index];
+        cell.class = this.calculateClass(row2, "up")[index];
       });
       row3.forEach((cell, index) => {
-        cell.class = this.calculateClass(row3, 'up')[index];
+        cell.class = this.calculateClass(row3, "up")[index];
       });
       row4.forEach((cell, index) => {
-        cell.class = this.calculateClass(row4, 'up')[index];
+        cell.class = this.calculateClass(row4, "up")[index];
       });
       row5.forEach((cell, index) => {
-        cell.class = this.calculateClass(row5, 'up')[index];
+        cell.class = this.calculateClass(row5, "up")[index];
       });
 
       let animatedCells = JSON.parse(
@@ -614,18 +614,18 @@ export default class Game extends Component {
 
       newCells = this.concatRows(newCells);
 
-      newCells.forEach((cell, index) => cell.key = index);
+      newCells.forEach((cell, index) => (cell.key = index));
 
       cellsBefore = animatedCells;
       cellsAfter = newCells;
-    };
+    }
 
     if (key.which === downArrow) {
-      let newCells = this.moveCells('down', oldCells);
+      let newCells = this.moveCells("down", oldCells);
 
       newCells = this.concatRows(newCells);
 
-      newCells.forEach((cell, index) => cell.key = index);
+      newCells.forEach((cell, index) => (cell.key = index));
 
       newCells = this.changePlane(newCells);
 
@@ -636,19 +636,19 @@ export default class Game extends Component {
       let row5 = newCells[4];
 
       row1.forEach((cell, index) => {
-        cell.class = this.calculateClass(row1, 'down')[index];
+        cell.class = this.calculateClass(row1, "down")[index];
       });
       row2.forEach((cell, index) => {
-        cell.class = this.calculateClass(row2, 'down')[index];
+        cell.class = this.calculateClass(row2, "down")[index];
       });
       row3.forEach((cell, index) => {
-        cell.class = this.calculateClass(row3, 'down')[index];
+        cell.class = this.calculateClass(row3, "down")[index];
       });
       row4.forEach((cell, index) => {
-        cell.class = this.calculateClass(row4, 'down')[index];
+        cell.class = this.calculateClass(row4, "down")[index];
       });
       row5.forEach((cell, index) => {
-        cell.class = this.calculateClass(row5, 'down')[index];
+        cell.class = this.calculateClass(row5, "down")[index];
       });
 
       let animatedCells = JSON.parse(
@@ -665,13 +665,13 @@ export default class Game extends Component {
 
       newCells = this.concatRows(newCells);
 
-      newCells.forEach((cell, index) => cell.key = index);
+      newCells.forEach((cell, index) => (cell.key = index));
 
       cellsBefore = animatedCells;
       cellsAfter = newCells;
-    };
+    }
 
-    cellsBefore.forEach((cell, index) => cell.key = index);
+    cellsBefore.forEach((cell, index) => (cell.key = index));
 
     this.setState({ cells: cellsBefore }, () => {
       this.timer = setTimeout(() => {
@@ -683,7 +683,7 @@ export default class Game extends Component {
         });
 
         cellsBefore.forEach((cell, index) => {
-          if (cell.class === 'lvl+') cellsAfter[index].class = 'lvlUp';
+          if (cell.class === "lvl+") cellsAfter[index].class = "lvlUp";
         });
 
         this.setState({ cells: cellsAfter });
@@ -695,14 +695,14 @@ export default class Game extends Component {
   render() {
     if (this.state.cells.length === 0) return null;
 
-    const cells = this.state.cells.map(element => 
+    const cells = this.state.cells.map(element => (
       <Cell
         key={element.key}
         oldLevel={element.oldLevel}
         level={element.level}
         class={element.class}
       />
-    );
+    ));
 
     let countZl = 0;
     if (this.state.points / 100 > 1)
@@ -711,62 +711,63 @@ export default class Game extends Component {
     const countGr = this.state.points % 100;
 
     return (
-      <div className='container'>
-        <h1>Super Zbieracz - THE GAME
-        </h1>
-        <div className='control-buttons'>
-          <div className='info-button' onClick={this.showHideInfo}>
-            INFO
+      <>
+        {" "}
+        <h1>Super Zbieracz - THE GAME</h1>
+        <div className="container">
+          <div className="control-buttons">
+            <div className="info-button" onClick={this.showHideInfo}>
+              INFO
+            </div>
+            <div className="restart-button" onClick={this.restartGame} />
+            <div className="back-button" onClick={this.moveBack}>
+              <span className="back-span">{this.state.movesBack}</span>
+            </div>
+            <div className="magic-wand-button" onClick={this.magicWand}>
+              <span className="wand-span">{this.state.wands}</span>
+            </div>
+            <div className="best-button" onClick={this.showHideBestPlayers}>
+              Best Players
+            </div>
           </div>
-          <div className='restart-button' onClick={this.restartGame}>
+          <div className="board">
+            {cells}
+            <div className="best-players-panel" hidden={this.state.bestHide}>
+              Najlepsze wyniki:{" "}
+              <ol>
+                <li />
+                <li />
+              </ol>
+            </div>
+            <div className="info-panel" hidden={this.state.infoHide}>
+              <h3>Zasady gry:</h3>
+              <br />
+              <p>
+                1. Używaj strzałek na klawiaturze, żeby przesunąć wszystkie
+                monety w zadanym kierunku
+              </p>
+              <p>
+                2. Łącz dwie monety o takim samym nominale - dostaniesz droższą
+                monetę
+              </p>
+              <p>
+                3. Po każdym ruchu dwie monety o nominale 1gr. pojawiają się na
+                planszy
+              </p>
+              <p>4. Kiedy skończy się miejsce - przygrywasz!</p>
+              <p>
+                5. Uzbieraj jak największą ilość pieniędzy i baw się dobrze :)
+              </p>
+            </div>
           </div>
-          <div className='back-button' onClick={this.moveBack}>
-            <span className='back-span'>{this.state.movesBack}</span>
+          <div className="game-over-panel" hidden={this.state.hideGameOver}>
+            Koniec Gry!
           </div>
-          <div className='magic-wand-button' onClick={this.magicWand}>
-            <span className='wand-span'>{this.state.wands}</span>
-          </div>
-          <div className='best-button' onClick={this.showHideBestPlayers}>
-            Best Players
-          </div>
+          <h2 className="money-counter">
+            Uzbierałeś: {countZl} zł i {countGr} gr!{" "}
+          </h2>
         </div>
-        <div className='board'>
-          {cells}
-          <div className='best-players-panel' hidden={this.state.bestHide}>
-            Najlepsze wyniki:{' '}
-            <ol>
-              <li />
-              <li />
-            </ol>
-          </div>
-          <div className='info-panel' hidden={this.state.infoHide}>
-            <h3>Zasady gry:</h3>
-            <br />
-            <p>
-              1. Używaj strzałek na klawiaturze, żeby przesunąć wszystkie monety
-              w zadanym kierunku
-            </p>
-            <p>
-              2. Łącz dwie monety o takim samym nominale - dostaniesz droższą
-              monetę
-            </p>
-            <p>
-              3. Po każdym ruchu dwie monety o nominale 1gr. pojawiają się na
-              planszy
-            </p>
-            <p>4. Kiedy skończy się miejsce - przygrywasz!</p>
-            <p>
-              5. Uzbieraj jak największą ilość pieniędzy i baw się dobrze :)
-            </p>
-          </div>
-        </div>
-        <div className='game-over-panel' hidden={this.state.hideGameOver}>
-          Koniec Gry!
-        </div>
-        <h2 className='money-counter'>
-          Uzbierałeś: {countZl} zł i {countGr} gr!{' '}
-        </h2>
-      </div>
+      </>
     );
-  };
-};
+  }
+}
