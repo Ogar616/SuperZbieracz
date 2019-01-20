@@ -19,6 +19,7 @@ h1 {
 .board {
   width: 55vh;
   height: 55vh;
+  max-width: 100vw;
   position: relative;
   display: flex;
   align-items: center;
