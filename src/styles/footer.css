@@ -1,0 +1,11 @@
+.footer {
+    text-align: center;
+    font-size: 1em;
+    background-color: lightgrey;
+    opacity: 0.8;
+}
+.github {
+    width: 1em;
+    height: 1em;
+    margin-left: 0.5em;
+}

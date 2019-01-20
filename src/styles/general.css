@@ -1,5 +1,5 @@
 body {
-  background-image: url("../assets/money.png");
+  background-image: url('../assets/money.png');
   background-size: cover;
   
 }
@@ -19,7 +19,7 @@ h1 {
 .board {
   width: 55vh;
   height: 55vh;
-  max-width: 100vw;
+  max-width: 95vw;
   position: relative;
   display: flex;
   align-items: center;
