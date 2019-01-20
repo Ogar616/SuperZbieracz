@@ -4,7 +4,7 @@ figure, figcaption, footer, header, nav, section {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 1.5 !important;
+	font-size: 1.5;
 	font: inherit;
 	vertical-align: baseline;
 }

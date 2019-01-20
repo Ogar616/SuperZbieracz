@@ -1,0 +1,91 @@
+
+.control-buttons {
+    width: 80%;
+    height: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .info-button {
+    width: 100px;
+    height: 100px;
+    justify-content: center;
+    border: 10px solid black;
+    border-radius: 50px;
+    background: mediumseagreen;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  .restart-button {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    border: 10px solid black;
+    background: mediumseagreen;
+    background-image: url("../assets/restart.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+  }
+  
+  .back-button {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    border: 10px solid black;
+    background: mediumseagreen;
+    background-image: url("../assets/back.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+  }
+  
+  .back-span {
+    font-size: 20px;
+    font-weight: bold;
+    position: relative;
+    top: 15%;
+    left: 20%;
+  }
+  
+  .magic-wand-button {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    border: 10px solid black;
+    background: mediumseagreen;
+    background-image: url("../assets/wand.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+  }
+  
+  .wand-span {
+    font-size: 20px;
+    font-weight: bold;
+    position: relative;
+    top: 15%;
+    left: 20%;
+  }
+  
+  .best-button {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    border: 10px solid black;
+    background: mediumseagreen;
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }

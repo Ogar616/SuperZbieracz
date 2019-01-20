@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Cell from './Cell.jsx';
 
-class Game extends React.Component {
+export default class Game extends Component {
   constructor(props) {
     super(props);
 
@@ -16,7 +16,7 @@ class Game extends React.Component {
       bestHide: true,
       infoHide: true
     };
-  }
+  };
 
   showHideInfo = () => {
     if (this.state.bestHide === true)
@@ -50,14 +50,14 @@ class Game extends React.Component {
         },
         () => this.setState({ points: this.countMoney() })
       );
-    }
+    };
   };
 
   createBoard = () => {
     const start = [];
     for (let i = 0; i < 25; i++) {
       start[i] = { level: 0, key: i };
-    }
+    };
     return start;
   };
 
@@ -76,7 +76,7 @@ class Game extends React.Component {
         { hideGameOver: false, topPlayers: list },
         console.log('Game over')
       );
-    }
+    };
   };
 
   moveBack = () => {
@@ -95,8 +95,8 @@ class Game extends React.Component {
           movesBack: this.state.movesBack - 1,
           points: this.countMoney()
         });
-      }
-    }
+      };
+    };
   };
 
   addNewCells = () => {
@@ -267,7 +267,7 @@ class Game extends React.Component {
             cells[index].class = 'lvl-up';
             cells[index].key2 = cells[index + 1].key1;
             cells[index + 1].level = 0;
-          }
+          };
       });
 
       return removeEmptyLeft(cells, oldLevels);
@@ -286,8 +286,8 @@ class Game extends React.Component {
             cells[index].level++;
             cells[index].key2 = cells[index - 1].key1;
             cells[index - 1].level = 0;
-          }
-        }
+          };
+        };
       });
 
       return removeEmptyRight(cells, oldLevels);
@@ -307,7 +307,7 @@ class Game extends React.Component {
       row5 = mergeLeft(row5);
 
       return [row1, row2, row3, row4, row5];
-    }
+    };
 
     if (direction === 'right') {
       row1 = removeEmptyAndFixKeysRight(row1);
@@ -323,7 +323,7 @@ class Game extends React.Component {
       row5 = mergeRight(row5);
 
       return [row1, row2, row3, row4, row5];
-    }
+    };
 
     if (direction === 'up') {
       cells = this.changePlane(cells);
@@ -349,7 +349,7 @@ class Game extends React.Component {
       cells = [...col1, ...col2, ...col3, ...col4, ...col5];
 
       return this.changePlane(cells);
-    }
+    };
 
     if (direction === 'down') {
       cells = this.changePlane(cells);
@@ -375,7 +375,7 @@ class Game extends React.Component {
       cells = [...col1, ...col2, ...col3, ...col4, ...col5];
 
       return this.changePlane(cells);
-    }
+    };
   };
 
   concatRows = cells => {
@@ -404,15 +404,15 @@ class Game extends React.Component {
       row.forEach((cell, index) => {
         if (typeof cell.key1 === 'number' && typeof cell.key2 !== 'number') {
           classes[cell.key1] = defineClass(cell.key1 - index);
-        }
+        };
 
         if (typeof cell.key2 === 'number' && cell.key1 !== cell.key2) {
           classes[cell.key1] = defineClass(cell.key1 - index);
           classes[cell.key2] = defineClass(cell.key2 - index);
           classes[index] = 'lvl+';
-        }
+        };
       });
-    }
+    };
 
     if (direction === 'right') {
       const defineClass = count => {
@@ -425,15 +425,15 @@ class Game extends React.Component {
       row.forEach((cell, index) => {
         if (typeof cell.key1 === 'number' && typeof cell.key2 !== 'number') {
           classes[cell.key1] = defineClass(index - cell.key1);
-        }
+        };
 
         if (typeof cell.key2 === 'number' && cell.key1 !== cell.key2) {
           classes[cell.key1] = defineClass(index - cell.key1);
           classes[cell.key2] = defineClass(index - cell.key2);
           classes[index] = 'lvl+';
-        }
+        };
       });
-    }
+    };
 
     if (direction === 'up') {
       const defineClass = count => {
@@ -446,15 +446,15 @@ class Game extends React.Component {
       row.forEach((cell, index) => {
         if (typeof cell.key1 === 'number' && typeof cell.key2 !== 'number') {
           classes[cell.key1] = defineClass(cell.key1 - index);
-        }
+        };
 
         if (typeof cell.key2 === 'number' && cell.key1 !== cell.key2) {
           classes[cell.key1] = defineClass(cell.key1 - index);
           classes[cell.key2] = defineClass(cell.key2 - index);
           classes[index] = 'lvl+';
-        }
+        };
       });
-    }
+    };
 
     if (direction === 'down') {
       const defineClass = count => {
@@ -467,13 +467,13 @@ class Game extends React.Component {
       row.forEach((cell, index) => {
         if (typeof cell.key1 === 'number' && typeof cell.key2 !== 'number') {
           classes[cell.key1] = defineClass(index - cell.key1);
-        }
+        };
 
         if (typeof cell.key2 === 'number' && cell.key1 !== cell.key2) {
           classes[cell.key1] = defineClass(index - cell.key1);
           classes[cell.key2] = defineClass(index - cell.key2);
           classes[index] = 'lvl+';
-        }
+        };
       });
     }
 
@@ -531,7 +531,7 @@ class Game extends React.Component {
       );
 
       cellsAfter = newCells;
-    }
+    };
 
     if (key.which === rightArrow) {
       let newCells = this.moveCells('right', oldCells);
@@ -567,7 +567,7 @@ class Game extends React.Component {
       );
 
       cellsAfter = newCells;
-    }
+    };
 
     if (key.which === upArrow) {
       let newCells = this.moveCells('up', oldCells);
@@ -618,7 +618,7 @@ class Game extends React.Component {
 
       cellsBefore = animatedCells;
       cellsAfter = newCells;
-    }
+    };
 
     if (key.which === downArrow) {
       let newCells = this.moveCells('down', oldCells);
@@ -669,7 +669,7 @@ class Game extends React.Component {
 
       cellsBefore = animatedCells;
       cellsAfter = newCells;
-    }
+    };
 
     cellsBefore.forEach((cell, index) => cell.key = index);
 
@@ -703,11 +703,6 @@ class Game extends React.Component {
         class={element.class}
       />
     );
-    // const list = this.state.topPlayers.map((player, index) => (
-    //   <li key={index}>
-    //     {player[0]} - {player[1]}
-    //   </li>
-    // ));
 
     let countZl = 0;
     if (this.state.points / 100 > 1)
@@ -717,13 +712,13 @@ class Game extends React.Component {
 
     return (
       <div className='container'>
-        <h1>Super Zbieracz - THE GAME !!!</h1>
+        <h1>Super Zbieracz - THE GAME
+        </h1>
         <div className='control-buttons'>
           <div className='info-button' onClick={this.showHideInfo}>
             INFO
           </div>
           <div className='restart-button' onClick={this.restartGame}>
-            {' '}
           </div>
           <div className='back-button' onClick={this.moveBack}>
             <span className='back-span'>{this.state.movesBack}</span>
@@ -768,13 +763,10 @@ class Game extends React.Component {
         <div className='game-over-panel' hidden={this.state.hideGameOver}>
           Koniec Gry!
         </div>
-
         <h2 className='money-counter'>
           Uzbierałeś: {countZl} zł i {countGr} gr!{' '}
         </h2>
       </div>
     );
-  }
-}
-
-export default Game;
+  };
+};
