@@ -18,6 +18,41 @@ export default class Game extends Component {
     };
   }
 
+  componentDidMount = () => {
+    document.addEventListener("keyup", this.handleKeys);
+    this.addNewCells();
+  };
+
+  componentWillUnmount = () => {
+    clearTimeout(this.timer);
+  };
+
+  createBoard = () => {
+    const start = [];
+    for (let i = 0; i < 25; i++) {
+      start[i] = { level: 0, key: i };
+    }
+    return start;
+  };
+
+  gameOverCheck = () => {
+    const emptyCells = [];
+    this.state.cells.forEach(e => {
+      if (e.level < 1) emptyCells.push(e);
+    });
+
+    if (emptyCells.length < 1) {
+      const newName = prompt("Podaj swoje imię");
+      const list = this.state.topPlayers;
+      list.push([newName, this.state.points]);
+      list.sort((a, b) => a[1] - b[1]);
+      this.setState(
+        { hideGameOver: false, topPlayers: list },
+        console.log("Game over")
+      );
+    }
+  };
+
   showHideInfo = () => {
     if (this.state.bestHide === true)
       this.setState({ infoHide: this.state.infoHide === true ? false : true });
@@ -49,32 +84,6 @@ export default class Game extends Component {
           wands: this.state.wands - 1
         },
         () => this.setState({ points: this.countMoney() })
-      );
-    }
-  };
-
-  createBoard = () => {
-    const start = [];
-    for (let i = 0; i < 25; i++) {
-      start[i] = { level: 0, key: i };
-    }
-    return start;
-  };
-
-  gameOverCheck = () => {
-    const emptyCells = [];
-    this.state.cells.forEach(e => {
-      if (e.level < 1) emptyCells.push(e);
-    });
-
-    if (emptyCells.length < 1) {
-      const newName = prompt("Podaj swoje imię");
-      const list = this.state.topPlayers;
-      list.push([newName, this.state.points]);
-      list.sort((a, b) => a[1] - b[1]);
-      this.setState(
-        { hideGameOver: false, topPlayers: list },
-        console.log("Game over")
       );
     }
   };
@@ -135,15 +144,6 @@ export default class Game extends Component {
     this.setState({ cells: newCells, points: this.countMoney() });
   };
 
-  componentDidMount = () => {
-    document.addEventListener("keyup", this.handleKeys);
-    this.addNewCells();
-  };
-
-  componentWillUnmount = () => {
-    clearTimeout(this.timer);
-  };
-
   levelValues = [
     0,
     1,
@@ -169,7 +169,7 @@ export default class Game extends Component {
       (cell, index) =>
         (moneyCounter += this.levelValues[this.state.cells[index].level])
     );
-    return moneyCounter;
+    return moneyCounter + 2;
   };
 
   changePlane = cells => {
